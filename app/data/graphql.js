@@ -37,10 +37,20 @@ const insertUser = (email, password) => {
     });
 };
 
-const protected = ({ user, res }) => {
+const protected = ({ user, res, roles }) => {
+  let isAuthorized = true;
+
   if (!user) {
-    res.statusCode = 401;
-    throw new Error("Unauthorized");
+    isAuthorized = false;
+  } else if (roles) {
+    isAuthorized = roles.some(role => {
+      return user.role.indexOf(role) >= 0;
+    });
+
+    if (!isAuthorized) {
+      res.statusCode = 401;
+      throw new Error("Unauthorized");
+    }
   }
 };
 // End GQ BL
@@ -64,6 +74,7 @@ let schema = buildSchema(`
 // Root provides a resolver function for each API endpoint
 let rootResolver = {
   items: (_, args) => {
+    args.roles = ["admin"];
     protected(args); // contain user and response, user = args.user comes from context
     return getItems();
   },

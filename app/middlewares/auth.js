@@ -31,7 +31,7 @@ const getTokenFromHeaders = req => {
 // Authentication and generate token
 const login = (username, password, response) => {
   return db
-    .oneOrNone(`SELECT * FROM users where email = '${username}';`)
+    .oneOrNone(`SELECT * FROM "user-roles-view" where email = '${username}';`)
     .then(user => {
       if (username == user.email) {
         const hash = crypto
@@ -44,9 +44,13 @@ const login = (username, password, response) => {
             .send({ message: "Invalid username and password" });
         }
 
-        var token = JsonWebToken.sign({ user: user.email }, secret.jwtSecret, {
-          expiresIn: 3600
-        });
+        var token = JsonWebToken.sign(
+          { sub: user.email, role: user.roles },
+          secret.jwtSecret,
+          {
+            expiresIn: 3600
+          }
+        );
 
         response.send({ token: token });
       } else {
