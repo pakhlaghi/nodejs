@@ -74,7 +74,7 @@ let schema = buildSchema(`
 // Root provides a resolver function for each API endpoint
 let rootResolver = {
   items: (_, args) => {
-    args.roles = ["admin"];
+    args.roles = ["admin"]; // array of authorization
     protected(args); // contain user and response, user = args.user comes from context
     return getItems();
   },
