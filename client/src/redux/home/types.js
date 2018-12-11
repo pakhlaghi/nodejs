@@ -1,0 +1,3 @@
+export const CHANGE_TITLE = 'CHANGE_TITLE';
+export const GET_USERS_SUCCESS = 'GET_USERS_SUCCESS';
+export const SHOW_SPINNER = 'SHOW_SPINNER';

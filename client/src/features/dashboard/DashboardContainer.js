@@ -1,0 +1,27 @@
+import React from "react";
+import Dashboard from "./Dashboard";
+import {
+  closeDrawer,
+  openDrawer,
+  getItemsAsync
+} from "../../redux/dashboard/action";
+
+import { connect } from "react-redux";
+
+const mapStateToProps = state => {
+  return {
+    dashboard: state.dashboard
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onCloseDrawer: _ => dispatch(closeDrawer()),
+    onOpenDrawer: _ => dispatch(openDrawer()),
+    onGetItemsAsync: _ => dispatch(getItemsAsync())
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Dashboard);
