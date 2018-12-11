@@ -1,10 +1,10 @@
 import React from "react";
-import Dashboard from "./Dashboard";
+import Dashboard from "../features/dashboard/dashboard";
 import {
   closeDrawer,
   openDrawer,
   getItemsAsync
-} from "../../redux/dashboard/action";
+} from "../redux/dashboard/action";
 
 import { connect } from "react-redux";
 

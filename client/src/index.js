@@ -1,22 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
-
 // component
-import App from "./features/app/App";
-
-// redux
+import App from "./containers/app/App";
+// Redux
 import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import rootReducer from "./redux/reducers";
-
-// route
+// Route
 import { BrowserRouter } from "react-router-dom";
-
 // UI
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import purple from "@material-ui/core/colors/purple";
 
 const theme = createMuiTheme({});
 
