@@ -42,7 +42,7 @@ function App({ auth }) {
       isPrivate: true // is private route?
     },
     {
-      path: "/cities",
+      path: "/dashboard",
       component: lazyDashboardContainer
     }
   ];

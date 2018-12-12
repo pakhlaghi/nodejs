@@ -36,8 +36,8 @@ const Header = props => {
             <Button color="inherit">Private</Button>
           </Link>
 
-          <Link to="/cities" className={classes.link}>
-            <Button color="inherit">Cities</Button>
+          <Link to="/dashboard" className={classes.link}>
+            <Button color="inherit">Dashboard</Button>
           </Link>
         </Toolbar>
       </AppBar>

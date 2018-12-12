@@ -1,15 +1,22 @@
 import React from "react";
 import Header from "./header";
 import Footer from "./footer";
+// UI
+import styles from "./layout.style";
+import { withStyles } from "@material-ui/core/styles";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, classes }) => {
   return (
-    <React.Fragment>
-      <Header />
-      <div>{children}</div>
-      <Footer />
-    </React.Fragment>
+    <div className={classes.layout}>
+      <section>
+        <Header />
+      </section>
+      <section>{children}</section>
+      <section className={classes.footer}>
+        <Footer />
+      </section>
+    </div>
   );
 };
 
-export default Layout;
+export default withStyles(styles)(Layout);
