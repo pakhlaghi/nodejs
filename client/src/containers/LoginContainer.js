@@ -1,5 +1,5 @@
 import React from "react";
-import Login from "../features/login/login";
+import Login from "../features/login";
 
 import { connect } from "react-redux";
 

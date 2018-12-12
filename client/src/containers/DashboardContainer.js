@@ -1,5 +1,5 @@
 import React from "react";
-import Dashboard from "../features/dashboard/dashboard";
+import Dashboard from "../features/dashboard";
 import {
   closeDrawer,
   openDrawer,

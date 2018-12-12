@@ -1,6 +1,6 @@
 import React from "react";
-import Home from "./Home";
-import { changeTitleAsync, getUsers } from "../../redux/home/action";
+import Home from "../features/home/home";
+import { changeTitleAsync, getUsers } from "../redux/home/action";
 
 import { connect } from "react-redux";
 

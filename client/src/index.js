@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 // component
-import App from "./containers/app/App";
+import App from "./containers/app";
 // Redux
 import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";

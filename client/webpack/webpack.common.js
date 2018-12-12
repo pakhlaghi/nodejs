@@ -26,7 +26,7 @@ module.exports = {
     new CopyWebpackPlugin([{ from: "src/assets/images", to: "assets/images" }]), // compy assets to build folder
     new HtmlWebpackPlugin({
       hash: true,
-      template: path.join(__dirname, "../public/index.html"), // template to add script and css tag
+      template: path.join(__dirname, "../wpTemplate/index.html"), // template to add script and css tag
       path: path.join(__dirname, "../../server/public/"), // add scripts and css into this folder
       filename: "index.html"
     })

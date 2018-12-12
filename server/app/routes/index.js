@@ -23,7 +23,7 @@ routes.get("/you", csrfProtection, auth.required, function(req, res) {
 });
 
 routes.get("/me", csrfProtection, auth.optional, function(req, res) {
-  return res.status(200).send({ user: "Peyman" });
+  return res.status(200).send({ user: req.payload.user });
 });
 
 routes.post("/login", auth.optional, (req, res) => {
