@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+//components
+import HeaderContent from "./headerContent";
 // UI
 import styles from "./header.style";
 import { withStyles } from "@material-ui/core/styles";
@@ -9,13 +11,19 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+import { Grid } from "@material-ui/core";
 
 const Header = props => {
   const { classes } = props;
 
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
+    <Grid
+      container
+      wrap="wrap"
+      alignItems="flex-start"
+      className={classes.root}
+    >
+      <AppBar className={classes.appBar} position="static">
         <Toolbar>
           <IconButton
             className={classes.menuButton}
@@ -41,7 +49,8 @@ const Header = props => {
           </Link>
         </Toolbar>
       </AppBar>
-    </div>
+      <HeaderContent />
+    </Grid>
   );
 };
 

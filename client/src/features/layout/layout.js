@@ -8,13 +8,9 @@ import { withStyles } from "@material-ui/core/styles";
 const Layout = ({ children, classes }) => {
   return (
     <div className={classes.layout}>
-      <section>
-        <Header />
-      </section>
+      <Header />
       <section>{children}</section>
-      <section className={classes.footer}>
-        <Footer />
-      </section>
+      <Footer />
     </div>
   );
 };

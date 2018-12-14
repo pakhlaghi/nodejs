@@ -1,6 +1,8 @@
 const styles = {
   root: {
-    flexGrow: 1
+    backgroundImage:
+      "url(https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/bg-1.jpg)",
+    minHeight: "1080px"
   },
   grow: {
     flexGrow: 1
@@ -12,6 +14,9 @@ const styles = {
   link: {
     textDecoration: "none",
     color: "#fff"
+  },
+  appBar: {
+    background: "transparent"
   }
 };
 

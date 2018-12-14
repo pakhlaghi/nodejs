@@ -1,7 +1,10 @@
 import React from "react";
+// UI
+import styles from "./footer.style";
+import { withStyles } from "@material-ui/core/styles";
 
-const Footer = _ => {
-  return <div>Footer</div>;
+const Footer = ({ classes }) => {
+  return <section className={classes.footer}>Footer</section>;
 };
 
-export default Footer;
+export default withStyles(styles)(Footer);
