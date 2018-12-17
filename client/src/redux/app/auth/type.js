@@ -1,2 +1,2 @@
-export const AUTHENTICATE = AUTHENTICATE;
-export const LOGOUT = LOGOUT;
+export const AUTHENTICATE = "AUTHENTICATE";
+export const LOGOUT = "LOGOUT";

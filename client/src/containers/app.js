@@ -21,13 +21,16 @@ const lazyLoginContainer = Loadable({
   loading: Loading
 });
 
-function App({ auth }) {
+function App({ auth, pathname }) {
   // routes array to create router
   const routes = [
     {
       path: "/home",
       exact: true,
-      component: HomeContainer
+      component: HomeContainer,
+      extra: {
+        isFullHeader: true
+      }
     },
     {
       path: "/Login",
@@ -37,9 +40,11 @@ function App({ auth }) {
     {
       path: "/private",
       component: lazyDashboardContainer,
-      isAllowed: auth.isAuthenticated,
-      redirectTo: "/login", // if private redirect to ...
-      isPrivate: true // is private route?
+      auth: {
+        isAllowed: auth.isAuthenticated,
+        redirectTo: "/login", // if private redirect to ...
+        isPrivate: true // is private route?
+      }
     },
     {
       path: "/dashboard",
@@ -48,16 +53,17 @@ function App({ auth }) {
   ];
 
   return (
-    <Layout>
+    <Layout pathname={pathname}>
       <CCRoutes routes={routes} />
     </Layout>
   );
 }
 
 // redux map state
-const mapStateToProps = state => {
+const mapStateToProps = (state, props) => {
   return {
-    auth: state.app.auth
+    auth: state.app.auth,
+    pathname: props.location.pathname
   };
 };
 

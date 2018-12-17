@@ -5,10 +5,19 @@ import Footer from "./footer";
 import styles from "./layout.style";
 import { withStyles } from "@material-ui/core/styles";
 
-const Layout = ({ children, classes }) => {
+const Layout = props => {
+  const { children, classes, pathname } = props;
+  const routes = children.props.routes;
+
+  const route = routes && routes.filter(route => route.path == pathname);
+  const isFullHeader =
+    route && route.length && route[0].extra && route[0].extra.isFullHeader
+      ? route[0].extra.isFullHeader
+      : false;
+
   return (
     <div className={classes.layout}>
-      <Header />
+      <Header isFullHeader={isFullHeader} />
       <section>{children}</section>
       <Footer />
     </div>

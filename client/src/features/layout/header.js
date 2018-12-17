@@ -11,17 +11,19 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+import classNames from "classNames";
 import { Grid } from "@material-ui/core";
 
-const Header = props => {
-  const { classes } = props;
-
+const Header = ({ classes, isFullHeader }) => {
   return (
     <Grid
       container
       wrap="wrap"
       alignItems="flex-start"
-      className={classes.root}
+      className={classNames({
+        [classes.root]: true,
+        [classes.fullHeader]: isFullHeader
+      })}
     >
       <AppBar className={classes.appBar} position="static">
         <Toolbar>
@@ -49,7 +51,7 @@ const Header = props => {
           </Link>
         </Toolbar>
       </AppBar>
-      <HeaderContent />
+      <HeaderContent isVisible={isFullHeader} />
     </Grid>
   );
 };
