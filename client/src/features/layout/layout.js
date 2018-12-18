@@ -10,16 +10,26 @@ const Layout = props => {
   const routes = children.props.routes;
 
   const route = routes && routes.filter(route => route.path == pathname);
+  const routeExtra = route && route.length && route[0].extra;
+
   const isFullHeader =
-    route && route.length && route[0].extra && route[0].extra.isFullHeader
-      ? route[0].extra.isFullHeader
+    routeExtra && !(typeof routeExtra.isFullHeader === "undefined")
+      ? routeExtra.isFullHeader
       : false;
+  const showHeader =
+    routeExtra && !(typeof routeExtra.showHeader === "undefined")
+      ? routeExtra.showHeader
+      : true;
+  const showFooter =
+    routeExtra && !(typeof routeExtra.showFooter === "undefined")
+      ? routeExtra.showFooter
+      : true;
 
   return (
     <div className={classes.layout}>
-      <Header isFullHeader={isFullHeader} />
-      <section>{children}</section>
-      <Footer />
+      {showHeader ? <Header isFullHeader={isFullHeader} /> : null}
+      {children}
+      {showFooter ? <Footer /> : null}
     </div>
   );
 };

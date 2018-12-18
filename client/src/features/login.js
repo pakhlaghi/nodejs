@@ -1,4 +1,7 @@
 import React from "react";
+// Route
+import { Redirect } from "react-router-dom";
+//UI
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -14,10 +17,13 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import styles from "./login.style";
 
 const Login = props => {
-  const { login, classes } = props;
+  const { loginSt, classes } = props;
 
+  if (loginSt.token) {
+    return <Redirect to="/dashboard" />;
+  }
   return (
-    <main className={classes.main}>
+    <section className={classes.main}>
       <CssBaseline />
       <Paper className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -26,7 +32,7 @@ const Login = props => {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form}>
+        <div className={classes.form}>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="email">Email Address</InputLabel>
             <Input id="email" name="email" autoComplete="email" autoFocus />
@@ -45,17 +51,22 @@ const Login = props => {
             label="Remember me"
           />
           <Button
-            type="submit"
+            type="button"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            disabled={loginSt.isInProgress}
+            onClick={() =>
+              props.onSignIn("peyman.akhlaghi@gmail.com", "123456")
+            }
           >
             Sign in
           </Button>
-        </form>
+        </div>
+        <div>{loginSt.errorMessage}</div>
       </Paper>
-    </main>
+    </section>
   );
 };
 

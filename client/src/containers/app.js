@@ -48,7 +48,11 @@ function App({ auth, pathname }) {
     },
     {
       path: "/dashboard",
-      component: lazyDashboardContainer
+      component: lazyDashboardContainer,
+      extra: {
+        showHeader: false,
+        showFooter: false
+      }
     }
   ];
 
