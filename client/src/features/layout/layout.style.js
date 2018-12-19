@@ -1,9 +1,13 @@
 const styles = {
   layout: {
     display: "flex",
-    flexFlow: "column nowrap",
-    height: "100%",
-    margin: "0"
+    flexWrap: "wrap",
+    height: "auto",
+    margin: "0",
+    justifyContent: "center"
+  },
+  content: {
+    width: "100%"
   }
 };
 

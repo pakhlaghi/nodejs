@@ -42,8 +42,8 @@ const Header = ({ classes, isFullHeader }) => {
             <Button color="inherit">Home</Button>
           </Link>
 
-          <Link to="/private" className={classes.link}>
-            <Button color="inherit">Private</Button>
+          <Link to="/login" className={classes.link}>
+            <Button color="inherit">Login</Button>
           </Link>
 
           <Link to="/dashboard" className={classes.link}>

@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 
 const mapStateToProps = state => {
   return {
-    dashboard: state.dashboard
+    dashboardSt: state.dashboard
   };
 };
 

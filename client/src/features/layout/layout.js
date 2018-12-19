@@ -28,7 +28,8 @@ const Layout = props => {
   return (
     <div className={classes.layout}>
       {showHeader ? <Header isFullHeader={isFullHeader} /> : null}
-      {children}
+      <section className={classes.content}>{children}</section>
+
       {showFooter ? <Footer /> : null}
     </div>
   );

@@ -17,11 +17,12 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 
 const Dashboard = props => {
   const {
-    dashboard,
+    dashboardSt,
     classes,
     onCloseDrawer,
     onOpenDrawer,
-    onGetItemsAsync
+    onGetItemsAsync,
+    loginSt
   } = props;
 
   return (
@@ -31,11 +32,11 @@ const Dashboard = props => {
         position="absolute"
         className={classNames(
           classes.appBar,
-          dashboard.isDrawerOpen && classes.appBarShift
+          dashboardSt.isDrawerOpen && classes.appBarShift
         )}
       >
         <Toolbar
-          disableGutters={!dashboard.isDrawerOpen}
+          disableGutters={!dashboardSt.isDrawerOpen}
           className={classes.toolbar}
         >
           <IconButton
@@ -44,7 +45,7 @@ const Dashboard = props => {
             onClick={onOpenDrawer}
             className={classNames(
               classes.menuButton,
-              dashboard.isDrawerOpen && classes.menuButtonHidden
+              dashboardSt.isDrawerOpen && classes.menuButtonHidden
             )}
           >
             <MenuIcon />
@@ -70,10 +71,10 @@ const Dashboard = props => {
         classes={{
           paper: classNames(
             classes.drawerPaper,
-            !dashboard.isDrawerOpen && classes.drawerPaperClose
+            !dashboardSt.isDrawerOpen && classes.drawerPaperClose
           )
         }}
-        open={dashboard.isDrawerOpen}
+        open={dashboardSt.isDrawerOpen}
       >
         <div className={classes.toolbarIcon}>
           <IconButton onClick={onCloseDrawer}>
