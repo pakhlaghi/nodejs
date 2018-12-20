@@ -10,7 +10,13 @@ const HeaderContent = ({ classes, isVisible }) => {
   return (
     <React.Fragment>
       {isVisible ? (
-        <Grid container direction="column" justify="center" alignItems="center">
+        <Grid
+          container
+          direction="column"
+          justify="center"
+          alignItems="center"
+          className={classes.center}
+        >
           <Typography
             variant="h1"
             color="secondary"

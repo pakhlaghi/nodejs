@@ -10,6 +10,9 @@ const styles = theme => ({
   },
   width: {
     maxWidth: "900px"
+  },
+  center: {
+    textAlign: "center"
   }
 });
 

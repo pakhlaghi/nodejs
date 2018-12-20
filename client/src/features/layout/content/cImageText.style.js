@@ -12,10 +12,18 @@ const styles = theme => ({
   },
   contentWidth: {
     width: "1080px",
+    [theme.breakpoints.down("md")]: {
+      width: "100%",
+      flexWrap: "wrap",
+      justifyContent: "center"
+    },
     display: "flex"
   },
   box: {
     width: "50%",
+    [theme.breakpoints.down("md")]: {
+      width: "100%"
+    },
     padding: theme.spacing.unit * 8,
     textAlign: "left"
   },
@@ -24,6 +32,17 @@ const styles = theme => ({
     width: "78px",
     height: "3px",
     margin: "35px 0"
+  },
+  image: {
+    width: "100%",
+    [theme.breakpoints.down("md")]: {
+      width: "60%"
+    }
+  },
+  imageBox: {
+    [theme.breakpoints.down("md")]: {
+      textAlign: "center"
+    }
   }
 });
 

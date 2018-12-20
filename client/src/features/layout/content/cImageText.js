@@ -3,13 +3,15 @@ import React from "react";
 import styles from "./cImageText.style";
 import { withStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
+import classNames from "classnames";
 
 const CImageText = ({ classes }) => {
   return (
     <div className={classes.container}>
       <div className={classes.contentWidth}>
-        <div className={classes.box}>
+        <div className={classNames(classes.box, classes.imageBox)}>
           <img
+            className={classes.image}
             src="https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/bg5.png"
             alt=""
           />

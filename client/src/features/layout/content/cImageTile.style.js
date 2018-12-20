@@ -1,12 +1,15 @@
-import blueGrey from "@material-ui/core/colors/blueGrey";
-
 const styles = theme => ({
-  footer: {
-    backgroundColor: blueGrey[900],
-    marginTop: "auto",
-    color: "#fff",
-    minHeight: "400px",
-    marginTop: theme.spacing.unit * 8
+  root: {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    backgroundColor: theme.palette.background.paper
+  },
+  gridList: {
+    margin: "0px!important"
+  },
+  icon: {
+    color: "rgba(255, 255, 255, 0.54)"
   }
 });
 

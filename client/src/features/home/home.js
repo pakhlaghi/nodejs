@@ -9,8 +9,8 @@ const Home = _ => {
     <React.Fragment>
       <CCenterTitleText />
       <CImageText />
-      {/* <CImageTile />
-      <CIconTitleText /> */}
+      <CImageTile />
+      <CIconTitleText />
     </React.Fragment>
   );
 };
