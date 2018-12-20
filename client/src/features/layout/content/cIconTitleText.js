@@ -26,7 +26,7 @@ const CIconTitleText = ({ classes, width }) => {
       text: "You Take Into a Masterpiece!"
     },
     {
-      icon: "TabletMa",
+      icon: "TabletMac",
       title: "GET OUR APP AND TURN EVERY PHOTO",
       text: "You Take Into a Masterpiece!"
     }

@@ -51,7 +51,7 @@ const tileData = [
 
 function CImageTile(props) {
   const { classes, width } = props;
-  const isSmall = width.indexOf("s");
+  const isSmall = width.indexOf("s") >= 0;
   return (
     <div>
       <div className={classes.root}>

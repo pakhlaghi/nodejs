@@ -19,17 +19,16 @@ const HeaderContent = ({ classes, isVisible }) => {
         >
           <Typography
             variant="h1"
-            color="secondary"
+            color="inherit"
             gutterBottom
             className={classes.width}
           >
             Header Content
           </Typography>
           <Typography
-            variant="h4"
-            color="secondary"
+            variant="subtitle1"
+            color="inherit"
             gutterBottom
-            align="center"
             className={classes.width}
           >
             Regardless of whether you are a photography industry professional or
