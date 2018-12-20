@@ -29,7 +29,6 @@ const Layout = props => {
     <div className={classes.layout}>
       {showHeader ? <Header isFullHeader={isFullHeader} /> : null}
       <section className={classes.content}>{children}</section>
-
       {showFooter ? <Footer /> : null}
     </div>
   );

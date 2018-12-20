@@ -23,54 +23,52 @@ const Login = props => {
     return <Redirect to="/dashboard" />;
   }
   return (
-    <section>
-      <div className={classes.main}>
-        <CssBaseline />
-        <Paper className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
-          <div className={classes.form}>
-            <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="email">Email Address</InputLabel>
-              <Input id="email" name="email" autoComplete="email" autoFocus />
-            </FormControl>
-            <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="password">Password</InputLabel>
-              <Input
-                name="password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-            </FormControl>
-            {/* 
+    <div className={classes.main}>
+      <CssBaseline />
+      <Paper className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign in
+        </Typography>
+        <div className={classes.form}>
+          <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="email">Email Address</InputLabel>
+            <Input id="email" name="email" autoComplete="email" autoFocus />
+          </FormControl>
+          <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="password">Password</InputLabel>
+            <Input
+              name="password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
+          </FormControl>
+          {/* 
           ToDo: add logics
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           /> */}
-            <Button
-              type="button"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-              disabled={loginSt.isInProgress}
-              onClick={() =>
-                props.onSignIn("peyman.akhlaghi@gmail.com", "123456")
-              }
-            >
-              Sign in
-            </Button>
-          </div>
-          <div>{loginSt.errorMessage}</div>
-        </Paper>
-      </div>
-    </section>
+          <Button
+            type="button"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            disabled={loginSt.isInProgress}
+            onClick={() =>
+              props.onSignIn("peyman.akhlaghi@gmail.com", "123456")
+            }
+          >
+            Sign in
+          </Button>
+        </div>
+        <div>{loginSt.errorMessage}</div>
+      </Paper>
+    </div>
   );
 };
 
