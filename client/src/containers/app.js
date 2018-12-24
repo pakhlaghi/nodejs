@@ -27,6 +27,14 @@ function App({ loginSt, pathname }) {
   // routes array to create router
   const routes = [
     {
+      path: "/",
+      exact: true,
+      component: HomeContainer,
+      extra: {
+        isFullHeader: true
+      }
+    },
+    {
       path: "/home",
       exact: true,
       component: HomeContainer,

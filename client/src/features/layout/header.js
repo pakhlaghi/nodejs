@@ -15,6 +15,23 @@ import classNames from "classNames";
 import { Grid } from "@material-ui/core";
 
 const Header = ({ classes, isFullHeader }) => {
+  const headerContentData = {
+    title: "Header Content",
+    subTitle: `Regardless of whether you are a photography industry professional or
+    just a newcomer hobbyist, editing and post-processing your pics on
+    the go is now so much easier!`,
+    buttons: {
+      primary: {
+        title: "Primary",
+        url: "#Primary"
+      },
+      secondary: {
+        title: "Secondary",
+        url: "#Secondary"
+      }
+    }
+  };
+
   return (
     <Grid
       container
@@ -51,7 +68,7 @@ const Header = ({ classes, isFullHeader }) => {
           </Link>
         </Toolbar>
       </AppBar>
-      <HeaderContent isVisible={isFullHeader} />
+      <HeaderContent isVisible={isFullHeader} contentData={headerContentData} />
     </Grid>
   );
 };

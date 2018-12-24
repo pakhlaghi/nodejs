@@ -6,7 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import { Typography, Button } from "@material-ui/core";
 import classNames from "classnames";
 
-const HeaderContent = ({ classes, isVisible }) => {
+const HeaderContent = ({ classes, isVisible, contentData }) => {
   return (
     <React.Fragment>
       {isVisible ? (
@@ -23,7 +23,7 @@ const HeaderContent = ({ classes, isVisible }) => {
             gutterBottom
             className={classes.width}
           >
-            Header Content
+            {contentData.title}
           </Typography>
           <Typography
             variant="subtitle1"
@@ -31,25 +31,25 @@ const HeaderContent = ({ classes, isVisible }) => {
             gutterBottom
             className={classes.width}
           >
-            Regardless of whether you are a photography industry professional or
-            just a newcomer hobbyist, editing and post-processing your pics on
-            the go is now so much easier!
+            {contentData.subTitle}
           </Typography>
           <div>
             <Button
+              url={contentData.buttons.primary.url}
               variant="contained"
               color="primary"
               size="large"
               className={classes.button}
             >
-              Primary
+              {contentData.buttons.primary.title}
             </Button>
             <Button
+              url={contentData.buttons.secondary.url}
               variant="contained"
               size="large"
               className={classNames(classes.button, classes.secondary)}
             >
-              Default
+              {contentData.buttons.secondary.title}
             </Button>
           </div>
         </Grid>
