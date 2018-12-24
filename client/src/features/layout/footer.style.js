@@ -5,7 +5,12 @@ const styles = theme => ({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 5}px`
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 5}px`,
+    [theme.breakpoints.down("md")]: {
+      justifyContent: "center",
+      textAlign: "center",
+      flexWrap: "wrap"
+    }
   },
   button: {
     "&:hover": {

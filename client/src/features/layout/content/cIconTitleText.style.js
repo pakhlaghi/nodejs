@@ -19,11 +19,9 @@ const styles = theme => ({
     paddingBottom: theme.spacing.unit * 4
   },
   avatar: {
-    backgroundColor: red[500],
-    [theme.breakpoints.down("sm")]: {
-      width: 70,
-      height: 70
-    }
+    backgroundColor: theme.palette.secondary.main,
+    width: 70,
+    height: 70
   },
   box: {
     [theme.breakpoints.down("sm")]: {

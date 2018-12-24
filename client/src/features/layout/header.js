@@ -36,7 +36,7 @@ const Header = ({ classes, isFullHeader }) => {
         [classes.fullHeader]: isFullHeader
       })}
     >
-      <TopBar />
+      <TopBar status={false} />
       <HeaderContent isVisible={isFullHeader} contentData={headerContentData} />
     </Grid>
   );

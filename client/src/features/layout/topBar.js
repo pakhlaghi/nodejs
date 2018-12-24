@@ -10,36 +10,93 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+import CodeIcon from "@material-ui/icons/Code";
+import {
+  ButtonBase,
+  withWidth,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText
+} from "@material-ui/core";
 
-const TopBar = ({ classes }) => {
+const TopBar = ({ classes, width, status }) => {
+  const contentData = {
+    title: "Code Core",
+    menus: [
+      { id: 1, to: "/home", title: "Home" },
+      { id: 2, to: "/login", title: "Login" },
+      { id: 3, to: "/dashboard", title: "Dashboard" }
+    ]
+  };
+
+  const isSmall = width.indexOf("s") >= 0;
+
+  const toggleDrawer = (side, open) => () => {
+    status = open;
+  };
+
   return (
     <AppBar className={classes.appBar} position="static">
-      <Toolbar>
+      <Toolbar className={classes.flex}>
         <IconButton
           className={classes.menuButton}
           color="inherit"
           aria-label="Menu"
         >
-          <MenuIcon />
+          <CodeIcon />
         </IconButton>
-        <Typography variant="h6" color="inherit" className={classes.grow}>
-          Code Core
-        </Typography>
 
-        <Link to="/home" className={classes.link}>
-          <Button color="inherit">Home</Button>
-        </Link>
+        <ButtonBase href="/">
+          <Typography variant="h6" color="inherit">
+            {contentData.title}
+          </Typography>
+        </ButtonBase>
 
-        <Link to="/login" className={classes.link}>
-          <Button color="inherit">Login</Button>
-        </Link>
+        <div className={classes.menu}>
+          {isSmall ? (
+            <IconButton
+              onClick={toggleDrawer("right", true)}
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="Menu"
+            >
+              <MenuIcon />
+            </IconButton>
+          ) : (
+            contentData.menus.map(item => (
+              <Link key={item.id} to={item.to} className={classes.link}>
+                <Button color="inherit">{item.title}</Button>
+              </Link>
+            ))
+          )}
+        </div>
 
-        <Link to="/dashboard" className={classes.link}>
-          <Button color="inherit">Dashboard</Button>
-        </Link>
+        <Drawer
+          anchor="right"
+          open={status}
+          onClose={toggleDrawer("right", false)}
+        >
+          <div
+            tabIndex={0}
+            role="button"
+            onClick={toggleDrawer("right", false)}
+            onKeyDown={toggleDrawer("right", false)}
+          >
+            {
+              <List>
+                {contentData.menus.map(item => (
+                  <ListItem button key={item.id}>
+                    <ListItemText primary={item.title} />
+                  </ListItem>
+                ))}
+              </List>
+            }
+          </div>
+        </Drawer>
       </Toolbar>
     </AppBar>
   );
 };
 
-export default withStyles(styles)(TopBar);
+export default withWidth()(withStyles(styles)(TopBar));

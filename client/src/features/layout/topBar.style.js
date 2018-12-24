@@ -1,7 +1,4 @@
 const styles = theme => ({
-  grow: {
-    flexGrow: 1
-  },
   menuButton: {
     marginLeft: -12,
     marginRight: 20
@@ -12,6 +9,14 @@ const styles = theme => ({
   },
   appBar: {
     background: "transparent"
+  },
+  flex: {
+    display: "flex",
+    justifyContent: "stretch"
+  },
+  menu: {
+    textAlign: "right",
+    flexGrow: 1
   }
 });
 
