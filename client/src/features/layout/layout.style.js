@@ -2,7 +2,7 @@ const styles = {
   layout: {
     display: "flex",
     flexWrap: "wrap",
-    height: "auto",
+    height: "100%",
     margin: "0",
     justifyContent: "center"
   },
