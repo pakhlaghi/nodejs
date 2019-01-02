@@ -20,21 +20,11 @@ import {
   ListItemText
 } from "@material-ui/core";
 
-const TopBar = ({ classes, width, status }) => {
-  const contentData = {
-    title: "Code Core",
-    menus: [
-      { id: 1, to: "/home", title: "Home" },
-      { id: 2, to: "/login", title: "Login" },
-      { id: 3, to: "/dashboard", title: "Dashboard" }
-    ]
-  };
+const TopBar = props => {
+  // props
+  const { classes, width, isDrawerOpen, onToggleDrawer, contentData } = props;
 
   const isSmall = width.indexOf("s") >= 0;
-
-  const toggleDrawer = (side, open) => () => {
-    status = open;
-  };
 
   return (
     <AppBar className={classes.appBar} position="static">
@@ -56,7 +46,7 @@ const TopBar = ({ classes, width, status }) => {
         <div className={classes.menu}>
           {isSmall ? (
             <IconButton
-              onClick={toggleDrawer("right", true)}
+              onClick={_ => onToggleDrawer(true)}
               className={classes.menuButton}
               color="inherit"
               aria-label="Menu"
@@ -64,7 +54,7 @@ const TopBar = ({ classes, width, status }) => {
               <MenuIcon />
             </IconButton>
           ) : (
-            contentData.menus.map(item => (
+            contentData.menuItems.map(item => (
               <Link key={item.id} to={item.to} className={classes.link}>
                 <Button color="inherit">{item.title}</Button>
               </Link>
@@ -73,20 +63,20 @@ const TopBar = ({ classes, width, status }) => {
         </div>
 
         <Drawer
-          anchor="right"
-          open={status}
-          onClose={toggleDrawer("right", false)}
+          anchor={contentData.drawerPosition}
+          open={isDrawerOpen}
+          onClose={_ => onToggleDrawer(false)}
         >
           <div
             tabIndex={0}
             role="button"
-            onClick={toggleDrawer("right", false)}
-            onKeyDown={toggleDrawer("right", false)}
+            onClick={_ => onToggleDrawer(false)}
+            onKeyDown={_ => onToggleDrawer(false)}
           >
             {
               <List>
-                {contentData.menus.map(item => (
-                  <ListItem button key={item.id}>
+                {contentData.menuItems.map(item => (
+                  <ListItem button key={item.id} component={Link} to={item.to}>
                     <ListItemText primary={item.title} />
                   </ListItem>
                 ))}

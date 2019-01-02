@@ -6,7 +6,7 @@ import styles from "./layout.style";
 import { withStyles } from "@material-ui/core/styles";
 
 const Layout = props => {
-  const { children, classes, pathname } = props;
+  const { children, classes, pathname, layoutSt, onToggleDrawer } = props;
   const routes = children.props.routes;
 
   const route = routes && routes.filter(route => route.path == pathname);
@@ -22,12 +22,19 @@ const Layout = props => {
       : true;
   const showFooter =
     routeExtra && !(typeof routeExtra.showFooter === "undefined")
-      ? routeExtra.showFooter
+      ? routeExtra.showFooterS
       : true;
 
   return (
     <div className={classes.layout}>
-      {showHeader ? <Header isFullHeader={isFullHeader} /> : null}
+      {showHeader ? (
+        <Header
+          isFullHeader={isFullHeader}
+          isDrawerOpen={layoutSt.isDrawerOpen}
+          onToggleDrawer={onToggleDrawer}
+          contentData={layoutSt.contentData}
+        />
+      ) : null}
       <section className={classes.content}>{children}</section>
       {showFooter ? <Footer /> : null}
     </div>

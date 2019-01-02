@@ -8,7 +8,15 @@ import { withStyles } from "@material-ui/core/styles";
 import classNames from "classNames";
 import { Grid } from "@material-ui/core";
 
-const Header = ({ classes, isFullHeader }) => {
+const Header = props => {
+  // props
+  const {
+    classes,
+    isFullHeader,
+    isDrawerOpen,
+    onToggleDrawer,
+    contentData
+  } = props;
   const headerContentData = {
     title: "Header Content",
     subTitle: `Regardless of whether you are a photography industry professional or
@@ -36,7 +44,11 @@ const Header = ({ classes, isFullHeader }) => {
         [classes.fullHeader]: isFullHeader
       })}
     >
-      <TopBar status={false} />
+      <TopBar
+        isDrawerOpen={isDrawerOpen}
+        onToggleDrawer={onToggleDrawer}
+        contentData={contentData}
+      />
       <HeaderContent isVisible={isFullHeader} contentData={headerContentData} />
     </Grid>
   );
