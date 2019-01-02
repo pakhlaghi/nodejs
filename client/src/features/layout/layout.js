@@ -32,11 +32,13 @@ const Layout = props => {
           isFullHeader={isFullHeader}
           isDrawerOpen={layoutSt.isDrawerOpen}
           onToggleDrawer={onToggleDrawer}
-          contentData={layoutSt.contentData}
+          contentData={layoutSt.contentData.headerContent}
         />
       ) : null}
       <section className={classes.content}>{children}</section>
-      {showFooter ? <Footer /> : null}
+      {showFooter ? (
+        <Footer footerContent={layoutSt.contentData.footerContent} />
+      ) : null}
     </div>
   );
 };

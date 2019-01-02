@@ -10,13 +10,39 @@ const getItems = _ => {
 
 const getContent = _ => {
   const data = {
-    title: "Code Core",
-    menuItems: [
-      { id: 1, to: "/home", title: "Home" },
-      { id: 2, to: "/login", title: "Login" },
-      { id: 3, to: "/dashboard", title: "Dashboard" }
-    ],
-    drawerPosition: "right"
+    headerContent: {
+      title: "Code Core",
+      menuItems: [
+        { id: 1, to: "/home", title: "Home" },
+        { id: 2, to: "/login", title: "Login" },
+        { id: 3, to: "/dashboard", title: "Dashboard" }
+      ],
+      drawerPosition: "right"
+    },
+    footerContent: {
+      text: "Code Core Co. © 2018. Privacy Policy | Terms Of Use",
+      style: {
+        color: "#fff",
+        backgroundColor: "#263238"
+      },
+      socialData: [
+        {
+          id: 1,
+          icon: "TabletMac",
+          url: "http://www.google.com"
+        },
+        {
+          id: 2,
+          icon: "TabletMac",
+          url: "http://www.google.com"
+        },
+        {
+          id: 3,
+          icon: "TabletMac",
+          url: "http://www.google.com"
+        }
+      ]
+    }
   };
   return data;
 };
@@ -70,24 +96,42 @@ const protected = ({ user, res, roles }) => {
 
 // Start GQ
 let schema = buildSchema(`
-  type Item {
+  type tItem {
     id: Int!
     title: String
     parentId: Int
   },
-  type menuItem {
+  type tMenuItem {
     id: Int, 
     to: String, 
     title: String
   },
-  type content {
+  type tSocial {
+    id: Int,
+    icon: String,
+    url: String
+  },
+  type tHeader {
     title: String
-    menuItems: [menuItem],
+    menuItems: [tMenuItem],
     drawerPosition: String
   },
+  type tStyle {
+    color: String,
+    backgroundColor: String
+  },
+  type tFooter {
+      text: String,
+      style: tStyle,
+      socialData: [tSocial]
+  },
+  type tContent {
+    headerContent: tHeader,
+    footerContent: tFooter
+  },
   type Query {
-    items: [Item]!,
-    content: content
+    items: [tItem]!,
+    content: tContent
   },
   type Mutation {
     updateItem(id: Int, title: String): String,

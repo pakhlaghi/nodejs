@@ -29,13 +29,27 @@ export const getContentAsync = () => {
   return dispatch => {
     const query = `{
       content {
-        title
-        menuItems {
-          id
-          to
+        headerContent {
           title
+          menuItems {
+            id
+            to
+            title
+          }
+          drawerPosition
         }
-        drawerPosition
+        footerContent {
+          text
+          style {
+            color
+            backgroundColor
+          }
+          socialData {
+            id
+            icon
+            url
+          }
+        }
       }
     }`;
 

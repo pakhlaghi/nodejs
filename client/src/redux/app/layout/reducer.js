@@ -1,10 +1,19 @@
 import { TOGGLE_DRAWER, GET_CONTENT_SUCCESS } from "./type";
 
-// toDo: get from server
 let contentData = {
-  title: "Code Core",
-  menuItems: [],
-  drawerPosition: "right"
+  headerContent: {
+    title: "Code Core",
+    menuItems: [],
+    drawerPosition: "right"
+  },
+  footerContent: {
+    text: "Code Core Co. © 2018. Privacy Policy | Terms Of Use",
+    style: {
+      color: "#fff",
+      backgroundColor: "#263238"
+    },
+    socialData: []
+  }
 };
 
 export default (
