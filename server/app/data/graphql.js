@@ -8,6 +8,19 @@ const getItems = _ => {
   return db.manyOrNone("SELECT * FROM items;");
 };
 
+const getContent = _ => {
+  const data = {
+    title: "Code Core",
+    menuItems: [
+      { id: 1, to: "/home", title: "Home" },
+      { id: 2, to: "/login", title: "Login" },
+      { id: 3, to: "/dashboard", title: "Dashboard" }
+    ],
+    drawerPosition: "right"
+  };
+  return data;
+};
+
 const updateItem = (id, title) => {
   return db
     .oneOrNone(`update items set title='${title}' where id = ${id};`)
@@ -61,9 +74,20 @@ let schema = buildSchema(`
     id: Int!
     title: String
     parentId: Int
-  }
+  },
+  type menuItem {
+    id: Int, 
+    to: String, 
+    title: String
+  },
+  type content {
+    title: String
+    menuItems: [menuItem],
+    drawerPosition: String
+  },
   type Query {
-    items: [Item]!
+    items: [Item]!,
+    content: content
   },
   type Mutation {
     updateItem(id: Int, title: String): String,
@@ -77,6 +101,9 @@ let rootResolver = {
     args.roles = ["admin"]; // array of authorization
     protected(args); // contain user and response, user = args.user comes from context
     return getItems();
+  },
+  content: (_, args) => {
+    return getContent();
   },
   updateItem({ id, title }, args) {
     console.log(args.user);

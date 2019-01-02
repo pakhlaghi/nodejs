@@ -1,13 +1,9 @@
-import { TOGGLE_DRAWER } from "./type";
+import { TOGGLE_DRAWER, GET_CONTENT_SUCCESS } from "./type";
 
 // toDo: get from server
-const contentData = {
+let contentData = {
   title: "Code Core",
-  menuItems: [
-    { id: 1, to: "/home", title: "Home" },
-    { id: 2, to: "/login", title: "Login" },
-    { id: 3, to: "/dashboard", title: "Dashboard" }
-  ],
+  menuItems: [],
   drawerPosition: "right"
 };
 
@@ -18,10 +14,16 @@ export default (
   switch (action.type) {
     case TOGGLE_DRAWER:
       return toggleDrawer(state, action);
+    case GET_CONTENT_SUCCESS:
+      return getContentSuccess(state, action);
   }
   return state;
 };
 
 const toggleDrawer = (state, action) => {
   return { ...state, isDrawerOpen: action.payload.status };
+};
+
+const getContentSuccess = (state, action) => {
+  return { ...state, contentData: action.payload.contentData };
 };

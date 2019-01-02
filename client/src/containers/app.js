@@ -9,7 +9,7 @@ import HomeContainer from "./homeContainer";
 import { withRouter } from "react-router-dom";
 import CCRoutes from "../utility/ccRoutes";
 // redux
-import { toggleDrawer } from "../redux/app/layout/action";
+import { toggleDrawer, getContentAsync } from "../redux/app/layout/action";
 
 // lazy loading Dashboard component
 const lazyDashboardContainer = Loadable({
@@ -89,6 +89,9 @@ const mapStateToProps = (state, props) => {
 
 // redux map actions
 const mapDispatchToProps = dispatch => {
+  // onInit: load data onInit
+  dispatch(getContentAsync());
+
   return {
     onToggleDrawer: status => dispatch(toggleDrawer(status))
   };
