@@ -19,10 +19,10 @@ export const getContentBodySuccess = data => ({
 // async:
 // call this first => resolve will call action with type
 // no type is required
-export const getContentBodyAsync = () => {
+export const getContentBodyAsync = path => {
   return dispatch => {
     const query = `{
-      contentById(id: "home")
+      contentById(id: "${path.replace("/", "")}")
     }
     `;
 

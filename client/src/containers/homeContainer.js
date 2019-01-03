@@ -4,15 +4,15 @@ import { getContentBodyAsync } from "../redux/home/action";
 
 import { connect } from "react-redux";
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = state => {
   return {
-    homeSt: state.home,
-    match: props.match // match is react-route property
+    homeSt: state.home
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  dispatch(getContentBodyAsync());
+const mapDispatchToProps = (dispatch, props) => {
+  // init with empty id
+  dispatch(getContentBodyAsync(props.location.pathname));
 };
 
 export default connect(

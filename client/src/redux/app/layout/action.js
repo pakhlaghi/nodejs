@@ -53,6 +53,8 @@ export const getContentAsync = () => {
       }
     }`;
 
+    // dispatch(getContentSuccess(mockData));
+
     axios
       .post(config.api.gqUrl, {
         query: query
@@ -65,4 +67,40 @@ export const getContentAsync = () => {
         // dispatch(getUsersError(err.message))
       });
   };
+};
+
+const mockData = {
+  headerContent: {
+    title: "Code Core",
+    menuItems: [
+      { id: 1, to: "/home", title: "Home" },
+      { id: 2, to: "/login", title: "Login" },
+      { id: 3, to: "/dashboard", title: "Dashboard" }
+    ],
+    drawerPosition: "right"
+  },
+  footerContent: {
+    text: "Code Core Co. © 2018. Privacy Policy | Terms Of Use",
+    style: {
+      color: "#fff",
+      backgroundColor: "#263238"
+    },
+    socialData: [
+      {
+        id: 1,
+        icon: "TabletMac",
+        url: "http://www.google.com"
+      },
+      {
+        id: 2,
+        icon: "TabletMac",
+        url: "http://www.google.com"
+      },
+      {
+        id: 3,
+        icon: "TabletMac",
+        url: "http://www.google.com"
+      }
+    ]
+  }
 };
