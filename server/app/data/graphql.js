@@ -47,6 +47,118 @@ const getContent = _ => {
   return data;
 };
 
+const getContentById = id => {
+  const data = [
+    {
+      id: 1,
+      type: "CCenterTitleText",
+      contents: {
+        title: "GET OUR APP AND TURN EVERY PHOTO",
+        subTitle: "You Take Into a Masterpiece!",
+        body: `Despite all the intuitiveness of interface and easy-to-understand UX
+                and UI, an application as complex as ours can get you bumping into
+                some roadblocks or asking some technical questions over time. We can
+                assure you, that while our Customer Support dept. will be ready to
+                help you 24/7, we have also placed all the most frequently asked
+                questions and issues on this page…`,
+        readMore: {
+          text: "Read More",
+          url: "#"
+        }
+      }
+    },
+    {
+      id: 2,
+      type: "CImageText",
+      contents: {
+        image: {
+          url:
+            "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/bg5.png",
+          title: "mobile"
+        },
+        title: "EDIT PHOTOS on the Go Peyman!",
+        subtitle: `Our app has the most essential editing features, allowing you to
+            enhance all the pictures you’ve taken on the go!`,
+        body: `As a team of professional photographers who were all young enough to
+            remember working with the Photoshop V 1.0, we were always on the
+            verge of cutting-edge photos post-processing technologies.`,
+        readMore: {
+          text: "Read More",
+          url: "#"
+        }
+      }
+    },
+    {
+      id: 3,
+      type: "CImageTile",
+      contents: [
+        {
+          img:
+            "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img1.jpg",
+          title: "Image",
+          author: "author"
+        },
+        {
+          img:
+            "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img2.jpg",
+          title: "Image",
+          author: "author"
+        },
+        {
+          img:
+            "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img3.jpg",
+          title: "Image",
+          author: "author"
+        },
+        {
+          img:
+            "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img4.jpg",
+          title: "Image",
+          author: "author"
+        },
+        {
+          img:
+            "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img5.jpg",
+          title: "Image",
+          author: "author"
+        },
+        {
+          img:
+            "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img6.jpg",
+          title: "Image",
+          author: "author"
+        }
+      ]
+    },
+    {
+      id: 4,
+      type: "CIconTitleText",
+      contents: [
+        {
+          id: 1,
+          icon: "Gamepad",
+          title: "GET OUR APP AND TURN EVERY PHOTO",
+          text: "You Take Into a Masterpiece!"
+        },
+        {
+          id: 2,
+          icon: "Folder",
+          title: "GET OUR APP AND TURN EVERY PHOTO",
+          text: "You Take Into a Masterpiece!"
+        },
+        {
+          id: 3,
+          icon: "TabletMac",
+          title: "GET OUR APP AND TURN EVERY PHOTO",
+          text: "You Take Into a Masterpiece!"
+        }
+      ]
+    }
+  ];
+
+  return JSON.stringify(data);
+};
+
 const updateItem = (id, title) => {
   return db
     .oneOrNone(`update items set title='${title}' where id = ${id};`)
@@ -131,7 +243,8 @@ let schema = buildSchema(`
   },
   type Query {
     items: [tItem]!,
-    content: tContent
+    content: tContent,
+    contentById(id: String): String
   },
   type Mutation {
     updateItem(id: Int, title: String): String,
@@ -148,6 +261,9 @@ let rootResolver = {
   },
   content: (_, args) => {
     return getContent();
+  },
+  contentById: ({ id }, args) => {
+    return getContentById(id);
   },
   updateItem({ id, title }, args) {
     console.log(args.user);

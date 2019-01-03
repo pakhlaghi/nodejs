@@ -10,47 +10,8 @@ import GridListTileBar from "@material-ui/core/GridListTileBar";
 import IconButton from "@material-ui/core/IconButton";
 import InfoIcon from "@material-ui/icons/Info";
 
-const tileData = [
-  {
-    img:
-      "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img1.jpg",
-    title: "Image",
-    author: "author"
-  },
-  {
-    img:
-      "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img2.jpg",
-    title: "Image",
-    author: "author"
-  },
-  {
-    img:
-      "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img3.jpg",
-    title: "Image",
-    author: "author"
-  },
-  {
-    img:
-      "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img4.jpg",
-    title: "Image",
-    author: "author"
-  },
-  {
-    img:
-      "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img5.jpg",
-    title: "Image",
-    author: "author"
-  },
-  {
-    img:
-      "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img6.jpg",
-    title: "Image",
-    author: "author"
-  }
-];
-
 function CImageTile(props) {
-  const { classes, width } = props;
+  const { classes, width, contentData } = props;
   const isSmall = width.indexOf("s") >= 0;
   return (
     <div>
@@ -60,7 +21,7 @@ function CImageTile(props) {
           className={classes.gridList}
           cols={isSmall ? 2 : 3}
         >
-          {tileData.map(tile => (
+          {contentData.contents.map(tile => (
             <GridListTile cols={tile.cols || 1} key={tile.img}>
               <img src={tile.img} alt={tile.title} />
               <GridListTileBar

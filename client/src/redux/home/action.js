@@ -1,12 +1,6 @@
 import axios from "axios";
-import { CHANGE_TITLE, GET_USERS_SUCCESS, SHOW_SPINNER } from "./types";
-
-export const changeTitle = title => ({
-  type: CHANGE_TITLE,
-  payload: {
-    title
-  }
-});
+import { GET_CONTENT_BODY_SUCCESS, SHOW_SPINNER } from "./types";
+import { config } from "./../../constant/config";
 
 export const showSpinner = status => ({
   type: SHOW_SPINNER,
@@ -15,33 +9,37 @@ export const showSpinner = status => ({
   }
 });
 
-export const getUsersSuccess = data => ({
-  type: GET_USERS_SUCCESS,
+export const getContentBodySuccess = data => ({
+  type: GET_CONTENT_BODY_SUCCESS,
   payload: {
     data
   }
 });
 
-export const changeTitleAsync = title => {
+// async:
+// call this first => resolve will call action with type
+// no type is required
+export const getContentBodyAsync = () => {
   return dispatch => {
+    const query = `{
+      contentById(id: "home")
+    }
+    `;
+
     dispatch(showSpinner(true));
 
-    setTimeout(() => {
-      dispatch(changeTitle(title));
-      dispatch(showSpinner(false));
-    }, 2500);
-  };
-};
-
-export const getUsers = () => {
-  return dispatch => {
     axios
-      .get(`https://jsonplaceholder.typicode.com/users`)
+      .post(config.api.gqUrl, {
+        query: query
+      })
       .then(res => {
-        dispatch(getUsersSuccess(res.data));
+        dispatch(getContentBodySuccess(JSON.parse(res.data.data.contentById)));
+        dispatch(showSpinner(false));
       })
       .catch(err => {
+        // toDo: show error message - snackbar
         // dispatch(getUsersError(err.message))
+        dispatch(showSpinner(false));
       });
   };
 };

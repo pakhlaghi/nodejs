@@ -1,7 +1,7 @@
 const styles = theme => ({
   container: {
     marginTop: "auto",
-    marginTop: theme.spacing.unit * 8,
+    padding: `${theme.spacing.unit * 8}px 0`,
     display: "flex",
     justifyContent: "center"
   },

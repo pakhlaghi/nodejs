@@ -9,32 +9,10 @@ import withWidth from "@material-ui/core/withWidth";
 import Avatar from "@material-ui/core/Avatar";
 
 import GridList from "@material-ui/core/GridList";
-import Grid from "@material-ui/core/Grid";
 import GridListTile from "@material-ui/core/GridListTile";
 import Typography from "@material-ui/core/Typography";
 
-const CIconTitleText = ({ classes, width }) => {
-  const tileData = [
-    {
-      id: 1,
-      icon: "Gamepad",
-      title: "GET OUR APP AND TURN EVERY PHOTO",
-      text: "You Take Into a Masterpiece!"
-    },
-    {
-      id: 2,
-      icon: "Folder",
-      title: "GET OUR APP AND TURN EVERY PHOTO",
-      text: "You Take Into a Masterpiece!"
-    },
-    {
-      id: 3,
-      icon: "TabletMac",
-      title: "GET OUR APP AND TURN EVERY PHOTO",
-      text: "You Take Into a Masterpiece!"
-    }
-  ];
-
+const CIconTitleText = ({ classes, width, contentData }) => {
   const isSmall = width.indexOf("s") >= 0;
 
   return (
@@ -45,7 +23,7 @@ const CIconTitleText = ({ classes, width }) => {
           className={classes.gridList}
           cols={isSmall ? 1 : 3}
         >
-          {tileData.map(tile => (
+          {contentData.contents.map(tile => (
             <GridListTile cols={tile.cols || 1} key={tile.id}>
               <div className={classes.box}>
                 <div className={classes.center}>

@@ -1,7 +1,6 @@
 const styles = theme => ({
   container: {
     marginTop: "auto",
-    marginTop: theme.spacing.unit * 8,
     display: "flex",
     justifyContent: "center",
     background: "rgb(253, 29, 78)",
