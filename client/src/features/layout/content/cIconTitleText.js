@@ -23,7 +23,7 @@ const CIconTitleText = ({ classes, width, contentData }) => {
           className={classes.gridList}
           cols={isSmall ? 1 : 3}
         >
-          {contentData.contents.map(tile => (
+          {contentData.map(tile => (
             <GridListTile cols={tile.cols || 1} key={tile.id}>
               <div className={classes.box}>
                 <div className={classes.center}>

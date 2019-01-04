@@ -12,24 +12,24 @@ const CImageText = ({ classes, contentData }) => {
         <div className={classNames(classes.box, classes.imageBox)}>
           <img
             className={classes.image}
-            src={contentData.contents.image.url}
-            alt={contentData.contents.image.title}
+            src={contentData.image.url}
+            alt={contentData.image.title}
           />
         </div>
         <div className={classes.box}>
           <Typography variant="title" color="inherit">
-            {contentData.contents.title}
+            {contentData.title}
           </Typography>
           <Typography variant="subtitle1" color="inherit" gutterBottom>
-            {contentData.contents.subtitle}
+            {contentData.subtitle}
           </Typography>
           <hr className={classes.hr} />
           <Typography variant="body1" color="inherit" gutterBottom>
-            {contentData.contents.body}
+            {contentData.body}
           </Typography>
           <Typography variant="body1" gutterBottom color="inherit">
-            <ButtonBase href={contentData.contents.readMore.url}>
-              {contentData.contents.readMore.text}
+            <ButtonBase href={contentData.readMore.url}>
+              {contentData.readMore.text}
             </ButtonBase>
           </Typography>
         </div>

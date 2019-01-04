@@ -21,7 +21,7 @@ function CImageTile(props) {
           className={classes.gridList}
           cols={isSmall ? 2 : 3}
         >
-          {contentData.contents.map(tile => (
+          {contentData.map(tile => (
             <GridListTile cols={tile.cols || 1} key={tile.img}>
               <img src={tile.img} alt={tile.title} />
               <GridListTileBar

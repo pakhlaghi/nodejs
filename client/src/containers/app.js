@@ -36,19 +36,21 @@ function App(props) {
       exact: true,
       component: HomeContainer,
       extra: {
-        isFullHeader: true
+        showHeader: false,
+        showFooter: false
       }
     },
     {
-      path: "/home",
+      path: "/page/:contentId",
       exact: true,
       component: HomeContainer,
       extra: {
-        isFullHeader: true
+        showHeader: false,
+        showFooter: false
       }
     },
     {
-      path: "/Login",
+      path: "/login",
       exact: true,
       component: lazyLoginContainer
     },

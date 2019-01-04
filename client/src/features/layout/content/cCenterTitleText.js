@@ -8,17 +8,17 @@ const CCenterTitleText = ({ classes, contentData }) => {
   return (
     <div className={classes.container}>
       <div className={classes.contentWidth}>
-        <Typography variant="title">{contentData.contents.title}</Typography>
+        <Typography variant="title">{contentData.title}</Typography>
         <Typography variant="subtitle1" gutterBottom>
-          {contentData.contents.subTitle}
+          {contentData.subTitle}
         </Typography>
         <hr className={classes.hr} />
         <Typography variant="body1" gutterBottom>
-          {contentData.contents.body}
+          {contentData.body}
         </Typography>
         <Typography variant="body1" gutterBottom>
-          <ButtonBase href={contentData.contents.readMore.url}>
-            {contentData.contents.readMore.text}
+          <ButtonBase href={contentData.readMore.url}>
+            {contentData.readMore.text}
           </ButtonBase>
         </Typography>
       </div>

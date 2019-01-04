@@ -1,15 +1,17 @@
 import React from "react";
-import Header from "./header";
-import Footer from "./footer";
+import CHeader from "./content/header/cHeader";
+import CFooter from "./content/cFooter";
 // UI
 import styles from "./layout.style";
 import { withStyles } from "@material-ui/core/styles";
 
 const Layout = props => {
+  // props
   const { children, classes, pathname, layoutSt, onToggleDrawer } = props;
-  const routes = children.props.routes;
 
-  const route = routes && routes.filter(route => route.path == pathname);
+  // check route prop
+  const routes = children.props.routes;
+  const route = routes && routes.filter(isCurrentRoute(pathname));
   const routeExtra = route && route.length && route[0].extra;
 
   const isFullHeader =
@@ -28,19 +30,24 @@ const Layout = props => {
   return (
     <div className={classes.layout}>
       {showHeader ? (
-        <Header
+        <CHeader
           isFullHeader={isFullHeader}
           isDrawerOpen={layoutSt.isDrawerOpen}
-          onToggleDrawer={onToggleDrawer}
           contentData={layoutSt.contentData.headerContent}
+          onToggleDrawer={onToggleDrawer}
         />
       ) : null}
       <section className={classes.content}>{children}</section>
       {showFooter ? (
-        <Footer footerContent={layoutSt.contentData.footerContent} />
+        <CFooter contentData={layoutSt.contentData.footerContent} />
       ) : null}
     </div>
   );
 };
+
+const isCurrentRoute = pathname => route =>
+  route.path == pathname ||
+  (route.path.indexOf(":") >= 0 &&
+    pathname.indexOf(route.path.split(":")[0]) >= 0);
 
 export default withStyles(styles)(Layout);

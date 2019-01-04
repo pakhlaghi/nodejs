@@ -30,13 +30,15 @@ export const getContentAsync = () => {
     const query = `{
       content {
         headerContent {
-          title
-          menuItems {
-            id
-            to
+          topBar {
             title
+            menuItems {
+              id
+              to
+              title
+            }
+            drawerPosition
           }
-          drawerPosition
         }
         footerContent {
           text
@@ -71,13 +73,16 @@ export const getContentAsync = () => {
 
 const mockData = {
   headerContent: {
-    title: "Code Core",
-    menuItems: [
-      { id: 1, to: "/home", title: "Home" },
-      { id: 2, to: "/login", title: "Login" },
-      { id: 3, to: "/dashboard", title: "Dashboard" }
-    ],
-    drawerPosition: "right"
+    topBar: {
+      title: "Code Core",
+      menuItems: [
+        { id: 1, to: "/page/home", title: "Home" },
+        { id: 2, to: "/page/aboutus", title: "About Us" },
+        { id: 3, to: "/login", title: "Login" },
+        { id: 4, to: "/dashboard", title: "Dashboard" }
+      ],
+      drawerPosition: "right"
+    }
   },
   footerContent: {
     text: "Code Core Co. © 2018. Privacy Policy | Terms Of Use",

@@ -1,7 +1,9 @@
 const styles = theme => ({
-  footer: {
+  footerContainer: {
     width: "100%",
-    marginTop: "auto",
+    marginTop: "auto"
+  },
+  footerContent: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",

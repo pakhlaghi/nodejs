@@ -11,13 +11,16 @@ const getItems = _ => {
 const getContent = _ => {
   const data = {
     headerContent: {
-      title: "Code Core",
-      menuItems: [
-        { id: 1, to: "/home", title: "Home" },
-        { id: 2, to: "/login", title: "Login" },
-        { id: 3, to: "/dashboard", title: "Dashboard" }
-      ],
-      drawerPosition: "right"
+      topBar: {
+        title: "Code Core",
+        menuItems: [
+          { id: 1, to: "/page/home", title: "Home" },
+          { id: 2, to: "/page/aboutus", title: "About Us" },
+          { id: 3, to: "/login", title: "Login" },
+          { id: 4, to: "/dashboard", title: "Dashboard" }
+        ],
+        drawerPosition: "right"
+      }
     },
     footerContent: {
       text: "Code Core Co. © 2018. Privacy Policy | Terms Of Use",
@@ -50,8 +53,38 @@ const getContent = _ => {
 const getContentById = id => {
   let data = [];
 
-  if (id == "home") {
+  if (id == "home" || id == "") {
     data = [
+      {
+        id: 6,
+        type: "CHeader",
+        contents: {
+          topBar: {
+            title: "Code Core",
+            menuItems: [
+              { id: 1, to: "/page/home", title: "Home" },
+              { id: 2, to: "/page/aboutus", title: "About Us" },
+              { id: 3, to: "/login", title: "Login" },
+              { id: 4, to: "/dashboard", title: "Dashboard" }
+            ],
+            drawerPosition: "right"
+          },
+          title: "Header Content",
+          subTitle: `Regardless of whether you are a photography industry professional or
+          just a newcomer hobbyist, editing and post-processing your pics on
+          the go is now so much easier!`,
+          buttons: {
+            primary: {
+              title: "Primary",
+              url: "#Primary"
+            },
+            secondary: {
+              title: "Secondary",
+              url: "#Secondary"
+            }
+          }
+        }
+      },
       {
         id: 1,
         type: "CCenterTitleText",
@@ -156,10 +189,54 @@ const getContentById = id => {
             text: "You Take Into a Masterpiece!"
           }
         ]
+      },
+      {
+        id: 5,
+        type: "CFooter",
+        contents: {
+          text: "Code Core Co. © 2018. Privacy Policy | Terms Of Use",
+          style: {
+            color: "#fff",
+            backgroundColor: "#263238"
+          },
+          socialData: [
+            {
+              id: 1,
+              icon: "TabletMac",
+              url: "http://www.google.com"
+            },
+            {
+              id: 2,
+              icon: "TabletMac",
+              url: "http://www.google.com"
+            },
+            {
+              id: 3,
+              icon: "TabletMac",
+              url: "http://www.google.com"
+            }
+          ]
+        }
       }
     ];
   } else {
     data = [
+      {
+        id: 6,
+        type: "CHeader",
+        contents: {
+          topBar: {
+            title: "Code Core About Us",
+            menuItems: [
+              { id: 1, to: "/page/home", title: "Home" },
+              { id: 2, to: "/page/aboutus", title: "About Us" },
+              { id: 3, to: "/login", title: "Login" },
+              { id: 4, to: "/dashboard", title: "Dashboard" }
+            ],
+            drawerPosition: "right"
+          }
+        }
+      },
       {
         id: 1,
         type: "CCenterTitleText",
@@ -314,10 +391,13 @@ let schema = buildSchema(`
     icon: String,
     url: String
   },
-  type tHeader {
+  type tTopBar {
     title: String
     menuItems: [tMenuItem],
     drawerPosition: String
+  },
+  type tHeader {
+   topBar: tTopBar
   },
   type tStyle {
     color: String,

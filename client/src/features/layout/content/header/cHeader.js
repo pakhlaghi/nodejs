@@ -3,12 +3,12 @@ import React from "react";
 import HeaderContent from "./headerContent";
 import TopBar from "./topBar";
 // UI
-import styles from "./header.style";
+import styles from "./cHeader.style";
 import { withStyles } from "@material-ui/core/styles";
 import classNames from "classNames";
 import { Grid } from "@material-ui/core";
 
-const Header = props => {
+const CHeader = props => {
   // props
   const {
     classes,
@@ -17,22 +17,6 @@ const Header = props => {
     onToggleDrawer,
     contentData
   } = props;
-  const headerContentData = {
-    title: "Header Content",
-    subTitle: `Regardless of whether you are a photography industry professional or
-    just a newcomer hobbyist, editing and post-processing your pics on
-    the go is now so much easier!`,
-    buttons: {
-      primary: {
-        title: "Primary",
-        url: "#Primary"
-      },
-      secondary: {
-        title: "Secondary",
-        url: "#Secondary"
-      }
-    }
-  };
 
   return (
     <Grid
@@ -47,11 +31,11 @@ const Header = props => {
       <TopBar
         isDrawerOpen={isDrawerOpen}
         onToggleDrawer={onToggleDrawer}
-        contentData={contentData}
+        contentData={contentData.topBar}
       />
-      <HeaderContent isVisible={isFullHeader} contentData={headerContentData} />
+      <HeaderContent isVisible={isFullHeader} contentData={contentData} />
     </Grid>
   );
 };
 
-export default withStyles(styles)(Header);
+export default withStyles(styles)(CHeader);
