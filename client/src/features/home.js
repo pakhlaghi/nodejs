@@ -1,10 +1,10 @@
 import React from "react";
-import CCenterTitleText from "../layout/content/cCenterTitleText";
-import CImageText from "../layout/content/cImageText";
-import CImageTile from "../layout/content/cImageTile";
-import CIconTitleText from "../layout/content/CIconTitleText";
-import CHeader from "../layout/content/header/cHeader";
-import CFooter from "../layout/content/cFooter";
+import CCenterTitleText from "./contentModules/cCenterTitleText";
+import CImageText from "./contentModules/cImageText";
+import CImageTile from "./contentModules/cImageTile";
+import CIconTitleText from "./contentModules/CIconTitleText";
+import CHeader from "./contentModules/header/cHeader";
+import CFooter from "./contentModules/cFooter";
 
 const Home = props => {
   // props

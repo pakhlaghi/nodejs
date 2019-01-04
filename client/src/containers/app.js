@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import Loadable from "react-loadable";
 // components
-import Layout from "../features/layout/layout";
+import Layout from "../features/layout";
 import Loading from "../features/loading";
 import HomeContainer from "./homeContainer";
 // route

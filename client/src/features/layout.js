@@ -1,6 +1,6 @@
 import React from "react";
-import CHeader from "./content/header/cHeader";
-import CFooter from "./content/cFooter";
+import CHeader from "./contentModules/header/cHeader";
+import CFooter from "./contentModules/cFooter";
 // UI
 import styles from "./layout.style";
 import { withStyles } from "@material-ui/core/styles";

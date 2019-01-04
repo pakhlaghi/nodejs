@@ -1,6 +1,6 @@
 import React from "react";
 // Component
-import CCMaterialIcon from "../../../utility/ccMaterialIcon";
+import CCMaterialIcon from "../../utility/ccMaterialIcon";
 // UI
 import styles from "./cIconTitleText.style";
 import { withStyles } from "@material-ui/core/styles";

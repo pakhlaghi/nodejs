@@ -1,5 +1,5 @@
 import React from "react";
-import Home from "../features/home/home";
+import Home from "../features/home";
 
 // redux
 import { connect } from "react-redux";
