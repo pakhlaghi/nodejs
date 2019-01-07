@@ -1,3 +1,5 @@
+import { config, loginMockType } from "./mockConfig";
+
 const layout = {
   headerContent: {
     topBar: {
@@ -314,9 +316,19 @@ const home = id => {
   return data;
 };
 
-const login = {
-  token: "token"
+const getMockLogin = () => {
+  switch (config.login) {
+    case loginMockType.success:
+      return {
+        token: "token"
+      };
+
+    default:
+      return null;
+  }
 };
+
+const login = getMockLogin();
 
 export const mockData = {
   layout: layout,
