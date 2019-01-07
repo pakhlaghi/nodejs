@@ -4,5 +4,5 @@ export const loginMockType = {
 };
 
 export const config = {
-  login: loginMockType.success
+  login: loginMockType.error
 };
