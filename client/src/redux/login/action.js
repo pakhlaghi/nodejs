@@ -1,6 +1,5 @@
-import axios from "axios";
 import { IN_PROGRESS, SHOW_ERROR, SIGN_IN_SUCCESS } from "./types";
-import { config } from "./../../constant/config";
+import { dataService } from "./../../service/dataService";
 
 export const isInProgress = status => ({
   type: IN_PROGRESS,
@@ -41,18 +40,19 @@ export const signIn = (username, password) => {
       password: password
     };
 
-    axios
-      .post(config.api.loginUrl, data)
-      .then(res => {
-        if (res.data.token) {
-          sessionStorage.setItem("token", res.data.token);
-          dispatch(signInSuccess(res.data));
+    dataService
+      .login(data)
+      .then(data => {
+        if (data.token) {
+          // toDo: add logic for keep me signin > if checkbox checked set local storage
+          // sessionStorage.setItem("token", data.token);
+          dispatch(signInSuccess(data));
         }
       })
       .catch(err => {
-        if (sessionStorage.getItem("token")) {
-          sessionStorage.removeItem("token");
-        }
+        // if (sessionStorage.getItem("token")) {
+        //   sessionStorage.removeItem("token");
+        // }
         dispatch(showError(true, "Error to get data"));
       });
   };

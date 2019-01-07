@@ -49,7 +49,22 @@ const getHomeContent = id => {
   }
 };
 
+const login = data => {
+  if (isDevelopment) {
+    // development code
+    return mockPromise(mockData.login);
+  } else {
+    return axios
+      .post(config.api.loginUrl, data)
+      .then(res => {
+        return res.data;
+      })
+      .catch(logError);
+  }
+};
+
 export const dataService = {
   getLayoutContent,
-  getHomeContent
+  getHomeContent,
+  login
 };

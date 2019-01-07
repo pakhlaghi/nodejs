@@ -314,7 +314,12 @@ const home = id => {
   return data;
 };
 
+const login = {
+  token: "token"
+};
+
 export const mockData = {
   layout: layout,
-  home: home
+  home: home,
+  login: login
 };
