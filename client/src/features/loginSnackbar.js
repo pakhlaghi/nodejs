@@ -15,14 +15,25 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
 import styles from "./login.style";
+import CCSnackbar from "./../utility/ccSnackbar";
 
 import { withSnackbar } from "notistack";
 
 const LoginSnackbar = props => {
-  const { loginSt, classes, enqueueSnackbar } = props;
+  const {
+    loginSt,
+    classes,
+    enqueueSnackbar,
+    onSignIn,
+    onToggleSnackbar
+  } = props;
 
-  const showSnackbar = type => {
-    props.enqueueSnackbar("I love snacks.", { type });
+  const handleSnackbarClick = () => {
+    onToggleSnackbar(false, null, null);
+  };
+
+  const handleLoginClick = () => {
+    onSignIn("peyman.akhlaghi@gmail.Scom", "123456");
   };
 
   if (loginSt.token) {
@@ -30,6 +41,13 @@ const LoginSnackbar = props => {
   }
   return (
     <div className={classes.main}>
+      {loginSt.snackbar.isOpen ? (
+        <CCSnackbar
+          variant={loginSt.snackbar.variant}
+          message={loginSt.snackbar.message}
+          onClose={handleSnackbarClick}
+        />
+      ) : null}
       <CssBaseline />
       <Paper className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -65,10 +83,7 @@ const LoginSnackbar = props => {
             color="primary"
             className={classes.submit}
             disabled={loginSt.isInProgress}
-            onClick={() => {
-              props.onSignIn("peyman.akhlaghi@gmail.com", "123456");
-              showSnackbar("warning");
-            }}
+            onClick={handleLoginClick}
           >
             Sign in
           </Button>

@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import styles from "./dashboard.style";
+import styles from "./dashboardSnackbar.style";
 import { withStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
@@ -14,16 +14,24 @@ import Badge from "@material-ui/core/Badge";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
+import { withSnackbar } from "notistack";
 
-const Dashboard = props => {
+const DashboardSnackbar = props => {
   const {
     dashboardSt,
     classes,
     onCloseDrawer,
     onOpenDrawer,
-    onGetItemsAsync,
-    loginSt
+    enqueueSnackbar
   } = props;
+
+  const showSnackbar = variant => {
+    enqueueSnackbar("I love snacks." + variant, { variant });
+  };
+
+  const handleBellClick = () => {
+    showSnackbar("warning");
+  };
 
   return (
     <div className={classes.root}>
@@ -59,7 +67,7 @@ const Dashboard = props => {
           >
             Dashboard
           </Typography>
-          <IconButton color="inherit">
+          <IconButton color="inherit" onClick={handleBellClick}>
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
             </Badge>
@@ -103,4 +111,4 @@ const Dashboard = props => {
   );
 };
 
-export default withStyles(styles)(Dashboard);
+export default withStyles(styles)(withSnackbar(DashboardSnackbar));

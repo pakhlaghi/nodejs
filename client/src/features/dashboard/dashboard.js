@@ -1,13 +1,13 @@
 import React from "react";
 import { SnackbarProvider } from "notistack";
-import LoginSnackbar from "./loginSnackbar";
+import DashboardSnackbar from "./DashboardSnackbar";
 
-const Login = props => {
+const Dashboard = props => {
   return (
     <SnackbarProvider maxSnack={3}>
-      <LoginSnackbar {...props} />
+      <DashboardSnackbar {...props} />
     </SnackbarProvider>
   );
 };
 
-export default Login;
+export default Dashboard;

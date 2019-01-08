@@ -1,4 +1,4 @@
-import { IN_PROGRESS, SHOW_ERROR, SIGN_IN_SUCCESS } from "./types";
+import { IN_PROGRESS, TOGGLE_SNACKBAR, SIGN_IN_SUCCESS } from "./types";
 import { dataService } from "./../../service/dataService";
 
 export const isInProgress = status => ({
@@ -15,17 +15,18 @@ export const signInSuccess = data => ({
   }
 });
 
-export const showError = (isError, errorMessage) => ({
-  type: SHOW_ERROR,
-  payload: {
-    isError,
-    errorMessage
-  }
-});
-
 export const signOut = _ => ({
   type: SIGN_OUT,
   payload: {}
+});
+
+export const toggleSnackbar = (isOpen, variant, message) => ({
+  type: TOGGLE_SNACKBAR,
+  payload: {
+    isOpen,
+    variant,
+    message
+  }
 });
 
 // ASYNC ACTIONS
@@ -53,7 +54,7 @@ export const signIn = (username, password) => {
         // if (sessionStorage.getItem("token")) {
         //   sessionStorage.removeItem("token");
         // }
-        dispatch(showError(true, "Error to get data"));
+        dispatch(toggleSnackbar(true, "error", "Error to get data"));
       });
   };
 };

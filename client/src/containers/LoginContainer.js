@@ -2,7 +2,7 @@ import React from "react";
 // components
 import Login from "../features/login";
 // redux
-import { signIn, isInProgress } from "../redux/login/action";
+import { signIn, toggleSnackbar } from "../redux/login/action";
 import { connect } from "react-redux";
 
 const mapStateToProps = state => {
@@ -13,7 +13,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSignIn: (username, password) => dispatch(signIn(username, password)) // async
+    onSignIn: (username, password) => dispatch(signIn(username, password)), // async
+    onToggleSnackbar: (isOpen, variant, message) =>
+      dispatch(toggleSnackbar(isOpen, variant, message))
   };
 };
 

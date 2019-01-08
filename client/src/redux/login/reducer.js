@@ -1,14 +1,33 @@
-import { IN_PROGRESS, SHOW_ERROR, SIGN_IN_SUCCESS, SIGN_OUT } from "./types";
+import {
+  IN_PROGRESS,
+  TOGGLE_SNACKBAR,
+  SIGN_IN_SUCCESS,
+  SIGN_OUT
+} from "./types";
+
+const resetSnackbar = {
+  variant: "error",
+  message: null,
+  isOpen: false
+};
 
 export default (
-  state = { isInProgress: false, errorMessage: null, token: null },
+  state = {
+    isInProgress: false,
+    token: null,
+    snackbar: {
+      variant: "error",
+      message: "login info is not correct",
+      isOpen: false
+    }
+  },
   action
 ) => {
   switch (action.type) {
     case IN_PROGRESS:
       return inProgress(state, action);
-    case SHOW_ERROR:
-      return showError(state, action);
+    case TOGGLE_SNACKBAR:
+      return toggleSnackbar(state, action);
     case SIGN_IN_SUCCESS:
       return signInSuccesss(state, action);
     case SIGN_OUT:
@@ -22,14 +41,18 @@ const inProgress = (state, action) => {
     ...state,
     isInProgress: action.payload.status,
     token: null,
-    errorMessage: null
+    snackbar: resetSnackbar
   };
 };
 
-const showError = (state, action) => {
+const toggleSnackbar = (state, action) => {
   return {
     ...state,
-    errorMessage: action.payload.errorMessage,
+    snackbar: {
+      isOpen: action.payload.isOpen,
+      message: action.payload.message,
+      variant: action.payload.variant
+    },
     token: null,
     isInProgress: false
   };
@@ -39,7 +62,7 @@ const signInSuccesss = (state, action) => {
   return {
     ...state,
     token: action.payload.data.token,
-    errorMessage: null,
+    snackbar: resetSnackbar,
     isInProgress: false
   };
 };
