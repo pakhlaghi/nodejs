@@ -55,7 +55,8 @@ function App(props) {
       component: lazyLoginContainer
     },
     {
-      path: "/dashboard",
+      path: "/dashboard/:module",
+      exact: true,
       component: lazyDashboardContainer,
       auth: {
         isAllowed: isAuthenticated,

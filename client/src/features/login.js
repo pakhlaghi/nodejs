@@ -29,7 +29,7 @@ const Login = props => {
   };
 
   if (loginSt.token) {
-    return <Redirect to="/dashboard" />;
+    return <Redirect to="/dashboard/main" />;
   }
   return (
     <div className={classes.main}>

@@ -8,7 +8,7 @@ const layout = {
         { id: 1, to: "/page/home", title: "Home" },
         { id: 2, to: "/page/aboutus", title: "About Us" },
         { id: 3, to: "/login", title: "Login" },
-        { id: 4, to: "/dashboard", title: "Dashboard" }
+        { id: 4, to: "/dashboard/main", title: "Dashboard" }
       ],
       drawerPosition: "right"
     }

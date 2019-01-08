@@ -15,6 +15,12 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import { withSnackbar } from "notistack";
+import ListItems from "./listItems";
+import MainModule from "./modules/mainModule";
+
+import Loadable from "react-loadable";
+// components
+import Loading from "./../../features/loading";
 
 const DashboardSnackbar = props => {
   const {
@@ -22,8 +28,41 @@ const DashboardSnackbar = props => {
     classes,
     onCloseDrawer,
     onOpenDrawer,
-    enqueueSnackbar
+    enqueueSnackbar,
+    match
   } = props;
+
+  // lazy loading Dashboard component
+  const lazyItemsModule = Loadable({
+    loader: () => import("./modules/itemsModule"),
+    loading: Loading
+  });
+
+  // lazy loading Dashboard component
+  const lazyPagesModule = Loadable({
+    loader: () => import("./modules/pagesModule"),
+    loading: Loading
+  });
+
+  // lazy loading Dashboard component
+  const lazyMediaModule = Loadable({
+    loader: () => import("./modules/mediaModule"),
+    loading: Loading
+  });
+
+  // lazy loading Dashboard component
+  const lazySettingModule = Loadable({
+    loader: () => import("./modules/settingModule"),
+    loading: Loading
+  });
+
+  const componentMap = {
+    main: MainModule,
+    items: lazyItemsModule,
+    pages: lazyPagesModule,
+    media: lazyMediaModule,
+    setting: lazySettingModule
+  };
 
   const showSnackbar = variant => {
     enqueueSnackbar("I love snacks." + variant, { variant });
@@ -90,22 +129,14 @@ const DashboardSnackbar = props => {
           </IconButton>
         </div>
         <Divider />
-        <List />
-        <Divider />
-        <List />
+        <ListItems />
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Typography variant="h4" gutterBottom component="h2">
-          Orders
-        </Typography>
-        <Typography component="div" className={classes.chartContainer}>
-          SimpleLineChart
-        </Typography>
-        <Typography variant="h4" gutterBottom component="h2">
-          Products
-        </Typography>
-        <div className={classes.tableContainer}>SimpleTable</div>
+
+        {componentMap[match.params.module]
+          ? React.createElement(componentMap[match.params.module])
+          : null}
       </main>
     </div>
   );
