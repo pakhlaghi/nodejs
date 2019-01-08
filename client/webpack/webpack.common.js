@@ -3,8 +3,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
-  .BundleAnalyzerPlugin;
 
 module.exports = {
   entry: [path.join(__dirname, "../src/index.js")],
@@ -34,7 +32,6 @@ module.exports = {
       template: path.join(__dirname, "../wpTemplate/index.html"), // template to add script and css tag
       path: path.join(__dirname, "../../server/public/"), // add scripts and css into this folder
       filename: "index.html"
-    }),
-    new BundleAnalyzerPlugin()
+    })
   ]
 };
