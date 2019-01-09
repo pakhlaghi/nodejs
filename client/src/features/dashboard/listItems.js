@@ -27,9 +27,19 @@ const ListItems = props => {
     },
     {
       text: "Pages",
-      action: "pages",
+      action: "collapse",
       icon: "WebIcon",
-      children: []
+      children: [{
+        text: "New Page",
+        action: "newPage",
+        icon: "AddBoxIcon",
+        children: []
+      },{
+        text: "My Pages",
+        action: "myPages",
+        icon: "SubtitlesIcon",
+        children: []
+      }]
     },
     {
       text: "Media",
@@ -68,12 +78,15 @@ const ListItems = props => {
               className={classes.nested}
             >
               <List component="div">
+              {item.children.map(child =>
+               <Link to={child.action} className={classes.link}>
                 <ListItem button>
                   <ListItemIcon>
-                    <CCMaterialIcon icon={item.children[0].icon} />
+                    <CCMaterialIcon icon={child.icon} />
                   </ListItemIcon>
-                  <ListItemText inset primary={item.children[0].text} />
-                </ListItem>
+                  <ListItemText inset primary={child.text} />
+              </ListItem>
+              </Link>)}
               </List>
             </Collapse>
           ) : null}
