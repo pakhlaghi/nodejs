@@ -33,8 +33,8 @@ const DashboardSnackbar = props => {
   } = props;
 
   // lazy loading Dashboard component
-  const lazyItemsModule = Loadable({
-    loader: () => import("./modules/itemsModule"),
+  const lazyMenuModule = Loadable({
+    loader: () => import("./modules/menuModule"),
     loading: Loading
   });
 
@@ -58,7 +58,7 @@ const DashboardSnackbar = props => {
 
   const componentMap = {
     main: MainModule,
-    items: lazyItemsModule,
+    menu: lazyMenuModule,
     pages: lazyPagesModule,
     media: lazyMediaModule,
     setting: lazySettingModule

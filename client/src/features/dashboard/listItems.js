@@ -20,8 +20,8 @@ const ListItems = props => {
       children: []
     },
     {
-      text: "Items",
-      action: "items",
+      text: "Menu",
+      action: "menu",
       icon: "MenuIcon",
       children: []
     },
