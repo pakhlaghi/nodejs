@@ -8,6 +8,7 @@ import Button from "@material-ui/core/Button";
 import SaveIcon from "@material-ui/icons/Save";
 import CancelIcon from "@material-ui/icons/Cancel";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import SettingsIcon from "@material-ui/icons/Settings";
 import LibraryAddIcon from "@material-ui/icons/LibraryAdd";
@@ -23,60 +24,86 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
-const NewPageModule = props => {
-  const { classes, enqueueSnackbar } = props;
+import CCenterTitleText from "./../../../contentModules/cCenterTitleText";
+import CImageText from "./../../../contentModules/cImageText";
+import CImageTile from "./../../../contentModules/cImageTile";
+import CIconTitleText from "./../../../contentModules/CIconTitleText";
+import CHeader from "./../../../contentModules/header/cHeader";
+import CFooter from "./../../../contentModules/cFooter";
 
-  const modules = [
-    { id: 1, name: "Module1", order: 1 },
-    { id: 2, name: "Module2", order: 2 },
-    { id: 3, name: "Module3", order: 3 }
-  ];
+const NewPageModule = props => {
+  const { classes, enqueueSnackbar, newPageSt, newPageHandler } = props;
+
+  const componentMap = {
+    CCenterTitleText: CCenterTitleText,
+    CImageText: CImageText,
+    CImageTile: CImageTile,
+    CIconTitleText: CIconTitleText,
+    CHeader: CHeader,
+    CFooter: CFooter
+  };
 
   const handleSaveClick = () => {
-    enqueueSnackbar("Page saved Successfuly", { variant: "success" });
+    newPageHandler.savePageAsync(enqueueSnackbar);
   };
 
-  const handleAddTopClick = () => {
+  const handleAddTopClick = index => _ => {
     console.log("add top");
+    newPageHandler.addModuleTop(index);
   };
 
-  const handleAddBottomClick = () => {
+  const handleAddBottomClick = index => _ => {
     console.log("add Bottom");
+    newPageHandler.addModuleBottom(index);
   };
 
-  const handleVisibleClick = () => {
+  const handleVisibleClick = (index, status) => _ => {
     console.log("visible");
+    newPageHandler.toggleVisibility(index, status);
   };
 
-  const handleTrashClick = () => {
+  const handleTrashClick = index => _ => {
     console.log("Trash");
+    newPageHandler.moveToTrash(index);
   };
 
-  const handleSettingClick = () => {
+  const handleSettingClick = index => {
     console.log("Setting");
+    newPageHandler.moduleSetting(index);
   };
 
   const handleCancelClick = () => {
-    // open = true;
+    newPageHandler.toggleCancelModal(true);
+  };
+
+  const handleCancelModalCancel = () => {
+    newPageHandler.toggleCancelModal(false);
+  };
+
+  const handleCancelModalYes = () => {
+    newPageHandler.toggleCancelModal(false);
     props.history.push("/dashboard/pages");
   };
-
-  const handleClose = () => {
-    open = false;
-  };
-
-  let open = false;
 
   return (
     <div>
       <div className={classes.topBar}>
         <FormControl required className={classes.inputMargin}>
           <InputLabel htmlFor="title">Page Title</InputLabel>
-          <Input id="title" name="title" autoFocus />
+          <Input
+            id="title"
+            name="title"
+            autoFocus
+            value={newPageSt.page.title}
+          />
         </FormControl>
         <FormControl required className={classes.inputMargin}>
           <InputLabel htmlFor="navigation">Unique Navigation Name</InputLabel>
-          <Input id="navigation" name="navigation" />
+          <Input
+            id="navigation"
+            name="navigation"
+            value={newPageSt.page.action}
+          />
         </FormControl>
 
         <div className={classes.rightEnd}>
@@ -102,7 +129,7 @@ const NewPageModule = props => {
         </div>
       </div>
       <Paper className={classes.pageContainer}>
-        {modules.map(module => (
+        {newPageSt.page.modules.map((module, index) => (
           <Draggable bounds="parent" axis="y" handle=".handle">
             <div className={classes.moduleContainer}>
               <span class="handle">
@@ -110,34 +137,49 @@ const NewPageModule = props => {
                   <ControlCameraIcon />
                 </IconButton>
               </span>
-              <IconButton onClick={handleAddBottomClick}>
+              <IconButton onClick={handleAddBottomClick(index)}>
                 <LibraryAddIcon />
               </IconButton>
-              <IconButton onClick={handleAddTopClick}>
+              <IconButton onClick={handleAddTopClick(index)}>
                 <LibraryAddIcon className={classes.rotate} />
               </IconButton>
-              <IconButton onClick={handleVisibleClick}>
-                <VisibilityIcon />
-              </IconButton>
-              <IconButton onClick={handleTrashClick}>
+              {module.visible ? (
+                <IconButton onClick={handleVisibleClick(index, false)}>
+                  <VisibilityIcon />
+                </IconButton>
+              ) : (
+                <IconButton onClick={handleVisibleClick(index, true)}>
+                  <VisibilityOffIcon />
+                </IconButton>
+              )}
+
+              <IconButton onClick={handleTrashClick(index)}>
                 <DeleteForeverIcon />
               </IconButton>
               <IconButton onClick={handleSettingClick}>
                 <SettingsIcon />
               </IconButton>
-              <Paper className={classes.module}>{module.name}</Paper>
+              <Paper
+                className={`${classes.module} ${
+                  module.visible ? "" : classes.invisible
+                }`}
+              >
+                {React.createElement(componentMap[module.type], {
+                  contentData: module.contents
+                })}
+              </Paper>
             </div>
           </Draggable>
         ))}
       </Paper>
       <Dialog
-        open={open}
-        onClose={handleClose}
+        open={newPageSt.isCancelModalOpen}
+        onClose={handleCancelModalCancel}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Are you sure to cancel Page Edit?"}
+          {"Are you sure you would like to cancel Page Edit?"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -145,10 +187,10 @@ const NewPageModule = props => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleCancelModalCancel} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary" autoFocus>
+          <Button onClick={handleCancelModalYes} color="primary" autoFocus>
             Yes
           </Button>
         </DialogActions>

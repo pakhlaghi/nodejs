@@ -46,7 +46,7 @@ const DashboardSnackbar = props => {
 
   // lazy loading Dashboard component
   const lazyNewPageModule = Loadable({
-    loader: () => import("./modules/newPage/newPageModule"),
+    loader: () => import("./modules/newPage/newPageContainer"),
     loading: Loading
   });
 
