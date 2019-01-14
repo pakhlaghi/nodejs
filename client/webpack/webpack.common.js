@@ -23,10 +23,7 @@ module.exports = {
     new CleanWebpackPlugin(["server/public"], {
       root: path.resolve(__dirname, "../..")
     }),
-    new CopyWebpackPlugin([
-      { from: "src/assets/images", to: "assets/images" },
-      { from: "src/assets/styles", to: "assets/styles" }
-    ]), // compy assets to build folder
+    new CopyWebpackPlugin([{ from: "src/assets", to: "assets" }]), // compy assets to build folder
     new HtmlWebpackPlugin({
       hash: true,
       template: path.join(__dirname, "../wpTemplate/index.html"), // template to add script and css tag

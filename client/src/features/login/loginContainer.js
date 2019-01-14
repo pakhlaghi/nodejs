@@ -1,8 +1,8 @@
 import React from "react";
 // components
-import Login from "../features/login";
+import Login from "./login";
 // redux
-import { signIn, toggleSnackbar } from "../redux/login/action";
+import { signIn, toggleSnackbar } from "../../redux/login/action";
 import { connect } from "react-redux";
 
 const mapStateToProps = state => {

@@ -1,25 +1,22 @@
 import React from "react";
-import { connect } from "react-redux";
 import Loadable from "react-loadable";
 // components
-import Layout from "../features/layout";
-import Loading from "../features/loading";
-import HomeContainer from "./homeContainer";
+import Layout from "../layout";
+import Loading from "../loading";
+import HomeContainer from "../home/homeContainer";
 // route
 import { withRouter } from "react-router-dom";
-import CCRoutes from "../utility/ccRoutes";
-// redux
-import { toggleDrawer, getContentAsync } from "../redux/app/layout/action";
+import CCRoutes from "../../utility/ccRoutes";
 
 // lazy loading Dashboard component
 const lazyDashboardContainer = Loadable({
-  loader: () => import("./dashboardContainer"),
+  loader: () => import("../dashboard/dashboardContainer"),
   loading: Loading
 });
 
 // lazy loading Dashboard componentF
 const lazyLoginContainer = Loadable({
-  loader: () => import("./loginContainer"),
+  loader: () => import("../login/loginContainer"),
   loading: Loading
 });
 
@@ -81,28 +78,4 @@ function App(props) {
   );
 }
 
-// redux map state
-const mapStateToProps = (state, props) => {
-  return {
-    loginSt: state.login,
-    layoutSt: state.app.layout,
-    pathname: props.location.pathname
-  };
-};
-
-// redux map actions
-const mapDispatchToProps = dispatch => {
-  // onInit: load data onInit
-  dispatch(getContentAsync());
-
-  return {
-    onToggleDrawer: status => dispatch(toggleDrawer(status))
-  };
-};
-
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(App)
-);
+export default App;

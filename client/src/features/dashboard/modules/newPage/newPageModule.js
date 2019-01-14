@@ -130,9 +130,9 @@ const NewPageModule = props => {
       </div>
       <Paper className={classes.pageContainer}>
         {newPageSt.page.modules.map((module, index) => (
-          <Draggable bounds="parent" axis="y" handle=".handle">
+          <Draggable key={index} bounds="parent" axis="y" handle=".handle">
             <div className={classes.moduleContainer}>
-              <span class="handle">
+              <span className="handle">
                 <IconButton>
                   <ControlCameraIcon />
                 </IconButton>

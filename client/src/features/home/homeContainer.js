@@ -1,10 +1,10 @@
 import React from "react";
-import Home from "../features/home";
+import Home from "./home";
 
 // redux
 import { connect } from "react-redux";
-import { toggleDrawer } from "../redux/app/layout/action";
-import { getContentBodyAsync } from "../redux/home/action";
+import { toggleDrawer } from "../../redux/app/layout/action";
+import { getContentBodyAsync } from "../../redux/home/action";
 
 const mapStateToProps = state => {
   return {

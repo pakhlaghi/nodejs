@@ -47,8 +47,8 @@ const ListItems = props => {
 
   return (
     <List>
-      {items.map(item => (
-        <React.Fragment>
+      {items.map((item, index) => (
+        <React.Fragment key={index}>
           <Link to={item.action} className={classes.link}>
             <ListItem button>
               <ListItemIcon>
