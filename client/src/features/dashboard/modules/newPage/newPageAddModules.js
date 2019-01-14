@@ -7,11 +7,28 @@ import styles from "./newPageModule.style";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
+// content modules
+import CCenterTitleText from "./../../../contentModules/cCenterTitleText";
+import CImageText from "./../../../contentModules/cImageText";
+import CImageTile from "./../../../contentModules/cImageTile";
+import CIconTitleText from "./../../../contentModules/CIconTitleText";
+import CHeader from "./../../../contentModules/header/cHeader";
+import CFooter from "./../../../contentModules/cFooter";
+import { Checkbox } from "@material-ui/core";
+
 const NewPageAddModules = props => {
-  const { classes, isAddModulesOpen, toggleAddModulesModal } = props;
+  const { classes, isAddModulesOpen, toggleAddModulesModal, modules } = props;
+
+  const componentMap = {
+    CCenterTitleText: CCenterTitleText,
+    CImageText: CImageText,
+    CImageTile: CImageTile,
+    CIconTitleText: CIconTitleText,
+    CHeader: CHeader,
+    CFooter: CFooter
+  };
 
   // add modules modal handler
   const handleAddModulesModalCancel = () => {
@@ -22,8 +39,14 @@ const NewPageAddModules = props => {
     toggleAddModulesModal(false);
   };
 
+  const handleVisibleClick = (index, status) => {
+    console.log("dfd");
+  };
+
   return (
     <Dialog
+      fullWidth={true}
+      maxWidth="xl"
       open={isAddModulesOpen}
       onClose={handleAddModulesModalCancel}
       scroll="paper"
@@ -31,54 +54,28 @@ const NewPageAddModules = props => {
       aria-describedby="alert-dialog-description"
     >
       <DialogTitle id="alert-dialog-title">{"Add Modules"}</DialogTitle>
+
       <DialogContent>
-        <DialogContentText>
-          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-          consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel
-          scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue
-          laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla
-          sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl
-          consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
-          auctor fringilla. Cras mattis consectetur purus sit amet fermentum.
-          Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo
-          risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo
-          cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
-          lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia
-          bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
-          scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper
-          nulla non metus auctor fringilla. Cras mattis consectetur purus sit
-          amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget
-          quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-          Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-          Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-          Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
-          magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
-          ullamcorper nulla non metus auctor fringilla. Cras mattis consectetur
-          purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
-          egestas eget quam. Morbi leo risus, porta ac consectetur ac,
-          vestibulum at eros. Praesent commodo cursus magna, vel scelerisque
-          nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum
-          faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur.
-          Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-          Donec sed odio dui. Donec ullamcorper nulla non metus auctor
-          fringilla. Cras mattis consectetur purus sit amet fermentum. Cras
-          justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo
-          risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo
-          cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
-          lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia
-          bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
-          scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper
-          nulla non metus auctor fringilla. Cras mattis consectetur purus sit
-          amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget
-          quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-          Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-          Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-          Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
-          magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
-          ullamcorper nulla non metus auctor fringilla.
-        </DialogContentText>
+        {modules.map((module, index) => (
+          <div key={index} className={classes.moduleContainer}>
+            <div className={classes.inCheckbox}>
+              <Checkbox />
+            </div>
+            <Button className={`${classes.selected} ${classes.fullWidth}`}>
+              <Paper
+                className={`${classes.fullWidth} ${classes.module} ${
+                  module.visible ? "" : classes.invisible
+                }`}
+              >
+                {React.createElement(componentMap[module.type], {
+                  contentData: module.contents
+                })}
+              </Paper>
+            </Button>
+          </div>
+        ))}
       </DialogContent>
+
       <DialogActions>
         <Button onClick={handleAddModulesModalCancel} color="primary">
           Cancel

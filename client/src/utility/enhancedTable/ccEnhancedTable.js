@@ -1,15 +1,15 @@
-import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TablePagination from '@material-ui/core/TablePagination';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import Checkbox from '@material-ui/core/Checkbox';
-import EnhancedTableHead from './enhancedTableHead';
-import EnhancedTableToolbar from './enhancedTableToolbar';
-import styles from './ccEnhancedTable.style'
+import React from "react";
+import { withStyles } from "@material-ui/core/styles";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TablePagination from "@material-ui/core/TablePagination";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
+import Checkbox from "@material-ui/core/Checkbox";
+import EnhancedTableHead from "./enhancedTableHead";
+import EnhancedTableToolbar from "./enhancedTableToolbar";
+import styles from "./ccEnhancedTable.style";
 
 function desc(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -32,24 +32,26 @@ function stableSort(array, cmp) {
 }
 
 function getSorting(order, orderBy) {
-  return order === 'desc' ? (a, b) => desc(a, b, orderBy) : (a, b) => -desc(a, b, orderBy);
+  return order === "desc"
+    ? (a, b) => desc(a, b, orderBy)
+    : (a, b) => -desc(a, b, orderBy);
 }
 
 class CCEnhancedTable extends React.Component {
   state = {
-    order: 'asc',
-    orderBy: 'name',
+    order: "asc",
+    orderBy: "name",
     selected: [],
     page: 0,
-    rowsPerPage: 10,
+    rowsPerPage: 10
   };
 
   handleRequestSort = (event, property) => {
     const orderBy = property;
-    let order = 'desc';
+    let order = "desc";
 
-    if (this.state.orderBy === property && this.state.order === 'desc') {
-      order = 'asc';
+    if (this.state.orderBy === property && this.state.order === "desc") {
+      order = "asc";
     }
 
     this.setState({ order, orderBy });
@@ -77,7 +79,7 @@ class CCEnhancedTable extends React.Component {
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
+        selected.slice(selectedIndex + 1)
       );
     }
 
@@ -97,13 +99,18 @@ class CCEnhancedTable extends React.Component {
   render() {
     const { classes } = this.props;
     const { order, orderBy, selected, rowsPerPage, page } = this.state;
-    const {data, fields, title, onDelete} = this.props;
+    const { data, fields, title, onDelete } = this.props;
 
-    const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
+    const emptyRows =
+      rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
     return (
       <Paper className={classes.root}>
-        <EnhancedTableToolbar numSelected={selected.length} title={title} onDelete={onDelete(this.state.selected)} />
+        <EnhancedTableToolbar
+          numSelected={selected.length}
+          title={title}
+          onDelete={onDelete(this.state.selected)}
+        />
         <div className={classes.tableWrapper}>
           <Table className={classes.table} aria-labelledby="tableTitle">
             <EnhancedTableHead
@@ -118,25 +125,25 @@ class CCEnhancedTable extends React.Component {
             <TableBody>
               {stableSort(data, getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map(n => {
-                  const isSelected = this.isSelected(n.id);
+                .map(row => {
+                  const isSelected = this.isSelected(row.id);
                   return (
                     <TableRow
                       hover
-                      onClick={event => this.handleClick(event, n.id)}
+                      onClick={event => this.handleClick(event, row.id)}
                       role="checkbox"
                       aria-checked={isSelected}
                       tabIndex={-1}
-                      key={n.id}
+                      key={row.id}
                       selected={isSelected}
                     >
                       <TableCell padding="checkbox">
                         <Checkbox checked={isSelected} />
                       </TableCell>
                       <TableCell component="th" scope="row" padding="none">
-                        {n.id}
+                        {row.id}
                       </TableCell>
-                      <TableCell>{n.name}</TableCell>
+                      <TableCell>{row.name}</TableCell>
                     </TableRow>
                   );
                 })}
@@ -155,10 +162,10 @@ class CCEnhancedTable extends React.Component {
           rowsPerPage={rowsPerPage}
           page={page}
           backIconButtonProps={{
-            'aria-label': 'Previous Page',
+            "aria-label": "Previous Page"
           }}
           nextIconButtonProps={{
-            'aria-label': 'Next Page',
+            "aria-label": "Next Page"
           }}
           onChangePage={this.handleChangePage}
           onChangeRowsPerPage={this.handleChangeRowsPerPage}

@@ -129,6 +129,7 @@ const NewPageModule = props => {
       <NewPageAddModules
         isAddModulesOpen={newPageSt.isAddModulesOpen}
         toggleAddModulesModal={newPageHandler.toggleAddModulesModal}
+        modules={newPageSt.page.modules}
       />
     </div>
   );
