@@ -4,7 +4,8 @@ import {
   ADD_MODULE_BOTTOM,
   TOGGLE_VISIBILITY,
   MOVE_TO_TRASH,
-  TOGGLE_CANCEL_MODAL
+  TOGGLE_CANCEL_MODAL,
+  TOGGLE_ADD_MODULES_MODAL
 } from "./types";
 
 export const showSpinner = status => ({
@@ -47,8 +48,13 @@ export const moduleSetting = () => {
   console.log("Setting");
 };
 
-export const toggleCancelModal = status => ({
+export const toggleCancelModal = (status, history) => ({
   type: TOGGLE_CANCEL_MODAL,
+  payload: { status, history }
+});
+
+export const toggleAddModulesModal = status => ({
+  type: TOGGLE_ADD_MODULES_MODAL,
   payload: { status }
 });
 

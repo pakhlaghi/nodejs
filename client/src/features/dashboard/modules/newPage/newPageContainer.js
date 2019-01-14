@@ -1,4 +1,7 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
+import { withSnackbar } from "notistack";
+
 import newPageModule from "./newPageModule";
 
 import {
@@ -8,7 +11,8 @@ import {
   moveToTrash,
   moduleSetting,
   toggleCancelModal,
-  savePageAsync
+  savePageAsync,
+  toggleAddModulesModal
 } from "../../../../redux/dashboard/modules/newPage/action";
 
 import { connect } from "react-redux";
@@ -28,7 +32,9 @@ const mapDispatchToProps = dispatch => {
         dispatch(toggleVisibility(index, status)),
       moveToTrash: index => dispatch(moveToTrash(index)),
       moduleSetting: index => dispatch(moduleSetting(index)),
-      toggleCancelModal: status => dispatch(toggleCancelModal(status)),
+      toggleCancelModal: (status, history) =>
+        dispatch(toggleCancelModal(status, history)),
+      toggleAddModulesModal: status => dispatch(toggleAddModulesModal(status)),
       savePageAsync: enqueueSnackbar => dispatch(savePageAsync(enqueueSnackbar))
     }
   };
@@ -37,4 +43,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(newPageModule);
+)(withSnackbar(withRouter(newPageModule)));

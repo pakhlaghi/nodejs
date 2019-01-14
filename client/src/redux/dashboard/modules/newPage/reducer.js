@@ -4,7 +4,8 @@ import {
   ADD_MODULE_BOTTOM,
   TOGGLE_VISIBILITY,
   MOVE_TO_TRASH,
-  TOGGLE_CANCEL_MODAL
+  TOGGLE_CANCEL_MODAL,
+  TOGGLE_ADD_MODULES_MODAL
 } from "./types";
 
 export default (
@@ -52,7 +53,8 @@ export default (
         }
       ]
     },
-    isCancelModalOpen: false
+    isCancelModalOpen: false,
+    isAddModulesOpen: false
   },
   action
 ) => {
@@ -69,6 +71,8 @@ export default (
       return moveToTrash(state, action);
     case TOGGLE_CANCEL_MODAL:
       return toggleCancelModal(state, action);
+    case TOGGLE_ADD_MODULES_MODAL:
+      return toggleAddModulesModal(state, action);
   }
   return state;
 };
@@ -78,55 +82,57 @@ export const showSpinner = (state, action) => {
 };
 
 const addModuleTop = (state, action) => {
-  const newM = {
-    visible: true,
-    type: "CCenterTitleText",
-    contents: {
-      title: "Test Test",
-      subTitle: "You Take Into a Masterpiece!",
-      body: `Despite all the intuitiveness of interface and easy-to-understand UX
-            and UI, an application as complex as ours can get you bumping into
-            some roadblocks or asking some technical questions over time. We can
-            assure you, that while our Customer Support dept. will be ready to
-            help you 24/7, we have also placed all the most frequently asked
-            questions and issues on this page…`,
-      readMore: {
-        text: "Read More",
-        url: "#"
-      }
-    }
-  };
+  // const newM = {
+  //   visible: true,
+  //   type: "CCenterTitleText",
+  //   contents: {
+  //     title: "Test Test",
+  //     subTitle: "You Take Into a Masterpiece!",
+  //     body: `Despite all the intuitiveness of interface and easy-to-understand UX
+  //           and UI, an application as complex as ours can get you bumping into
+  //           some roadblocks or asking some technical questions over time. We can
+  //           assure you, that while our Customer Support dept. will be ready to
+  //           help you 24/7, we have also placed all the most frequently asked
+  //           questions and issues on this page…`,
+  //     readMore: {
+  //       text: "Read More",
+  //       url: "#"
+  //     }
+  //   }
+  // };
 
-  state.page.modules.splice(action.payload.index, 0, newM);
+  // state.page.modules.splice(action.payload.index, 0, newM);
 
   return {
-    ...state
+    ...state,
+    isAddModulesOpen: true
   };
 };
 
 const addModuleBottom = (state, action) => {
-  const newM = {
-    visible: true,
-    type: "CCenterTitleText",
-    contents: {
-      title: "Test Test",
-      subTitle: "You Take Into a Masterpiece!",
-      body: `Despite all the intuitiveness of interface and easy-to-understand UX
-            and UI, an application as complex as ours can get you bumping into
-            some roadblocks or asking some technical questions over time. We can
-            assure you, that while our Customer Support dept. will be ready to
-            help you 24/7, we have also placed all the most frequently asked
-            questions and issues on this page…`,
-      readMore: {
-        text: "Read More",
-        url: "#"
-      }
-    }
-  };
+  // const newM = {
+  //   visible: true,
+  //   type: "CCenterTitleText",
+  //   contents: {
+  //     title: "Test Test",
+  //     subTitle: "You Take Into a Masterpiece!",
+  //     body: `Despite all the intuitiveness of interface and easy-to-understand UX
+  //           and UI, an application as complex as ours can get you bumping into
+  //           some roadblocks or asking some technical questions over time. We can
+  //           assure you, that while our Customer Support dept. will be ready to
+  //           help you 24/7, we have also placed all the most frequently asked
+  //           questions and issues on this page…`,
+  //     readMore: {
+  //       text: "Read More",
+  //       url: "#"
+  //     }
+  //   }
+  // };
 
-  state.page.modules.splice(action.payload.index + 1, 0, newM);
+  // state.page.modules.splice(action.payload.index + 1, 0, newM);
   return {
-    ...state
+    ...state,
+    isAddModulesOpen: true
   };
 };
 
@@ -151,8 +157,19 @@ const moveToTrash = (state, action) => {
 };
 
 const toggleCancelModal = (state, action) => {
+  if (action.payload.history) {
+    action.payload.history.push("/dashboard/pages");
+  }
+
   return {
     ...state,
     isCancelModalOpen: action.payload.status
+  };
+};
+
+const toggleAddModulesModal = (state, action) => {
+  return {
+    ...state,
+    isAddModulesOpen: action.payload.status
   };
 };

@@ -1,29 +1,24 @@
 import React from "react";
-import Paper from "@material-ui/core/Paper";
+import Draggable from "react-draggable";
+
+// components
+import NewPageAddModules from "./newPageAddModules";
+import NewPageHeader from "./newPageHeader";
+// UI
+import styles from "./newPageModule.style";
 import { withStyles } from "@material-ui/core/styles";
-import Input from "@material-ui/core/Input";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Button from "@material-ui/core/Button";
-import SaveIcon from "@material-ui/icons/Save";
-import CancelIcon from "@material-ui/icons/Cancel";
+import Paper from "@material-ui/core/Paper";
+
+import IconButton from "@material-ui/core/IconButton";
+
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import SettingsIcon from "@material-ui/icons/Settings";
 import LibraryAddIcon from "@material-ui/icons/LibraryAdd";
 import ControlCameraIcon from "@material-ui/icons/ControlCamera";
-import Draggable from "react-draggable";
-import { withSnackbar } from "notistack";
-import IconButton from "@material-ui/core/IconButton";
-import styles from "./newPageModule.style";
-import { withRouter } from "react-router-dom";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
 
+// content modules
 import CCenterTitleText from "./../../../contentModules/cCenterTitleText";
 import CImageText from "./../../../contentModules/cImageText";
 import CImageTile from "./../../../contentModules/cImageTile";
@@ -32,7 +27,13 @@ import CHeader from "./../../../contentModules/header/cHeader";
 import CFooter from "./../../../contentModules/cFooter";
 
 const NewPageModule = props => {
-  const { classes, enqueueSnackbar, newPageSt, newPageHandler } = props;
+  const {
+    classes,
+    enqueueSnackbar,
+    history,
+    newPageSt,
+    newPageHandler
+  } = props;
 
   const componentMap = {
     CCenterTitleText: CCenterTitleText,
@@ -41,10 +42,6 @@ const NewPageModule = props => {
     CIconTitleText: CIconTitleText,
     CHeader: CHeader,
     CFooter: CFooter
-  };
-
-  const handleSaveClick = () => {
-    newPageHandler.savePageAsync(enqueueSnackbar);
   };
 
   const handleAddTopClick = index => _ => {
@@ -72,62 +69,18 @@ const NewPageModule = props => {
     newPageHandler.moduleSetting(index);
   };
 
-  const handleCancelClick = () => {
-    newPageHandler.toggleCancelModal(true);
-  };
-
-  const handleCancelModalCancel = () => {
-    newPageHandler.toggleCancelModal(false);
-  };
-
-  const handleCancelModalYes = () => {
-    newPageHandler.toggleCancelModal(false);
-    props.history.push("/dashboard/pages");
-  };
-
   return (
     <div>
-      <div className={classes.topBar}>
-        <FormControl required className={classes.inputMargin}>
-          <InputLabel htmlFor="title">Page Title</InputLabel>
-          <Input
-            id="title"
-            name="title"
-            autoFocus
-            value={newPageSt.page.title}
-          />
-        </FormControl>
-        <FormControl required className={classes.inputMargin}>
-          <InputLabel htmlFor="navigation">Unique Navigation Name</InputLabel>
-          <Input
-            id="navigation"
-            name="navigation"
-            value={newPageSt.page.action}
-          />
-        </FormControl>
+      <NewPageHeader
+        enqueueSnackbar={enqueueSnackbar}
+        history={history}
+        title={newPageSt.page.title}
+        action={newPageSt.page.action}
+        isCancelModalOpen={newPageSt.isCancelModalOpen}
+        toggleCancelModal={newPageHandler.toggleCancelModal}
+        savePageAsync={newPageHandler.savePageAsync}
+      />
 
-        <div className={classes.rightEnd}>
-          <Button
-            onClick={handleCancelClick}
-            variant="contained"
-            color="default"
-            className={classes.button}
-          >
-            Cancel
-            <CancelIcon className={classes.rightIcon} />
-          </Button>
-
-          <Button
-            variant="contained"
-            color="secondary"
-            className={classes.button}
-            onClick={handleSaveClick}
-          >
-            Save Page
-            <SaveIcon className={classes.rightIcon} />
-          </Button>
-        </div>
-      </div>
       <Paper className={classes.pageContainer}>
         {newPageSt.page.modules.map((module, index) => (
           <Draggable key={index} bounds="parent" axis="y" handle=".handle">
@@ -172,31 +125,13 @@ const NewPageModule = props => {
           </Draggable>
         ))}
       </Paper>
-      <Dialog
-        open={newPageSt.isCancelModalOpen}
-        onClose={handleCancelModalCancel}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          {"Are you sure you would like to cancel Page Edit?"}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            By click Yes the unsaved data will be lost.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCancelModalCancel} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleCancelModalYes} color="primary" autoFocus>
-            Yes
-          </Button>
-        </DialogActions>
-      </Dialog>
+
+      <NewPageAddModules
+        isAddModulesOpen={newPageSt.isAddModulesOpen}
+        toggleAddModulesModal={newPageHandler.toggleAddModulesModal}
+      />
     </div>
   );
 };
 
-export default withStyles(styles)(withSnackbar(withRouter(NewPageModule)));
+export default withStyles(styles)(NewPageModule);
