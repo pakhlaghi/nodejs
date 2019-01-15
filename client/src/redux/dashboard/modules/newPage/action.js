@@ -2,10 +2,13 @@ import {
   SHOW_SPINNER,
   ADD_MODULE_TOP,
   ADD_MODULE_BOTTOM,
-  TOGGLE_VISIBILITY,
+  TOGGLE_MODULE_VISIBILITY,
   MOVE_TO_TRASH,
   TOGGLE_CANCEL_MODAL,
-  TOGGLE_ADD_MODULES_MODAL
+  TOGGLE_ADD_MODULES_MODAL,
+  SAVE_ADD_MODULES_MODAL,
+  TOGGLE_MODULE_SELECTED,
+  TOGGLE_SELECT_ALL_MODULES
 } from "./types";
 
 export const showSpinner = status => ({
@@ -15,32 +18,32 @@ export const showSpinner = status => ({
   }
 });
 
-export const addModuleTop = index => ({
+export const addModuleTop = moduleId => ({
   type: ADD_MODULE_TOP,
   payload: {
-    index
+    moduleId
   }
 });
 
-export const addModuleBottom = index => ({
+export const addModuleBottom = moduleId => ({
   type: ADD_MODULE_BOTTOM,
   payload: {
-    index
+    moduleId
   }
 });
 
-export const toggleVisibility = (index, status) => ({
-  type: TOGGLE_VISIBILITY,
+export const toggleModuleVisibility = (moduleId, status) => ({
+  type: TOGGLE_MODULE_VISIBILITY,
   payload: {
-    index,
+    moduleId,
     status
   }
 });
 
-export const moveToTrash = index => ({
+export const moveToTrash = moduleId => ({
   type: MOVE_TO_TRASH,
   payload: {
-    index
+    moduleId
   }
 });
 
@@ -58,7 +61,22 @@ export const toggleAddModulesModal = status => ({
   payload: { status }
 });
 
-// async:
+export const saveAddModulesModal = _ => ({
+  type: SAVE_ADD_MODULES_MODAL,
+  payload: {}
+});
+
+export const toggleModuleSelected = moduleId => ({
+  type: TOGGLE_MODULE_SELECTED,
+  payload: { moduleId }
+});
+
+export const toggleSelectAllModules = _ => ({
+  type: TOGGLE_SELECT_ALL_MODULES,
+  payload: {}
+});
+
+// async: ------------------------------------------------------------------------
 // call this first => resolve will call action with type
 // no type is required
 export const savePageAsync = enqueueSnackbar => {

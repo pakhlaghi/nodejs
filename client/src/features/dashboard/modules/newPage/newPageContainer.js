@@ -7,12 +7,15 @@ import newPageModule from "./newPageModule";
 import {
   addModuleTop,
   addModuleBottom,
-  toggleVisibility,
+  toggleModuleVisibility,
   moveToTrash,
   moduleSetting,
   toggleCancelModal,
   savePageAsync,
-  toggleAddModulesModal
+  toggleAddModulesModal,
+  saveAddModulesModal,
+  toggleModuleSelected,
+  toggleSelectAllModules
 } from "../../../../redux/dashboard/modules/newPage/action";
 
 import { connect } from "react-redux";
@@ -26,15 +29,19 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     newPageHandler: {
-      addModuleTop: index => dispatch(addModuleTop(index)),
-      addModuleBottom: index => dispatch(addModuleBottom(index)),
-      toggleVisibility: (index, status) =>
-        dispatch(toggleVisibility(index, status)),
-      moveToTrash: index => dispatch(moveToTrash(index)),
-      moduleSetting: index => dispatch(moduleSetting(index)),
+      addModuleTop: moduleId => dispatch(addModuleTop(moduleId)),
+      addModuleBottom: moduleId => dispatch(addModuleBottom(moduleId)),
+      toggleModuleVisibility: (moduleId, status) =>
+        dispatch(toggleModuleVisibility(moduleId, status)),
+      moveToTrash: moduleId => dispatch(moveToTrash(moduleId)),
+      moduleSetting: moduleId => dispatch(moduleSetting(moduleId)),
       toggleCancelModal: (status, history) =>
         dispatch(toggleCancelModal(status, history)),
       toggleAddModulesModal: status => dispatch(toggleAddModulesModal(status)),
+      saveAddModulesModal: _ => dispatch(saveAddModulesModal()),
+      toggleModuleSelected: moduleId =>
+        dispatch(toggleModuleSelected(moduleId)),
+      toggleSelectAllModules: _ => dispatch(toggleSelectAllModules()),
       savePageAsync: enqueueSnackbar => dispatch(savePageAsync(enqueueSnackbar))
     }
   };

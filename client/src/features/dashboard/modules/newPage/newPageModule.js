@@ -44,29 +44,29 @@ const NewPageModule = props => {
     CFooter: CFooter
   };
 
-  const handleAddTopClick = index => _ => {
+  const handleAddTopClick = moduleId => _ => {
     console.log("add top");
-    newPageHandler.addModuleTop(index);
+    newPageHandler.addModuleTop(moduleId);
   };
 
-  const handleAddBottomClick = index => _ => {
+  const handleAddBottomClick = moduleId => _ => {
     console.log("add Bottom");
-    newPageHandler.addModuleBottom(index);
+    newPageHandler.addModuleBottom(moduleId);
   };
 
-  const handleVisibleClick = (index, status) => _ => {
+  const handleVisibleClick = (moduleId, status) => _ => {
     console.log("visible");
-    newPageHandler.toggleVisibility(index, status);
+    newPageHandler.toggleModuleVisibility(moduleId, status);
   };
 
-  const handleTrashClick = index => _ => {
+  const handleTrashClick = moduleId => _ => {
     console.log("Trash");
-    newPageHandler.moveToTrash(index);
+    newPageHandler.moveToTrash(moduleId);
   };
 
-  const handleSettingClick = index => {
+  const handleSettingClick = moduleId => {
     console.log("Setting");
-    newPageHandler.moduleSetting(index);
+    newPageHandler.moduleSetting(moduleId);
   };
 
   return (
@@ -82,31 +82,31 @@ const NewPageModule = props => {
       />
 
       <Paper className={classes.pageContainer}>
-        {newPageSt.page.modules.map((module, index) => (
-          <Draggable key={index} bounds="parent" axis="y" handle=".handle">
+        {newPageSt.page.modules.map(module => (
+          <Draggable key={module.id} bounds="parent" axis="y" handle=".handle">
             <div className={classes.moduleContainer}>
               <span className="handle">
                 <IconButton>
                   <ControlCameraIcon />
                 </IconButton>
               </span>
-              <IconButton onClick={handleAddBottomClick(index)}>
+              <IconButton onClick={handleAddBottomClick(module.id)}>
                 <LibraryAddIcon />
               </IconButton>
-              <IconButton onClick={handleAddTopClick(index)}>
+              <IconButton onClick={handleAddTopClick(module.id)}>
                 <LibraryAddIcon className={classes.rotate} />
               </IconButton>
               {module.visible ? (
-                <IconButton onClick={handleVisibleClick(index, false)}>
+                <IconButton onClick={handleVisibleClick(module.id, false)}>
                   <VisibilityIcon />
                 </IconButton>
               ) : (
-                <IconButton onClick={handleVisibleClick(index, true)}>
+                <IconButton onClick={handleVisibleClick(module.id, true)}>
                   <VisibilityOffIcon />
                 </IconButton>
               )}
 
-              <IconButton onClick={handleTrashClick(index)}>
+              <IconButton onClick={handleTrashClick(module.id)}>
                 <DeleteForeverIcon />
               </IconButton>
               <IconButton onClick={handleSettingClick}>
@@ -129,7 +129,11 @@ const NewPageModule = props => {
       <NewPageAddModules
         isAddModulesOpen={newPageSt.isAddModulesOpen}
         toggleAddModulesModal={newPageHandler.toggleAddModulesModal}
-        modules={newPageSt.page.modules}
+        defaultModules={newPageSt.defaultModules}
+        saveAddModulesModal={newPageHandler.saveAddModulesModal}
+        toggleModuleSelected={newPageHandler.toggleModuleSelected}
+        toggleSelectAllModules={newPageHandler.toggleSelectAllModules}
+        selectedCount={newPageSt.selectedCount}
       />
     </div>
   );

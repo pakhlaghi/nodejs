@@ -16,10 +16,19 @@ import CImageTile from "./../../../contentModules/cImageTile";
 import CIconTitleText from "./../../../contentModules/CIconTitleText";
 import CHeader from "./../../../contentModules/header/cHeader";
 import CFooter from "./../../../contentModules/cFooter";
-import { Checkbox } from "@material-ui/core";
+import { Checkbox, FormControlLabel, Badge } from "@material-ui/core";
 
 const NewPageAddModules = props => {
-  const { classes, isAddModulesOpen, toggleAddModulesModal, modules } = props;
+  const {
+    classes,
+    isAddModulesOpen,
+    selectedCount,
+    toggleAddModulesModal,
+    saveAddModulesModal,
+    toggleModuleSelected,
+    toggleSelectAllModules,
+    defaultModules
+  } = props;
 
   const componentMap = {
     CCenterTitleText: CCenterTitleText,
@@ -36,11 +45,19 @@ const NewPageAddModules = props => {
   };
 
   const handleAddModulesModalAdd = () => {
-    toggleAddModulesModal(false);
+    saveAddModulesModal(false);
   };
 
-  const handleVisibleClick = (index, status) => {
-    console.log("dfd");
+  const handleModuleClick = moduleId => _ => {
+    toggleModuleSelected(moduleId);
+  };
+
+  const handleCheckboxClick = moduleId => _ => {
+    toggleModuleSelected(moduleId);
+  };
+
+  const handleToggleSelectAllModulesClick = () => {
+    toggleSelectAllModules();
   };
 
   return (
@@ -56,15 +73,26 @@ const NewPageAddModules = props => {
       <DialogTitle id="alert-dialog-title">{"Add Modules"}</DialogTitle>
 
       <DialogContent>
-        {modules.map((module, index) => (
-          <div key={index} className={classes.moduleContainer}>
-            <div className={classes.inCheckbox}>
-              <Checkbox />
-            </div>
-            <Button className={`${classes.selected} ${classes.fullWidth}`}>
+        {defaultModules.map(module => (
+          <div key={module.id}>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={module.selected}
+                  onClick={handleCheckboxClick(module.id)}
+                />
+              }
+              label={module.name}
+            />
+            <Button
+              className={`${module.selected ? classes.selected : ""} ${
+                classes.fullWidth
+              }`}
+              onClick={handleModuleClick(module.id)}
+            >
               <Paper
                 className={`${classes.fullWidth} ${classes.module} ${
-                  module.visible ? "" : classes.invisible
+                  classes.overlayer
                 }`}
               >
                 {React.createElement(componentMap[module.type], {
@@ -77,12 +105,36 @@ const NewPageAddModules = props => {
       </DialogContent>
 
       <DialogActions>
+        <FormControlLabel
+          className={classes.leftDialogAction}
+          control={
+            <Checkbox
+              checked={selectedCount == defaultModules.length}
+              onClick={handleToggleSelectAllModulesClick}
+              indeterminate={
+                selectedCount && selectedCount < defaultModules.length
+              }
+            />
+          }
+          label={`${
+            selectedCount >= 0 && selectedCount < defaultModules.length
+              ? "Select"
+              : "Unselect"
+          }  All`}
+        />
         <Button onClick={handleAddModulesModalCancel} color="primary">
           Cancel
         </Button>
-        <Button onClick={handleAddModulesModalAdd} color="primary" autoFocus>
-          Add
-        </Button>
+        <Badge
+          color="primary"
+          badgeContent={selectedCount}
+          classes={{ badge: classes.badge }}
+          invisible={!selectedCount}
+        >
+          <Button onClick={handleAddModulesModalAdd} color="primary" autoFocus>
+            Add
+          </Button>
+        </Badge>
       </DialogActions>
     </Dialog>
   );
