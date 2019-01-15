@@ -7,8 +7,7 @@ import {
   TOGGLE_CANCEL_MODAL,
   TOGGLE_ADD_MODULES_MODAL,
   SAVE_ADD_MODULES_MODAL,
-  TOGGLE_MODULE_SELECTED,
-  TOGGLE_SELECT_ALL_MODULES
+  ADD_MODULE_FROM_LIST
 } from "./types";
 
 export const showSpinner = status => ({
@@ -66,14 +65,11 @@ export const saveAddModulesModal = _ => ({
   payload: {}
 });
 
-export const toggleModuleSelected = moduleId => ({
-  type: TOGGLE_MODULE_SELECTED,
-  payload: { moduleId }
-});
-
-export const toggleSelectAllModules = _ => ({
-  type: TOGGLE_SELECT_ALL_MODULES,
-  payload: {}
+export const addModuleFromList = moduleId => ({
+  type: ADD_MODULE_FROM_LIST,
+  payload: {
+    moduleId
+  }
 });
 
 // async: ------------------------------------------------------------------------

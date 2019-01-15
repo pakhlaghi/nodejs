@@ -42,24 +42,7 @@ const styles = theme => ({
       top: "0",
       left: "0",
       width: "100%",
-      zIndex: "1000"
-    }
-  },
-  selected: {
-    "&::before": {
-      content: `''`,
-      backgroundColor: blueGrey[900],
-      background: "url(./assets/images/check_box.svg)",
-      backgroundRepeat: "no-repeat",
-      backgroundPosition: "center",
-      backgroundSize: "10%",
-      opacity: "0.4",
-      display: "block",
-      height: "100%",
-      position: "absolute",
-      left: "0",
-      width: "100%",
-      zIndex: "1000"
+      zIndex: "100"
     }
   },
   leftDialogAction: {
@@ -75,6 +58,12 @@ const styles = theme => ({
         ? theme.palette.grey[200]
         : theme.palette.grey[900]
     }`
+  },
+  marginBottom: {
+    marginBottom: "20px"
+  },
+  topZIndex: {
+    zIndex: "3000"
   }
 });
 

@@ -14,8 +14,7 @@ import {
   savePageAsync,
   toggleAddModulesModal,
   saveAddModulesModal,
-  toggleModuleSelected,
-  toggleSelectAllModules
+  addModuleFromList
 } from "../../../../redux/dashboard/modules/newPage/action";
 
 import { connect } from "react-redux";
@@ -39,10 +38,9 @@ const mapDispatchToProps = dispatch => {
         dispatch(toggleCancelModal(status, history)),
       toggleAddModulesModal: status => dispatch(toggleAddModulesModal(status)),
       saveAddModulesModal: _ => dispatch(saveAddModulesModal()),
-      toggleModuleSelected: moduleId =>
-        dispatch(toggleModuleSelected(moduleId)),
-      toggleSelectAllModules: _ => dispatch(toggleSelectAllModules()),
-      savePageAsync: enqueueSnackbar => dispatch(savePageAsync(enqueueSnackbar))
+      savePageAsync: enqueueSnackbar =>
+        dispatch(savePageAsync(enqueueSnackbar)),
+      addModuleFromList: moduleId => dispatch(addModuleFromList(moduleId))
     }
   };
 };

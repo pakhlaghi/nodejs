@@ -7,8 +7,7 @@ import {
   TOGGLE_CANCEL_MODAL,
   TOGGLE_ADD_MODULES_MODAL,
   SAVE_ADD_MODULES_MODAL,
-  TOGGLE_MODULE_SELECTED,
-  TOGGLE_SELECT_ALL_MODULES
+  ADD_MODULE_FROM_LIST
 } from "./types";
 
 export default (
@@ -64,11 +63,13 @@ export default (
     isAddModulesOpen: false,
     selectedCount: 0,
     addInId: 0,
+    modulesToAdd: [],
     defaultModules: [
       {
         id: 1,
         selected: false,
         visible: true,
+        icon: "DashboardIcon",
         name: "Text & Title",
         type: "CCenterTitleText",
         contents: {
@@ -90,6 +91,7 @@ export default (
         id: 2,
         selected: false,
         visible: true,
+        icon: "DashboardIcon",
         name: "Text & Title",
         type: "CCenterTitleText",
         contents: {
@@ -128,10 +130,8 @@ export default (
       return toggleAddModulesModal(state, action);
     case SAVE_ADD_MODULES_MODAL:
       return saveAddModulesModal(state, action);
-    case TOGGLE_MODULE_SELECTED:
-      return toggleModuleSelected(state, action);
-    case TOGGLE_SELECT_ALL_MODULES:
-      return toggleSelectAllModules(state, action);
+    case ADD_MODULE_FROM_LIST:
+      return addModuleFromList(state, action);
   }
   return state;
 };
@@ -204,27 +204,19 @@ const toggleAddModulesModal = (state, action) => {
 };
 
 const saveAddModulesModal = (state, action) => {
-  const selectedModules = state.defaultModules.filter(
-    module => module.selected == true
-  );
-
   const maxId = state.page.modules
     .map(el => el.id)
     .reduce(maxCallback, -Infinity);
 
   let addIntoIndex = getModuleIdToIndex(state.page.modules, state.addInId);
 
-  selectedModules.forEach((module, index) => {
-    const clonedModule = { ...module };
-    clonedModule.id = (maxId ? maxId : 0) + index + 1;
-    state.page.modules.splice(addIntoIndex, 0, clonedModule);
+  state.modulesToAdd.forEach((module, index) => {
+    module.id = (maxId ? maxId : 0) + index + 1;
+    state.page.modules.splice(addIntoIndex, 0, module);
     addIntoIndex++;
   });
 
-  state.defaultModules = state.defaultModules.map(module => {
-    module.selected = false;
-    return module;
-  });
+  state.modulesToAdd = [];
 
   return {
     ...state,
@@ -234,44 +226,14 @@ const saveAddModulesModal = (state, action) => {
   };
 };
 
-const toggleModuleSelected = (state, action) => {
-  let selectedCount = state.selectedCount;
-
-  state.defaultModules = state.defaultModules.map(module => {
-    if (module.id === action.payload.moduleId) {
-      if (module.selected) {
-        selectedCount = selectedCount - 1;
-      } else {
-        selectedCount = selectedCount + 1;
-      }
-      module.selected = !module.selected;
-    }
-    return module;
-  });
-
-  return {
-    ...state,
-    selectedCount: selectedCount
-  };
+export const addModuleFromList = (state, action) => {
+  const selectedModule = state.defaultModules.filter(
+    module => (module.id = action.payload.moduleId)
+  );
+  // push cloned obj {...
+  state.modulesToAdd.push({ ...selectedModule[0] });
+  return { ...state, selectedCount: state.selectedCount + 1 };
 };
-
-const toggleSelectAllModules = (state, action) => {
-  let isSelected =
-    state.selectedCount >= 0 &&
-    state.selectedCount < state.defaultModules.length
-      ? true
-      : false;
-  state.defaultModules = state.defaultModules.map(module => {
-    module.selected = isSelected;
-    return module;
-  });
-
-  return {
-    ...state,
-    selectedCount: isSelected ? state.defaultModules.length : 0
-  };
-};
-
 // ------------------------------------------------------------------------------
 
 const maxCallback = (max, cur) => Math.max(max, cur);

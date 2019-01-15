@@ -1,13 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
+// UI
+import styles from "./listItems.style";
+import { withStyles } from "@material-ui/core/styles";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { List, Collapse } from "@material-ui/core";
 import ExpandMore from "@material-ui/icons/ExpandMore";
-import styles from "./listItems.style";
-import { withStyles } from "@material-ui/core/styles";
+
+// Utility
 import CCMaterialIcon from "./../../utility/ccMaterialIcon";
-import { Link } from "react-router-dom";
 
 const ListItems = props => {
   const { classes } = props;

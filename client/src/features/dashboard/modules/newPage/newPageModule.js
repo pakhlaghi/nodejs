@@ -130,10 +130,10 @@ const NewPageModule = props => {
         isAddModulesOpen={newPageSt.isAddModulesOpen}
         toggleAddModulesModal={newPageHandler.toggleAddModulesModal}
         defaultModules={newPageSt.defaultModules}
+        modulesToAdd={newPageSt.modulesToAdd}
         saveAddModulesModal={newPageHandler.saveAddModulesModal}
-        toggleModuleSelected={newPageHandler.toggleModuleSelected}
-        toggleSelectAllModules={newPageHandler.toggleSelectAllModules}
         selectedCount={newPageSt.selectedCount}
+        addModuleFromList={newPageHandler.addModuleFromList}
       />
     </div>
   );

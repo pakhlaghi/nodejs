@@ -8,6 +8,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import Badge from "@material-ui/core/Badge";
 
 // content modules
 import CCenterTitleText from "./../../../contentModules/cCenterTitleText";
@@ -16,7 +17,16 @@ import CImageTile from "./../../../contentModules/cImageTile";
 import CIconTitleText from "./../../../contentModules/CIconTitleText";
 import CHeader from "./../../../contentModules/header/cHeader";
 import CFooter from "./../../../contentModules/cFooter";
-import { Checkbox, FormControlLabel, Badge } from "@material-ui/core";
+import {
+  Grid,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon
+} from "@material-ui/core";
+
+//Utility
+import CCMaterialIcon from "./../../../../utility/ccMaterialIcon";
 
 const NewPageAddModules = props => {
   const {
@@ -25,8 +35,8 @@ const NewPageAddModules = props => {
     selectedCount,
     toggleAddModulesModal,
     saveAddModulesModal,
-    toggleModuleSelected,
-    toggleSelectAllModules,
+    addModuleFromList,
+    modulesToAdd,
     defaultModules
   } = props;
 
@@ -48,16 +58,8 @@ const NewPageAddModules = props => {
     saveAddModulesModal(false);
   };
 
-  const handleModuleClick = moduleId => _ => {
-    toggleModuleSelected(moduleId);
-  };
-
-  const handleCheckboxClick = moduleId => _ => {
-    toggleModuleSelected(moduleId);
-  };
-
-  const handleToggleSelectAllModulesClick = () => {
-    toggleSelectAllModules();
+  const handleAddModuleFromListClick = moduleId => () => {
+    addModuleFromList(moduleId);
   };
 
   return (
@@ -73,55 +75,44 @@ const NewPageAddModules = props => {
       <DialogTitle id="alert-dialog-title">{"Add Modules"}</DialogTitle>
 
       <DialogContent>
-        {defaultModules.map(module => (
-          <div key={module.id}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={module.selected}
-                  onClick={handleCheckboxClick(module.id)}
-                />
-              }
-              label={module.name}
-            />
-            <Button
-              className={`${module.selected ? classes.selected : ""} ${
-                classes.fullWidth
-              }`}
-              onClick={handleModuleClick(module.id)}
-            >
-              <Paper
-                className={`${classes.fullWidth} ${classes.module} ${
-                  classes.overlayer
-                }`}
-              >
-                {React.createElement(componentMap[module.type], {
-                  contentData: module.contents
-                })}
-              </Paper>
-            </Button>
-          </div>
-        ))}
+        <Grid container>
+          <Grid item sm="2" className={classes.topZIndex}>
+            <List component="nav">
+              {defaultModules.map(module => (
+                <React.Fragment key={module.id}>
+                  <ListItem
+                    button
+                    onClick={handleAddModuleFromListClick(module.id)}
+                  >
+                    <ListItemIcon>
+                      <CCMaterialIcon icon={module.icon} />
+                    </ListItemIcon>
+                    <ListItemText primary={module.name} />
+                  </ListItem>
+                </React.Fragment>
+              ))}
+            </List>
+          </Grid>
+          <Grid item sm="10">
+            {modulesToAdd &&
+              modulesToAdd.map(module => (
+                <div key={module.id}>
+                  <Paper
+                    className={`${classes.marginBottom} ${classes.fullWidth} ${
+                      classes.module
+                    } ${classes.overlayer}`}
+                  >
+                    {React.createElement(componentMap[module.type], {
+                      contentData: module.contents
+                    })}
+                  </Paper>
+                </div>
+              ))}
+          </Grid>
+        </Grid>
       </DialogContent>
 
-      <DialogActions>
-        <FormControlLabel
-          className={classes.leftDialogAction}
-          control={
-            <Checkbox
-              checked={selectedCount == defaultModules.length}
-              onClick={handleToggleSelectAllModulesClick}
-              indeterminate={
-                selectedCount && selectedCount < defaultModules.length
-              }
-            />
-          }
-          label={`${
-            selectedCount >= 0 && selectedCount < defaultModules.length
-              ? "Select"
-              : "Unselect"
-          }  All`}
-        />
+      <DialogActions className={classes.topZIndex}>
         <Button onClick={handleAddModulesModalCancel} color="primary">
           Cancel
         </Button>
