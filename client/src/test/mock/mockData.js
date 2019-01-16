@@ -331,6 +331,52 @@ const getMockLogin = () => {
 const login = getMockLogin();
 
 const dashboard = {
+  defaultModules: [
+    {
+      id: 1,
+      selected: false,
+      visible: true,
+      icon: "DashboardIcon",
+      name: "Text & Title",
+      type: "CCenterTitleText",
+      contents: {
+        title: "GET OUR APP AND TURN EVERY PHOTO 1",
+        subTitle: "You Take Into a Masterpiece!",
+        body: `Despite all the intuitiveness of interface and easy-to-understand UX
+                and UI, an application as complex as ours can get you bumping into
+                some roadblocks or asking some technical questions over time. We can
+                assure you, that while our Customer Support dept. will be ready to
+                help you 24/7, we have also placed all the most frequently asked
+                questions and issues on this page…`,
+        readMore: {
+          text: "Read More",
+          url: "#"
+        }
+      }
+    },
+    {
+      id: 2,
+      selected: false,
+      visible: true,
+      icon: "DashboardIcon",
+      name: "Text & Title",
+      type: "CCenterTitleText",
+      contents: {
+        title: "GET OUR APP AND TURN EVERY PHOTO 2",
+        subTitle: "You Take Into a Masterpiece!",
+        body: `Despite all the intuitiveness of interface and easy-to-understand UX
+                and UI, an application as complex as ours can get you bumping into
+                some roadblocks or asking some technical questions over time. We can
+                assure you, that while our Customer Support dept. will be ready to
+                help you 24/7, we have also placed all the most frequently asked
+                questions and issues on this page…`,
+        readMore: {
+          text: "Read More",
+          url: "#"
+        }
+      }
+    }
+  ],
   drawerItems: [
     {
       text: "Dashboard",

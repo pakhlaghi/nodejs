@@ -77,9 +77,26 @@ const getDashboardContent = () => {
       .catch(logError);
   }
 };
+
+const getDefaultModules = () => {
+  if (isDevelopment) {
+    // development code
+    return mockPromise(mockData.dashboard.defaultModules);
+  } else {
+    // production code
+    return axios
+      .post(config.api.gqUrl, {
+        query: query.dashboardContent
+      })
+      .then(res => res.data.data.content)
+      .catch(logError);
+  }
+};
+
 export const dataService = {
   getLayoutContent,
   getHomeContent,
   getDashboardContent,
+  getDefaultModules,
   login
 };

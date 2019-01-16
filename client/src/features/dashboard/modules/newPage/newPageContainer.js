@@ -26,6 +26,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
+  // dispatch(getDefaultModulesAsync());
+
   return {
     newPageHandler: {
       addModuleTop: moduleId => dispatch(addModuleTop(moduleId)),

@@ -5,9 +5,10 @@ import { withStyles } from "@material-ui/core/styles";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import styles from "./pagesModule.style";
 import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 const PagesModule = props => {
-  const { classes } = props;
+  const { classes, toNewPage , history} = props;
 
   const data = [
     { id: 1, name: "page1" },
@@ -26,10 +27,15 @@ const PagesModule = props => {
     console.log(selected);
   };
 
+  const handleToNewPageClick = _ => {
+history.push("newPage")
+// toNewPage();
+  };
+
   return (
     <React.Fragment>
-      <Link to="newPage" className={classes.link}>
-        <Button
+      <Button
+        onClick={handleToNewPageClick}
           variant="contained"
           color="secondary"
           className={classes.button}
@@ -37,7 +43,6 @@ const PagesModule = props => {
           Add New Page
           <AddBoxIcon className={classes.rightIcon} />
         </Button>
-      </Link>
 
       <CCEnhancedTable
         data={data}
@@ -49,4 +54,4 @@ const PagesModule = props => {
   );
 };
 
-export default withStyles(styles)(PagesModule);
+export default withStyles(styles)(withRouter(PagesModule));

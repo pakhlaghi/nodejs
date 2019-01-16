@@ -7,8 +7,10 @@ import {
   TOGGLE_CANCEL_MODAL,
   TOGGLE_ADD_MODULES_MODAL,
   SAVE_ADD_MODULES_MODAL,
-  ADD_MODULE_FROM_LIST
+  ADD_MODULE_FROM_LIST,
+  GET_DEFAULT_MODULES_SUCCESS
 } from "./types";
+import { dataService } from "../../../../service/dataService";
 
 export const showSpinner = status => ({
   type: SHOW_SPINNER,
@@ -72,9 +74,31 @@ export const addModuleFromList = moduleId => ({
   }
 });
 
+export const getDefaultModulesSuccess = data => ({
+  type: GET_DEFAULT_MODULES_SUCCESS,
+  payload: {
+    data
+  }
+});
+
 // async: ------------------------------------------------------------------------
 // call this first => resolve will call action with type
 // no type is required
+
+export const getDefaultModulesAsync = () => {
+  return dispatch => {
+    dispatch(showSpinner(true));
+    dataService
+      .getDefaultModules()
+      .then(data => {
+        dispatch(showSpinner(false));
+        dispatch(getDefaultModulesSuccess(data));
+      })
+      .catch(err => console.log(err));
+  };
+};
+
+
 export const savePageAsync = enqueueSnackbar => {
   return dispatch => {
     dispatch(showSpinner(true));

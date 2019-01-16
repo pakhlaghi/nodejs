@@ -39,7 +39,7 @@ export const getItemsAsync = () => {
     dataService
       .getDashboardContent()
       .then(data => {
-        dispatch(showSpinner(true));
+        dispatch(showSpinner(false));
         dispatch(getItemsSuccess(data));
       })
       .catch(err => console.log(err));
