@@ -190,16 +190,11 @@ const toggleCancelModal = (state, action) => {
 };
 
 const toggleAddModulesModal = (state, action) => {
-  if (!action.payload.status) {
-    state.defaultModules = state.defaultModules.map(module => {
-      module.selected = false;
-      return module;
-    });
-  }
   return {
     ...state,
     isAddModulesOpen: action.payload.status,
-    selectedCount: 0
+    selectedCount: 0,
+    modulesToAdd: []
   };
 };
 

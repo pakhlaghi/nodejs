@@ -1,14 +1,23 @@
 import React from "react";
+
+// UI
 import Paper from "@material-ui/core/Paper";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 
-import styles from "./newPageModule.style";
+import styles from "./newPageAddModules.style";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Badge from "@material-ui/core/Badge";
+import {
+  Grid,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon
+} from "@material-ui/core";
 
 // content modules
 import CCenterTitleText from "./../../../contentModules/cCenterTitleText";
@@ -17,13 +26,6 @@ import CImageTile from "./../../../contentModules/cImageTile";
 import CIconTitleText from "./../../../contentModules/CIconTitleText";
 import CHeader from "./../../../contentModules/header/cHeader";
 import CFooter from "./../../../contentModules/cFooter";
-import {
-  Grid,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemIcon
-} from "@material-ui/core";
 
 //Utility
 import CCMaterialIcon from "./../../../../utility/ccMaterialIcon";
@@ -71,6 +73,7 @@ const NewPageAddModules = props => {
       scroll="paper"
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
+      classes={{paper: classes.fullHeight}}
     >
       <DialogTitle id="alert-dialog-title">{"Add Modules"}</DialogTitle>
 
