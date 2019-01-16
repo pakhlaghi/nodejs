@@ -20,13 +20,24 @@ import CCSnackbar from "../../utility/ccSnackbar";
 const Login = props => {
   const { loginSt, classes, onSignIn, onToggleSnackbar } = props;
 
+let inputs = {
+  email: "",
+  password: ""
+};
+
   const handleSnackbarClick = () => {
     onToggleSnackbar(false, null, null);
   };
 
   const handleLoginClick = () => {
-    onSignIn("peyman.akhlaghi@gmail.Scom", "123456");
+    // onSignIn("peyman.akhlaghi@gmail.Scom", "123456");
+    onSignIn(inputs.email, inputs.password);
   };
+
+  const handleInputChange = (e) => {
+    inputs[e.target.name] = e.target.value;
+}
+
 
   if (loginSt.token) {
     return <Redirect to="/dashboard/main" />;
@@ -51,15 +62,16 @@ const Login = props => {
         <div className={classes.form}>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="email">Email Address</InputLabel>
-            <Input id="email" name="email" autoComplete="email" autoFocus />
+            <Input id="email" name="email" autoComplete="email" autoFocus onChange={handleInputChange}/>
           </FormControl>
           <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="password">Password</InputLabel>
+            <InputLabel htmlFor="password" >Password</InputLabel>
             <Input
               name="password"
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={handleInputChange}
             />
           </FormControl>
           {/* 
