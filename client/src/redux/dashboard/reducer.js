@@ -15,7 +15,7 @@ export default (
     case CLOSE_DRAWER:
       return { ...state, isDrawerOpen: false };
     case GET_ITEMS_SUCCESS:
-      return { ...state, items: action.payload.data };
+      return { ...state, items: action.payload.data.drawerItems ? action.payload.data.drawerItems : [] };
     case SHOW_SPINNER:
       return { ...state, showSpinner: action.payload.status };
   }

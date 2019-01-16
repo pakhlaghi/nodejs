@@ -5,7 +5,7 @@ import {
   SHOW_SPINNER
 } from "./types";
 
-import axios from "axios";
+import { dataService } from "../../service/dataService";
 
 // BL
 export const closeDrawer = () => ({
@@ -35,13 +35,13 @@ export const getItemsSuccess = data => ({
 // no type is required
 export const getItemsAsync = () => {
   return dispatch => {
-    axios
-      .get(`https://jsonplaceholder.typicode.com/users`)
-      .then(res => {
-        dispatch(getItemsSuccess(res.data));
+    dispatch(showSpinner(true));
+    dataService
+      .getDashboardContent()
+      .then(data => {
+        dispatch(showSpinner(true));
+        dispatch(getItemsSuccess(data));
       })
-      .catch(err => {
-        // dispatch(getUsersError(err.message))
-      });
+      .catch(err => console.log(err));
   };
 };

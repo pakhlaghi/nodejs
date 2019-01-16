@@ -208,7 +208,7 @@ const saveAddModulesModal = (state, action) => {
     .map(el => el.id)
     .reduce(maxCallback, -Infinity);
 
-  let addIntoIndex = getModuleIdToIndex(state.page.modules, state.addInId);
+  let addIntoIndex = getModuleIndexFromId(state.page.modules, state.addInId);
 
   state.modulesToAdd.forEach((module, index) => {
     module.id = (maxId ? maxId : 0) + index + 1;
@@ -228,7 +228,7 @@ const saveAddModulesModal = (state, action) => {
 
 export const addModuleFromList = (state, action) => {
   const selectedModule = state.defaultModules.filter(
-    module => (module.id = action.payload.moduleId)
+    module => (module.id == action.payload.moduleId)
   );
   // push cloned obj {...
   state.modulesToAdd.push({ ...selectedModule[0] });
@@ -238,7 +238,7 @@ export const addModuleFromList = (state, action) => {
 
 const maxCallback = (max, cur) => Math.max(max, cur);
 
-const getModuleIdToIndex = (modules, id) => {
+const getModuleIndexFromId = (modules, id) => {
   let addIntoIndex = 0;
 
   modules.forEach((module, index) => {

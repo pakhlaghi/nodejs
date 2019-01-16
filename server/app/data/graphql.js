@@ -50,6 +50,43 @@ const getContent = _ => {
   return data;
 };
 
+const getDashboardContent = _ => {
+  const data = {
+    draweritems: [
+      {
+        text: "Dashboard",
+        action: "main",
+        icon: "DashboardIcon",
+        children: []
+      },
+      {
+        text: "Menu",
+        action: "menu",
+        icon: "MenuIcon",
+        children: []
+      },
+      {
+        text: "Pages",
+        action: "pages",
+        icon: "WebIcon",
+        children: []
+      },
+      {
+        text: "Media",
+        action: "media",
+        icon: "PhotoIcon",
+        children: []
+      },
+      {
+        text: "Setting",
+        action: "setting",
+        icon: "SettingsIcon",
+        children: []
+      }
+    ]
+  };
+  return data;
+};
 const getContentById = id => {
   let data = [];
 
@@ -412,9 +449,19 @@ let schema = buildSchema(`
     headerContent: tHeader,
     footerContent: tFooter
   },
+  type tDrawerItem {
+    text: String,
+    action: String,
+    icon: String,
+    children: []
+  },
+  type tDashboardContent {
+    drawerItems: [tDrawerItem]
+  },
   type Query {
     items: [tItem]!,
     content: tContent,
+    dashboardContent: tDashboardContent,
     contentById(id: String): String
   },
   type Mutation {
@@ -432,6 +479,9 @@ let rootResolver = {
   },
   content: (_, args) => {
     return getContent();
+  },
+  dashboardContent: (_, args) => {
+    return getDashboardContent();
   },
   contentById: ({ id }, args) => {
     return getContentById(id);

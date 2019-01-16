@@ -14,44 +14,11 @@ import ExpandMore from "@material-ui/icons/ExpandMore";
 import CCMaterialIcon from "./../../utility/ccMaterialIcon";
 
 const ListItems = props => {
-  const { classes } = props;
-
-  const items = [
-    {
-      text: "Dashboard",
-      action: "main",
-      icon: "DashboardIcon",
-      children: []
-    },
-    {
-      text: "Menu",
-      action: "menu",
-      icon: "MenuIcon",
-      children: []
-    },
-    {
-      text: "Pages",
-      action: "pages",
-      icon: "WebIcon",
-      children: []
-    },
-    {
-      text: "Media",
-      action: "media",
-      icon: "PhotoIcon",
-      children: []
-    },
-    {
-      text: "Setting",
-      action: "setting",
-      icon: "SettingsIcon",
-      children: []
-    }
-  ];
-
+  const { classes, items } = props;
+  
   return (
     <List>
-      {items.map((item, index) => (
+      {items && items.map((item, index) => (
         <React.Fragment key={index}>
           <Link to={item.action} className={classes.link}>
             <ListItem button>

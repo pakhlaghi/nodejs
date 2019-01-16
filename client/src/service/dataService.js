@@ -63,8 +63,23 @@ const login = data => {
   }
 };
 
+const getDashboardContent = () => {
+  if (isDevelopment) {
+    // development code
+    return mockPromise(mockData.dashboard);
+  } else {
+    // production code
+    return axios
+      .post(config.api.gqUrl, {
+        query: query.dashboardContent
+      })
+      .then(res => res.data.data.content)
+      .catch(logError);
+  }
+};
 export const dataService = {
   getLayoutContent,
   getHomeContent,
+  getDashboardContent,
   login
 };

@@ -136,7 +136,7 @@ const DashboardSnackbar = props => {
           </IconButton>
         </div>
         <Divider />
-        <ListItems />
+        <ListItems items={dashboardSt.items} />
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />

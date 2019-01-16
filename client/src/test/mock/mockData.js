@@ -330,8 +330,44 @@ const getMockLogin = () => {
 
 const login = getMockLogin();
 
+const dashboard = {
+  drawerItems: [
+    {
+      text: "Dashboard",
+      action: "main",
+      icon: "DashboardIcon",
+      children: []
+    },
+    {
+      text: "Menu",
+      action: "menu",
+      icon: "MenuIcon",
+      children: []
+    },
+    {
+      text: "Pages",
+      action: "pages",
+      icon: "WebIcon",
+      children: []
+    },
+    {
+      text: "Media",
+      action: "media",
+      icon: "PhotoIcon",
+      children: []
+    },
+    {
+      text: "Setting",
+      action: "setting",
+      icon: "SettingsIcon",
+      children: []
+    }
+  ]
+};
+
 export const mockData = {
   layout: layout,
   home: home,
-  login: login
+  login: login,
+  dashboard: dashboard
 };

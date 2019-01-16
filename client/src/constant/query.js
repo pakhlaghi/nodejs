@@ -30,7 +30,23 @@ const layoutContent = `{
     }
   }`;
 
+  const dashboardContent = `{
+    dashboardContent {
+      drawerItems {
+        text
+        action
+        icon
+      children: {
+        text
+        action
+        icon
+      }
+    }
+    }
+  }`;
+
 export const query = {
   contentById,
-  layoutContent
+  layoutContent,
+  dashboardContent
 };

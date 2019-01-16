@@ -15,10 +15,12 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
+  // onInit: load data onInit
+  dispatch(getItemsAsync());
+  
   return {
     onCloseDrawer: _ => dispatch(closeDrawer()),
-    onOpenDrawer: _ => dispatch(openDrawer()),
-    onGetItemsAsync: _ => dispatch(getItemsAsync())
+    onOpenDrawer: _ => dispatch(openDrawer())
   };
 };
 export default connect(

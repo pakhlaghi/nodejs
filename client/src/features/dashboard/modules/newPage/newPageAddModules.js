@@ -76,7 +76,7 @@ const NewPageAddModules = props => {
 
       <DialogContent>
         <Grid container>
-          <Grid item sm="2" className={classes.topZIndex}>
+          <Grid item sm={2} className={classes.topZIndex}>
             <List component="nav">
               {defaultModules.map(module => (
                 <React.Fragment key={module.id}>
@@ -93,7 +93,7 @@ const NewPageAddModules = props => {
               ))}
             </List>
           </Grid>
-          <Grid item sm="10">
+          <Grid item sm={10}>
             {modulesToAdd &&
               modulesToAdd.map(module => (
                 <div key={module.id}>
