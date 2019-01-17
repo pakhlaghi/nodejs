@@ -5,6 +5,9 @@ const styles = theme => ({
     position: "relative",
     padding: "10px 0"
   },
+  center: {
+    textAlign: "center"
+  },
   moduleContainer: {
     margin: "20px"
   },
@@ -31,7 +34,14 @@ const styles = theme => ({
       width: "100%",
       zIndex: "1000"
     }
-  }
+  },
+  emptyButton: {
+    margin: theme.spacing.unit * 10
+  },
+  leftIcon: {
+    marginRight: theme.spacing.unit
+  },
+  fullWidth: { width: "100%" }
 });
 
 export default styles;

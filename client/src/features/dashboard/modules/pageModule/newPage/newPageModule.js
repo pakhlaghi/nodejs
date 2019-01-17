@@ -4,12 +4,14 @@ import Draggable from "react-draggable";
 // components
 import NewPageAddModules from "./newPageAddModules";
 import NewPageHeader from "./newPageHeader";
+
 // UI
+import classNames from "classNames";
 import styles from "./newPageModule.style";
 import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-
 import IconButton from "@material-ui/core/IconButton";
+import { Button } from "@material-ui/core";
 
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
@@ -17,6 +19,7 @@ import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import SettingsIcon from "@material-ui/icons/Settings";
 import LibraryAddIcon from "@material-ui/icons/LibraryAdd";
 import ControlCameraIcon from "@material-ui/icons/ControlCamera";
+import AddBoxIcon from "@material-ui/icons/AddBox";
 
 // content modules
 import CCenterTitleText from "./../../../../contentModules/cCenterTitleText";
@@ -81,50 +84,79 @@ const NewPageModule = props => {
         savePageAsync={newPageHandler.savePageAsync}
       />
 
-      <Paper className={classes.pageContainer}>
-        {newPageSt.page.modules.map(module => (
-          <Draggable key={module.id} bounds="parent" axis="y" handle=".handle">
-            <div className={classes.moduleContainer}>
-              <span className="handle">
-                <IconButton>
-                  <ControlCameraIcon />
+      {newPageSt.page.modules && newPageSt.page.modules.length > 0 ? (
+        <Paper className={classes.pageContainer}>
+          {newPageSt.page.modules.map(module => (
+            <Draggable
+              key={module.id}
+              bounds="parent"
+              axis="y"
+              handle=".handle"
+            >
+              <div className={classes.moduleContainer}>
+                <span className="handle">
+                  <IconButton>
+                    <ControlCameraIcon />
+                  </IconButton>
+                </span>
+                <IconButton onClick={handleAddBottomClick(module.id)}>
+                  <LibraryAddIcon />
                 </IconButton>
-              </span>
-              <IconButton onClick={handleAddBottomClick(module.id)}>
-                <LibraryAddIcon />
-              </IconButton>
-              <IconButton onClick={handleAddTopClick(module.id)}>
-                <LibraryAddIcon className={classes.rotate} />
-              </IconButton>
-              {module.visible ? (
-                <IconButton onClick={handleVisibleClick(module.id, false)}>
-                  <VisibilityIcon />
+                <IconButton onClick={handleAddTopClick(module.id)}>
+                  <LibraryAddIcon className={classes.rotate} />
                 </IconButton>
-              ) : (
-                <IconButton onClick={handleVisibleClick(module.id, true)}>
-                  <VisibilityOffIcon />
-                </IconButton>
-              )}
+                {module.visible ? (
+                  <IconButton onClick={handleVisibleClick(module.id, false)}>
+                    <VisibilityIcon />
+                  </IconButton>
+                ) : (
+                  <IconButton onClick={handleVisibleClick(module.id, true)}>
+                    <VisibilityOffIcon />
+                  </IconButton>
+                )}
 
-              <IconButton onClick={handleTrashClick(module.id)}>
-                <DeleteForeverIcon />
-              </IconButton>
-              <IconButton onClick={handleSettingClick}>
-                <SettingsIcon />
-              </IconButton>
-              <Paper
-                className={`${classes.module} ${
-                  module.visible ? "" : classes.invisible
-                }`}
-              >
-                {React.createElement(componentMap[module.type], {
-                  contentData: module.contents
-                })}
-              </Paper>
-            </div>
-          </Draggable>
-        ))}
-      </Paper>
+                <IconButton onClick={handleTrashClick(module.id)}>
+                  <DeleteForeverIcon />
+                </IconButton>
+                <IconButton onClick={handleSettingClick}>
+                  <SettingsIcon />
+                </IconButton>
+                <Paper
+                  className={`${classes.module} ${
+                    module.visible ? "" : classes.invisible
+                  }`}
+                >
+                  {React.createElement(componentMap[module.type], {
+                    contentData: module.contents
+                  })}
+                </Paper>
+              </div>
+            </Draggable>
+          ))}
+        </Paper>
+      ) : (
+        <Button className={classes.fullWidth} onClick={handleAddTopClick(0)}>
+          <Paper
+            className={classNames(
+              classes.pageContainer,
+              classes.fullWidth,
+              classes.center
+            )}
+          >
+            <Button
+              variant="outlined"
+              color="primary"
+              size="small"
+              className={classes.emptyButton}
+            >
+              <AddBoxIcon
+                className={classNames(classes.leftIcon, classes.leftIcon)}
+              />
+              Add Modules
+            </Button>
+          </Paper>
+        </Button>
+      )}
 
       <NewPageAddModules
         isAddModulesOpen={newPageSt.isAddModulesOpen}
