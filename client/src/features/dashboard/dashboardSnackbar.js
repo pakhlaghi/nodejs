@@ -40,13 +40,13 @@ const DashboardSnackbar = props => {
 
   // lazy loading Dashboard component
   const lazyPagesModule = Loadable({
-    loader: () => import("./modules/pagesModule"),
+    loader: () => import("./modules/pageModule/page/pagesModuleContainer"),
     loading: Loading
   });
 
   // lazy loading Dashboard component
   const lazyNewPageModule = Loadable({
-    loader: () => import("./modules/newPage/newPageContainer"),
+    loader: () => import("./modules/pageModule/newPage/newPageContainer"),
     loading: Loading
   });
 

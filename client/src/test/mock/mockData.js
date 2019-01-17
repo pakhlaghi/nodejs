@@ -334,7 +334,6 @@ const dashboard = {
   defaultModules: [
     {
       id: 1,
-      selected: false,
       visible: true,
       icon: "DashboardIcon",
       name: "Text & Title",
@@ -356,7 +355,6 @@ const dashboard = {
     },
     {
       id: 2,
-      selected: false,
       visible: true,
       icon: "DashboardIcon",
       name: "Text & Title",

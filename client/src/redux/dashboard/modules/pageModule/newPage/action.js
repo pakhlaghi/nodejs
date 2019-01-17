@@ -10,7 +10,7 @@ import {
   ADD_MODULE_FROM_LIST,
   GET_DEFAULT_MODULES_SUCCESS
 } from "./types";
-import { dataService } from "../../../../service/dataService";
+import { dataService } from "../../../../../service/dataService";
 
 export const showSpinner = status => ({
   type: SHOW_SPINNER,
@@ -85,22 +85,30 @@ export const getDefaultModulesSuccess = data => ({
 // call this first => resolve will call action with type
 // no type is required
 
-export const getDefaultModulesAsync = () => {
-  return dispatch => {
-    dispatch(showSpinner(true));
-    dataService
-      .getDefaultModules()
-      .then(data => {
-        dispatch(showSpinner(false));
-        dispatch(getDefaultModulesSuccess(data));
-      })
-      .catch(err => console.log(err));
+export const openAddModuleModalAsync = (moduleId, where) => {
+  return (dispatch, getState) => {
+    if (
+      getState().dashboardNewPage &&
+      getState().dashboardNewPage.defaultModules == null
+    ) {
+      dispatch(showSpinner(true));
+      dataService
+        .getDefaultModules()
+        .then(data => {
+          dispatch(showSpinner(false));
+          dispatch(getDefaultModulesSuccess(data));
+        })
+        .catch(err => console.log(err));
+    }
+
+    dispatch(
+      where === "top" ? addModuleTop(moduleId) : addModuleBottom(moduleId)
+    );
   };
 };
 
-
 export const savePageAsync = enqueueSnackbar => {
-  return dispatch => {
+  return (dispatch, getState) => {
     dispatch(showSpinner(true));
     enqueueSnackbar("Page saved Successfuly", { variant: "success" });
     // dataService

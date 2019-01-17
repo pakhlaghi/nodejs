@@ -19,12 +19,12 @@ import LibraryAddIcon from "@material-ui/icons/LibraryAdd";
 import ControlCameraIcon from "@material-ui/icons/ControlCamera";
 
 // content modules
-import CCenterTitleText from "./../../../contentModules/cCenterTitleText";
-import CImageText from "./../../../contentModules/cImageText";
-import CImageTile from "./../../../contentModules/cImageTile";
-import CIconTitleText from "./../../../contentModules/CIconTitleText";
-import CHeader from "./../../../contentModules/header/cHeader";
-import CFooter from "./../../../contentModules/cFooter";
+import CCenterTitleText from "./../../../../contentModules/cCenterTitleText";
+import CImageText from "./../../../../contentModules/cImageText";
+import CImageTile from "./../../../../contentModules/cImageTile";
+import CIconTitleText from "./../../../../contentModules/CIconTitleText";
+import CHeader from "./../../../../contentModules/header/cHeader";
+import CFooter from "./../../../../contentModules/cFooter";
 
 const NewPageModule = props => {
   const {
@@ -46,12 +46,12 @@ const NewPageModule = props => {
 
   const handleAddTopClick = moduleId => _ => {
     console.log("add top");
-    newPageHandler.addModuleTop(moduleId);
+    newPageHandler.openAddModuleModalAsync(moduleId, "top");
   };
 
   const handleAddBottomClick = moduleId => _ => {
     console.log("add Bottom");
-    newPageHandler.addModuleBottom(moduleId);
+    newPageHandler.openAddModuleModalAsync(moduleId, "bottom");
   };
 
   const handleVisibleClick = (moduleId, status) => _ => {

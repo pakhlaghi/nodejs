@@ -17,13 +17,36 @@ export default (
     page: {
       title: "New Page",
       action: "newPage",
-      modules: []},
+      modules: [
+        {
+          id: 1,
+          visible: true,
+          icon: "DashboardIcon",
+          name: "Text & Title",
+          type: "CCenterTitleText",
+          contents: {
+            title: "GET OUR APP AND TURN EVERY PHOTO 1",
+            subTitle: "You Take Into a Masterpiece!",
+            body: `Despite all the intuitiveness of interface and easy-to-understand UX
+                  and UI, an application as complex as ours can get you bumping into
+                  some roadblocks or asking some technical questions over time. We can
+                  assure you, that while our Customer Support dept. will be ready to
+                  help you 24/7, we have also placed all the most frequently asked
+                  questions and issues on this page…`,
+            readMore: {
+              text: "Read More",
+              url: "#"
+            }
+          }
+        }
+      ]
+    },
     isCancelModalOpen: false,
     isAddModulesOpen: false,
     selectedCount: 0,
     addInId: 0,
     modulesToAdd: [],
-    defaultModules: []
+    defaultModules: null
   },
   action
 ) => {
@@ -46,7 +69,7 @@ export default (
       return saveAddModulesModal(state, action);
     case ADD_MODULE_FROM_LIST:
       return addModuleFromList(state, action);
-      case GET_DEFAULT_MODULES_SUCCESS:
+    case GET_DEFAULT_MODULES_SUCCESS:
       return getDefaultModulesSuccess(state, action);
   }
   return state;
@@ -139,7 +162,7 @@ const saveAddModulesModal = (state, action) => {
 
 export const addModuleFromList = (state, action) => {
   const selectedModule = state.defaultModules.filter(
-    module => (module.id == action.payload.moduleId)
+    module => module.id == action.payload.moduleId
   );
   // push cloned obj {...
   state.modulesToAdd.push({ ...selectedModule[0] });
@@ -149,7 +172,6 @@ export const addModuleFromList = (state, action) => {
 export const getDefaultModulesSuccess = (state, action) => {
   return { ...state, defaultModules: action.payload.data };
 };
-
 
 // ------------------------------------------------------------------------------
 

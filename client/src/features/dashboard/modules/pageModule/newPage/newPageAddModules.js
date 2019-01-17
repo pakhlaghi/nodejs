@@ -20,15 +20,15 @@ import {
 } from "@material-ui/core";
 
 // content modules
-import CCenterTitleText from "./../../../contentModules/cCenterTitleText";
-import CImageText from "./../../../contentModules/cImageText";
-import CImageTile from "./../../../contentModules/cImageTile";
-import CIconTitleText from "./../../../contentModules/CIconTitleText";
-import CHeader from "./../../../contentModules/header/cHeader";
-import CFooter from "./../../../contentModules/cFooter";
+import CCenterTitleText from "./../../../../contentModules/cCenterTitleText";
+import CImageText from "./../../../../contentModules/cImageText";
+import CImageTile from "./../../../../contentModules/cImageTile";
+import CIconTitleText from "./../../../../contentModules/CIconTitleText";
+import CHeader from "./../../../../contentModules/header/cHeader";
+import CFooter from "./../../../../contentModules/cFooter";
 
 //Utility
-import CCMaterialIcon from "./../../../../utility/ccMaterialIcon";
+import CCMaterialIcon from "./../../../../../utility/ccMaterialIcon";
 
 const NewPageAddModules = props => {
   const {
@@ -73,7 +73,7 @@ const NewPageAddModules = props => {
       scroll="paper"
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
-      classes={{paper: classes.fullHeight}}
+      classes={{ paper: classes.fullHeight }}
     >
       <DialogTitle id="alert-dialog-title">{"Add Modules"}</DialogTitle>
 
@@ -81,19 +81,20 @@ const NewPageAddModules = props => {
         <Grid container>
           <Grid item sm={2} className={classes.topZIndex}>
             <List component="nav">
-              {defaultModules && defaultModules.map(module => (
-                <React.Fragment key={module.id}>
-                  <ListItem
-                    button
-                    onClick={handleAddModuleFromListClick(module.id)}
-                  >
-                    <ListItemIcon>
-                      <CCMaterialIcon icon={module.icon} />
-                    </ListItemIcon>
-                    <ListItemText primary={module.name} />
-                  </ListItem>
-                </React.Fragment>
-              ))}
+              {defaultModules &&
+                defaultModules.map(module => (
+                  <React.Fragment key={module.id}>
+                    <ListItem
+                      button
+                      onClick={handleAddModuleFromListClick(module.id)}
+                    >
+                      <ListItemIcon>
+                        <CCMaterialIcon icon={module.icon} />
+                      </ListItemIcon>
+                      <ListItemText primary={module.name} />
+                    </ListItem>
+                  </React.Fragment>
+                ))}
             </List>
           </Grid>
           <Grid item sm={10}>
