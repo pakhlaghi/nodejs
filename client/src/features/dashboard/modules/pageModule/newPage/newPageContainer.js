@@ -7,7 +7,7 @@ import newPageModule from "./newPageModule";
 import {
   toggleModuleVisibility,
   moveToTrash,
-  moduleSetting,
+  editModule,
   toggleCancelModal,
   savePageAsync,
   toggleAddModulesModal,
@@ -26,14 +26,12 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  // dispatch(getDefaultModulesAsync());
-
   return {
     newPageHandler: {
       toggleModuleVisibility: (moduleId, status) =>
         dispatch(toggleModuleVisibility(moduleId, status)),
       moveToTrash: moduleId => dispatch(moveToTrash(moduleId)),
-      moduleSetting: moduleId => dispatch(moduleSetting(moduleId)),
+      editModule: moduleId => dispatch(editModule(moduleId)),
       toggleCancelModal: (status, history) =>
         dispatch(toggleCancelModal(status, history)),
       toggleAddModulesModal: status => dispatch(toggleAddModulesModal(status)),

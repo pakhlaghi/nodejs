@@ -16,7 +16,7 @@ import { Button } from "@material-ui/core";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
-import SettingsIcon from "@material-ui/icons/Settings";
+import EditIcon from "@material-ui/icons/Edit";
 import LibraryAddIcon from "@material-ui/icons/LibraryAdd";
 import ControlCameraIcon from "@material-ui/icons/ControlCamera";
 import AddBoxIcon from "@material-ui/icons/AddBox";
@@ -67,9 +67,9 @@ const NewPageModule = props => {
     newPageHandler.moveToTrash(moduleId);
   };
 
-  const handleSettingClick = moduleId => {
+  const handleEditClick = moduleId => {
     console.log("Setting");
-    newPageHandler.moduleSetting(moduleId);
+    newPageHandler.editModule(moduleId);
   };
 
   return (
@@ -118,8 +118,8 @@ const NewPageModule = props => {
                 <IconButton onClick={handleTrashClick(module.id)}>
                   <DeleteForeverIcon />
                 </IconButton>
-                <IconButton onClick={handleSettingClick}>
-                  <SettingsIcon />
+                <IconButton onClick={handleEditClick}>
+                  <EditIcon />
                 </IconButton>
                 <Paper
                   className={`${classes.module} ${classes.overlayer} ${

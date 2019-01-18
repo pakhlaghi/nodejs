@@ -9,7 +9,8 @@ import {
   SAVE_ADD_MODULES_MODAL,
   ADD_MODULE_FROM_LIST,
   GET_DEFAULT_MODULES_SUCCESS,
-  REMOVE_MODULE
+  REMOVE_MODULE,
+  EDIT_MODULE
 } from "./types";
 import { dataService } from "../../../../../service/dataService";
 
@@ -49,9 +50,12 @@ export const moveToTrash = moduleId => ({
   }
 });
 
-export const moduleSetting = () => {
-  console.log("Setting");
-};
+export const editModule = moduleId => ({
+  type: EDIT_MODULE,
+  payload: {
+    moduleId
+  }
+});
 
 export const toggleCancelModal = (status, history) => ({
   type: TOGGLE_CANCEL_MODAL,

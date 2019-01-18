@@ -9,7 +9,8 @@ import {
   SAVE_ADD_MODULES_MODAL,
   ADD_MODULE_FROM_LIST,
   GET_DEFAULT_MODULES_SUCCESS,
-  REMOVE_MODULE
+  REMOVE_MODULE,
+  EDIT_MODULE
 } from "./types";
 
 export default (
@@ -52,6 +53,8 @@ export default (
       return getDefaultModulesSuccess(state, action);
     case REMOVE_MODULE:
       return removeModule(state, action);
+    case EDIT_MODULE:
+      return editModule(state, action);
   }
   return state;
 };
@@ -166,6 +169,12 @@ export const removeModule = (state, action) => {
   );
   return { ...state, selectedCount: state.selectedCount - 1 };
 };
+
+export const editModule = (state, action) => {
+  console.log(action.payload.moduleId);
+  return { ...state };
+};
+
 // ------------------------------------------------------------------------------
 
 const maxCallback = (max, cur) => Math.max(max, cur);

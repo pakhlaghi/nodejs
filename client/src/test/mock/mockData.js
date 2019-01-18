@@ -335,8 +335,8 @@ const dashboard = {
     {
       id: 1,
       visible: true,
-      icon: "DashboardIcon",
-      name: "Text & Title",
+      icon: "CreditCardIcon",
+      name: "Header",
       type: "CHeader",
       contents: {
         topBar: {
@@ -368,7 +368,7 @@ const dashboard = {
     {
       id: 2,
       visible: true,
-      icon: "DashboardIcon",
+      icon: "FormatAlignCenterIcon",
       name: "Text & Title",
       type: "CCenterTitleText",
       contents: {
@@ -389,8 +389,8 @@ const dashboard = {
     {
       id: 3,
       visible: true,
-      icon: "DashboardIcon",
-      name: "Text & Title",
+      icon: "ArtTrackIcon",
+      name: "Image & Text",
       type: "CImageText",
       contents: {
         image: {
@@ -413,8 +413,8 @@ const dashboard = {
     {
       id: 4,
       visible: true,
-      icon: "DashboardIcon",
-      name: "Text & Title",
+      icon: "AppsIcon",
+      name: "Image Tiles",
       type: "CImageTile",
       contents: [
         {
@@ -458,8 +458,8 @@ const dashboard = {
     {
       id: 5,
       visible: true,
-      icon: "DashboardIcon",
-      name: "Text & Title",
+      icon: "MoreHorizIcon",
+      name: "Icon & Text",
       type: "CIconTitleText",
       contents: [
         {
@@ -485,8 +485,8 @@ const dashboard = {
     {
       id: 6,
       visible: true,
-      icon: "DashboardIcon",
-      name: "Text & Title",
+      icon: "VideoLabelIcon",
+      name: "Footer",
       type: "CFooter",
       contents: {
         text: "Code Core Co. © 2018. Privacy Policy | Terms Of Use",
