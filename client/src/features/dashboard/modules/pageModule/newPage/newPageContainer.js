@@ -5,8 +5,6 @@ import { withSnackbar } from "notistack";
 import newPageModule from "./newPageModule";
 
 import {
-  addModuleTop,
-  addModuleBottom,
   toggleModuleVisibility,
   moveToTrash,
   moduleSetting,
@@ -15,7 +13,8 @@ import {
   toggleAddModulesModal,
   saveAddModulesModal,
   addModuleFromList,
-  openAddModuleModalAsync
+  openAddModuleModalAsync,
+  removeModule
 } from "../../../../../redux/dashboard/modules/pageModule/newPage/action";
 
 import { connect } from "react-redux";
@@ -43,7 +42,8 @@ const mapDispatchToProps = dispatch => {
         dispatch(savePageAsync(enqueueSnackbar)),
       addModuleFromList: moduleId => dispatch(addModuleFromList(moduleId)),
       openAddModuleModalAsync: (moduleId, where) =>
-        dispatch(openAddModuleModalAsync(moduleId, where))
+        dispatch(openAddModuleModalAsync(moduleId, where)),
+      removeModule: moduleId => dispatch(removeModule(moduleId))
     }
   };
 };

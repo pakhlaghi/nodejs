@@ -163,6 +163,7 @@ const NewPageModule = props => {
         toggleAddModulesModal={newPageHandler.toggleAddModulesModal}
         defaultModules={newPageSt.defaultModules}
         modulesToAdd={newPageSt.modulesToAdd}
+        removeModule={newPageHandler.removeModule}
         saveAddModulesModal={newPageHandler.saveAddModulesModal}
         selectedCount={newPageSt.selectedCount}
         addModuleFromList={newPageHandler.addModuleFromList}

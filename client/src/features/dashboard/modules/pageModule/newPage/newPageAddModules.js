@@ -1,6 +1,7 @@
 import React from "react";
 
 // UI
+import classNames from "classNames";
 import Paper from "@material-ui/core/Paper";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -11,12 +12,15 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Badge from "@material-ui/core/Badge";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import {
   Grid,
   List,
   ListItem,
   ListItemText,
-  ListItemIcon
+  ListItemIcon,
+  Typography,
+  IconButton
 } from "@material-ui/core";
 
 // content modules
@@ -39,6 +43,7 @@ const NewPageAddModules = props => {
     saveAddModulesModal,
     addModuleFromList,
     modulesToAdd,
+    removeModule,
     defaultModules
   } = props;
 
@@ -64,6 +69,10 @@ const NewPageAddModules = props => {
     addModuleFromList(moduleId);
   };
 
+  const handleRemoveClick = moduleId => () => {
+    removeModule(moduleId);
+  };
+
   return (
     <Dialog
       fullWidth={true}
@@ -77,8 +86,8 @@ const NewPageAddModules = props => {
     >
       <DialogTitle id="alert-dialog-title">{"Add Modules"}</DialogTitle>
 
-      <DialogContent>
-        <Grid container>
+      <DialogContent className={classes.fullHeight}>
+        <Grid container className={classes.fullHeight}>
           <Grid item sm={2} className={classes.topZIndex}>
             <List component="nav">
               {defaultModules &&
@@ -98,11 +107,18 @@ const NewPageAddModules = props => {
             </List>
           </Grid>
           <Grid item sm={10}>
-            {modulesToAdd &&
+            {modulesToAdd && modulesToAdd.length > 0 ? (
               modulesToAdd.map(module => (
                 <div key={module.id}>
+                  <IconButton
+                    onClick={handleRemoveClick(module.id)}
+                    className={classes.deleteIcon}
+                    color="secondary"
+                  >
+                    <DeleteForeverIcon />
+                  </IconButton>
                   <Paper
-                    className={`${classes.marginBottom} ${classes.fullWidth} ${
+                    className={`${classes.position} ${classes.fullWidth} ${
                       classes.module
                     } ${classes.overlayer}`}
                   >
@@ -111,7 +127,17 @@ const NewPageAddModules = props => {
                     })}
                   </Paper>
                 </div>
-              ))}
+              ))
+            ) : (
+              <Paper
+                className={classNames(
+                  classes.emptyContainer,
+                  classes.fullHeight
+                )}
+              >
+                <Typography>Please add modules from the list</Typography>
+              </Paper>
+            )}
           </Grid>
         </Grid>
       </DialogContent>

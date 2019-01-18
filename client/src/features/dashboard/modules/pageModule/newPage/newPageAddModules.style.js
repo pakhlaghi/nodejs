@@ -28,14 +28,25 @@ const styles = theme => ({
         : theme.palette.grey[900]
     }`
   },
-  marginBottom: {
-    marginBottom: "20px"
+  position: {
+    top: theme.spacing.unit * -5.5,
+    position: "relative"
   },
   topZIndex: {
     zIndex: "3000"
   },
   fullHeight: {
     height: "100%"
+  },
+  emptyContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  deleteIcon: {
+    position: "relative",
+    zIndex: "2000",
+    top: theme.spacing.unit * 0.5
   }
 });
 
