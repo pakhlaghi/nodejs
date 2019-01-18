@@ -122,7 +122,7 @@ const NewPageModule = props => {
                   <SettingsIcon />
                 </IconButton>
                 <Paper
-                  className={`${classes.module} ${
+                  className={`${classes.module} ${classes.overlayer} ${
                     module.visible ? "" : classes.invisible
                   }`}
                 >

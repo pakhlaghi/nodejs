@@ -11,7 +11,7 @@ const styles = theme => ({
       top: "0",
       left: "0",
       width: "100%",
-      zIndex: "100"
+      zIndex: "9000"
     }
   },
   leftDialogAction: {
@@ -33,7 +33,7 @@ const styles = theme => ({
     position: "relative"
   },
   topZIndex: {
-    zIndex: "3000"
+    zIndex: "9000"
   },
   fullHeight: {
     height: "100%"
@@ -45,7 +45,7 @@ const styles = theme => ({
   },
   deleteIcon: {
     position: "relative",
-    zIndex: "2000",
+    zIndex: "10000",
     top: theme.spacing.unit * 0.5
   }
 });
