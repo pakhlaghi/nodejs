@@ -14,7 +14,8 @@ import {
   saveAddModulesModal,
   addModuleFromList,
   openAddModuleModalAsync,
-  removeModule
+  removeModule,
+  moveModule
 } from "../../../../../redux/dashboard/modules/pageModule/newPage/action";
 
 import { connect } from "react-redux";
@@ -41,7 +42,8 @@ const mapDispatchToProps = dispatch => {
       addModuleFromList: moduleId => dispatch(addModuleFromList(moduleId)),
       openAddModuleModalAsync: (moduleId, where) =>
         dispatch(openAddModuleModalAsync(moduleId, where)),
-      removeModule: moduleId => dispatch(removeModule(moduleId))
+      removeModule: moduleId => dispatch(removeModule(moduleId)),
+      moveModule: moduleId => dispatch(moveModule(moduleId))
     }
   };
 };

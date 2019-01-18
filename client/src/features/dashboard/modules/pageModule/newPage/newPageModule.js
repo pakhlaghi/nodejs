@@ -67,9 +67,13 @@ const NewPageModule = props => {
     newPageHandler.moveToTrash(moduleId);
   };
 
-  const handleEditClick = moduleId => {
+  const handleEditClick = moduleId => _ => {
     console.log("Setting");
     newPageHandler.editModule(moduleId);
+  };
+
+  const handleMoveClick = moduleId => _ => {
+    newPageHandler.moveModule(moduleId);
   };
 
   return (
@@ -94,11 +98,9 @@ const NewPageModule = props => {
               handle=".handle"
             >
               <div className={classes.moduleContainer}>
-                <span className="handle">
-                  <IconButton>
-                    <ControlCameraIcon />
-                  </IconButton>
-                </span>
+                <IconButton onClick={handleMoveClick(module.id)}>
+                  <ControlCameraIcon />
+                </IconButton>
                 <IconButton onClick={handleAddBottomClick(module.id)}>
                   <LibraryAddIcon />
                 </IconButton>

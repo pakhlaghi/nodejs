@@ -10,7 +10,8 @@ import {
   ADD_MODULE_FROM_LIST,
   GET_DEFAULT_MODULES_SUCCESS,
   REMOVE_MODULE,
-  EDIT_MODULE
+  EDIT_MODULE,
+  MOVE_MODULE
 } from "./types";
 import { dataService } from "../../../../../service/dataService";
 
@@ -88,6 +89,13 @@ export const getDefaultModulesSuccess = data => ({
 
 export const removeModule = moduleId => ({
   type: REMOVE_MODULE,
+  payload: {
+    moduleId
+  }
+});
+
+export const moveModule = moduleId => ({
+  type: MOVE_MODULE,
   payload: {
     moduleId
   }

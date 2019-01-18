@@ -35,18 +35,6 @@ const styles = theme => ({
       zIndex: "10000"
     }
   },
-  overlayer: {
-    "&::before": {
-      content: `''`,
-      display: "block",
-      height: "calc(100% - 45px)",
-      position: "absolute",
-      top: "45px",
-      left: "0",
-      width: "100%",
-      zIndex: "10000"
-    }
-  },
   emptyButton: {
     margin: theme.spacing.unit * 10
   },

@@ -10,6 +10,7 @@ import {
   ADD_MODULE_FROM_LIST,
   GET_DEFAULT_MODULES_SUCCESS,
   REMOVE_MODULE,
+  MOVE_MODULE,
   EDIT_MODULE
 } from "./types";
 
@@ -53,6 +54,8 @@ export default (
       return getDefaultModulesSuccess(state, action);
     case REMOVE_MODULE:
       return removeModule(state, action);
+    case MOVE_MODULE:
+      return moveModule(state, action);
     case EDIT_MODULE:
       return editModule(state, action);
   }
@@ -168,6 +171,11 @@ export const removeModule = (state, action) => {
     module => module.id !== action.payload.moduleId
   );
   return { ...state, selectedCount: state.selectedCount - 1 };
+};
+
+export const moveModule = (state, action) => {
+  console.log(action.payload.moduleId);
+  return { ...state };
 };
 
 export const editModule = (state, action) => {
