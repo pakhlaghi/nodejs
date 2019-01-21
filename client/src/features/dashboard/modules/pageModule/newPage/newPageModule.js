@@ -20,6 +20,8 @@ import EditIcon from "@material-ui/icons/Edit";
 import LibraryAddIcon from "@material-ui/icons/LibraryAdd";
 import ControlCameraIcon from "@material-ui/icons/ControlCamera";
 import AddBoxIcon from "@material-ui/icons/AddBox";
+import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
+import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 
 // content modules
 import CCenterTitleText from "./../../../../contentModules/cCenterTitleText";
@@ -76,6 +78,12 @@ const NewPageModule = props => {
     newPageHandler.moveModule(moduleId);
   };
 
+  const handleMoveToClick = (moduleId, to) => _ => {
+    // up negative id, bottom positive
+    moduleId = to == "up" ? -1 * moduleId : moduleId;
+    newPageHandler.moveToModule(moduleId);
+  };
+
   return (
     <div>
       <NewPageHeader
@@ -98,35 +106,61 @@ const NewPageModule = props => {
               handle=".handle"
             >
               <div className={classes.moduleContainer}>
-                <IconButton onClick={handleMoveClick(module.id)}>
+                <IconButton
+                  color={module.isMoving ? "primary" : "default"}
+                  onClick={handleMoveClick(module.id)}
+                >
                   <ControlCameraIcon />
                 </IconButton>
-                <IconButton onClick={handleAddBottomClick(module.id)}>
-                  <LibraryAddIcon />
-                </IconButton>
-                <IconButton onClick={handleAddTopClick(module.id)}>
-                  <LibraryAddIcon className={classes.rotate} />
-                </IconButton>
-                {module.visible ? (
-                  <IconButton onClick={handleVisibleClick(module.id, false)}>
-                    <VisibilityIcon />
-                  </IconButton>
-                ) : (
-                  <IconButton onClick={handleVisibleClick(module.id, true)}>
-                    <VisibilityOffIcon />
-                  </IconButton>
-                )}
+                {newPageSt.isAnyModuleMoving ? (
+                  <React.Fragment>
+                    <IconButton
+                      color="secondary"
+                      onClick={handleMoveToClick(module.id, "down")}
+                    >
+                      <ArrowDownwardIcon />
+                    </IconButton>
+                    <IconButton
+                      color="secondary"
+                      onClick={handleMoveToClick(module.id, "up")}
+                    >
+                      <ArrowUpwardIcon />
+                    </IconButton>
+                  </React.Fragment>
+                ) : null}
 
-                <IconButton onClick={handleTrashClick(module.id)}>
-                  <DeleteForeverIcon />
-                </IconButton>
-                <IconButton onClick={handleEditClick}>
-                  <EditIcon />
-                </IconButton>
+                {!newPageSt.isAnyModuleMoving ? (
+                  <React.Fragment>
+                    <IconButton onClick={handleAddBottomClick(module.id)}>
+                      <LibraryAddIcon />
+                    </IconButton>
+                    <IconButton onClick={handleAddTopClick(module.id)}>
+                      <LibraryAddIcon className={classes.rotate} />
+                    </IconButton>
+                    {module.visible ? (
+                      <IconButton
+                        onClick={handleVisibleClick(module.id, false)}
+                      >
+                        <VisibilityIcon />
+                      </IconButton>
+                    ) : (
+                      <IconButton onClick={handleVisibleClick(module.id, true)}>
+                        <VisibilityOffIcon />
+                      </IconButton>
+                    )}
+
+                    <IconButton onClick={handleTrashClick(module.id)}>
+                      <DeleteForeverIcon />
+                    </IconButton>
+                    <IconButton onClick={handleEditClick}>
+                      <EditIcon />
+                    </IconButton>
+                  </React.Fragment>
+                ) : null}
                 <Paper
                   className={`${classes.module} ${classes.overlayer} ${
                     module.visible ? "" : classes.invisible
-                  }`}
+                  } ${module.isMoving ? classes.moving : ""}`}
                 >
                   {React.createElement(componentMap[module.type], {
                     contentData: module.contents

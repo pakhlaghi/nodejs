@@ -35,6 +35,24 @@ const styles = theme => ({
       zIndex: "10000"
     }
   },
+  moving: {
+    "&::before": {
+      content: `''`,
+      backgroundColor: theme.palette.primary.main,
+      background: "url(./assets/images/control_camera.svg)",
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "center",
+      backgroundSize: "7%",
+      opacity: "0.7",
+      display: "block",
+      height: "calc(100% - 45px)",
+      position: "absolute",
+      top: "45px",
+      left: "0",
+      width: "100%",
+      zIndex: "10000"
+    }
+  },
   emptyButton: {
     margin: theme.spacing.unit * 10
   },

@@ -11,12 +11,14 @@ import {
   GET_DEFAULT_MODULES_SUCCESS,
   REMOVE_MODULE,
   MOVE_MODULE,
+  MOVE_TO_MODULE,
   EDIT_MODULE
 } from "./types";
 
 export default (
   state = {
     showSpinner: false,
+    isAnyModuleMoving: false,
     page: {
       title: "New Page",
       action: "newPage",
@@ -56,6 +58,8 @@ export default (
       return removeModule(state, action);
     case MOVE_MODULE:
       return moveModule(state, action);
+    case MOVE_TO_MODULE:
+      return moveToModule(state, action);
     case EDIT_MODULE:
       return editModule(state, action);
   }
@@ -128,7 +132,8 @@ const saveAddModulesModal = (state, action) => {
   const maxId = state.page.modules.map(el => el.id).reduce(maxCallback, 0);
 
   let addIntoIndex = getModuleIndexFromId(state.page.modules, state.addInId);
-
+  // negative add top, positive add bottom
+  addIntoIndex = state.addInId > 0 ? addIntoIndex + 1 : addIntoIndex;
   state.modulesToAdd.forEach((module, index) => {
     module.id = (maxId ? maxId : 0) + index + 1;
     state.page.modules.splice(addIntoIndex, 0, module);
@@ -174,8 +179,44 @@ export const removeModule = (state, action) => {
 };
 
 export const moveModule = (state, action) => {
-  console.log(action.payload.moduleId);
-  return { ...state };
+  let isAnyModuleMoving = false;
+  state.page.modules = state.page.modules.map(module => {
+    if (module.id == action.payload.moduleId) {
+      module.isMoving = module.isMoving ? !module.isMoving : true;
+      isAnyModuleMoving = module.isMoving;
+    } else {
+      module.isMoving = false;
+    }
+    return module;
+  });
+  return { ...state, isAnyModuleMoving: isAnyModuleMoving };
+};
+
+export const moveToModule = (state, action) => {
+  // find movingModuleIndex and set isMoving to false
+  let fromIndex = 0;
+  state.page.modules = state.page.modules.map((module, index) => {
+    if (module.isMoving) {
+      fromIndex = index;
+    }
+    module.isMoving = false;
+    return module;
+  });
+
+  let toIndex = getModuleIndexFromId(
+    state.page.modules,
+    action.payload.moduleId
+  );
+  // negative add top, positive add bottom
+  if (toIndex == 0) {
+    toIndex = action.payload.moduleId > 0 ? 1 : 0;
+  } else {
+    toIndex = action.payload.moduleId > 0 ? toIndex : toIndex - 1;
+  }
+
+  arrayMove(state.page.modules, fromIndex, toIndex);
+
+  return { ...state, isAnyModuleMoving: false };
 };
 
 export const editModule = (state, action) => {
@@ -197,5 +238,18 @@ const getModuleIndexFromId = (modules, id) => {
     }
   });
 
-  return id > 0 ? addIntoIndex + 1 : addIntoIndex;
+  return addIntoIndex;
+};
+
+const arrayMove = (array, from, to) => {
+  if (to === from) return array;
+
+  var target = array[from];
+  var increment = to < from ? -1 : 1;
+
+  for (var k = from; k != to; k += increment) {
+    array[k] = array[k + increment];
+  }
+  array[to] = target;
+  return array;
 };
