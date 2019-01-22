@@ -69,9 +69,9 @@ export const toggleAddModulesModal = status => ({
   payload: { status }
 });
 
-export const saveAddModulesModal = _ => ({
+export const saveAddModulesModal = enqueueSnackbar => ({
   type: SAVE_ADD_MODULES_MODAL,
-  payload: {}
+  payload: { enqueueSnackbar }
 });
 
 export const addModuleFromList = moduleId => ({
@@ -102,10 +102,11 @@ export const moveModule = moduleId => ({
   }
 });
 
-export const moveToModule = moduleId => ({
+export const moveToModule = (moduleId, enqueueSnackbar) => ({
   type: MOVE_TO_MODULE,
   payload: {
-    moduleId
+    moduleId,
+    enqueueSnackbar
   }
 });
 

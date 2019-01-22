@@ -37,7 +37,8 @@ const mapDispatchToProps = dispatch => {
       toggleCancelModal: (status, history) =>
         dispatch(toggleCancelModal(status, history)),
       toggleAddModulesModal: status => dispatch(toggleAddModulesModal(status)),
-      saveAddModulesModal: _ => dispatch(saveAddModulesModal()),
+      saveAddModulesModal: enqueueSnackbar =>
+        dispatch(saveAddModulesModal(enqueueSnackbar)),
       savePageAsync: enqueueSnackbar =>
         dispatch(savePageAsync(enqueueSnackbar)),
       addModuleFromList: moduleId => dispatch(addModuleFromList(moduleId)),
@@ -45,7 +46,8 @@ const mapDispatchToProps = dispatch => {
         dispatch(openAddModuleModalAsync(moduleId, where)),
       removeModule: moduleId => dispatch(removeModule(moduleId)),
       moveModule: moduleId => dispatch(moveModule(moduleId)),
-      moveToModule: moduleId => dispatch(moveToModule(moduleId))
+      moveToModule: (moduleId, enqueueSnackbar) =>
+        dispatch(moveToModule(moduleId, enqueueSnackbar))
     }
   };
 };

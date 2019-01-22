@@ -18,6 +18,7 @@ import {
 export default (
   state = {
     showSpinner: false,
+    editModuleId: null,
     isAnyModuleMoving: false,
     page: {
       title: "New Page",
@@ -142,6 +143,10 @@ const saveAddModulesModal = (state, action) => {
 
   state.modulesToAdd = [];
 
+  action.payload.enqueueSnackbar(state.selectedCount + " module/s added", {
+    variant: "success"
+  });
+
   return {
     ...state,
     isAddModulesOpen: false,
@@ -216,12 +221,14 @@ export const moveToModule = (state, action) => {
 
   arrayMove(state.page.modules, fromIndex, toIndex);
 
+  action.payload.enqueueSnackbar("Module Moved Successfuly", {
+    variant: "success"
+  });
   return { ...state, isAnyModuleMoving: false };
 };
 
 export const editModule = (state, action) => {
-  console.log(action.payload.moduleId);
-  return { ...state };
+  return { ...state, editModuleId: action.payload.moduleId };
 };
 
 // ------------------------------------------------------------------------------
@@ -241,15 +248,6 @@ const getModuleIndexFromId = (modules, id) => {
   return addIntoIndex;
 };
 
-const arrayMove = (array, from, to) => {
-  if (to === from) return array;
-
-  var target = array[from];
-  var increment = to < from ? -1 : 1;
-
-  for (var k = from; k != to; k += increment) {
-    array[k] = array[k + increment];
-  }
-  array[to] = target;
-  return array;
+const arrayMove = (arr, from, to) => {
+  arr.splice(to, 0, arr.splice(from, 1)[0]);
 };

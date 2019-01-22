@@ -44,7 +44,8 @@ const NewPageAddModules = props => {
     addModuleFromList,
     modulesToAdd,
     removeModule,
-    defaultModules
+    defaultModules,
+    enqueueSnackbar
   } = props;
 
   const componentMap = {
@@ -62,7 +63,7 @@ const NewPageAddModules = props => {
   };
 
   const handleAddModulesModalAdd = () => {
-    saveAddModulesModal(false);
+    saveAddModulesModal(enqueueSnackbar);
   };
 
   const handleAddModuleFromListClick = moduleId => () => {

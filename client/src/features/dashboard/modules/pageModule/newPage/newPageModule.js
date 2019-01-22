@@ -50,27 +50,22 @@ const NewPageModule = props => {
   };
 
   const handleAddTopClick = moduleId => _ => {
-    console.log("add top");
     newPageHandler.openAddModuleModalAsync(moduleId, "top");
   };
 
   const handleAddBottomClick = moduleId => _ => {
-    console.log("add Bottom");
     newPageHandler.openAddModuleModalAsync(moduleId, "bottom");
   };
 
   const handleVisibleClick = (moduleId, status) => _ => {
-    console.log("visible");
     newPageHandler.toggleModuleVisibility(moduleId, status);
   };
 
   const handleTrashClick = moduleId => _ => {
-    console.log("Trash");
     newPageHandler.moveToTrash(moduleId);
   };
 
   const handleEditClick = moduleId => _ => {
-    console.log("Setting");
     newPageHandler.editModule(moduleId);
   };
 
@@ -81,7 +76,7 @@ const NewPageModule = props => {
   const handleMoveToClick = (moduleId, to) => _ => {
     // up negative id, bottom positive
     moduleId = to == "up" ? -1 * moduleId : moduleId;
-    newPageHandler.moveToModule(moduleId);
+    newPageHandler.moveToModule(moduleId, enqueueSnackbar);
   };
 
   return (
@@ -112,7 +107,7 @@ const NewPageModule = props => {
                 >
                   <ControlCameraIcon />
                 </IconButton>
-                {newPageSt.isAnyModuleMoving ? (
+                {newPageSt.isAnyModuleMoving && !module.isMoving ? (
                   <React.Fragment>
                     <IconButton
                       color="secondary"
@@ -152,7 +147,7 @@ const NewPageModule = props => {
                     <IconButton onClick={handleTrashClick(module.id)}>
                       <DeleteForeverIcon />
                     </IconButton>
-                    <IconButton onClick={handleEditClick}>
+                    <IconButton onClick={handleEditClick(module.id)}>
                       <EditIcon />
                     </IconButton>
                   </React.Fragment>
@@ -203,6 +198,7 @@ const NewPageModule = props => {
         saveAddModulesModal={newPageHandler.saveAddModulesModal}
         selectedCount={newPageSt.selectedCount}
         addModuleFromList={newPageHandler.addModuleFromList}
+        enqueueSnackbar={enqueueSnackbar}
       />
     </div>
   );
