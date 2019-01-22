@@ -2,72 +2,175 @@ import React from "react";
 // UI
 import styles from "./cTitleText.style";
 import { withStyles } from "@material-ui/core/styles";
-import { Typography, ButtonBase } from "@material-ui/core";
+import {
+  Input,
+  Divider,
+  FormControl,
+  InputLabel,
+  FormControlLabel,
+  Switch,
+  Typography,
+  Paper
+} from "@material-ui/core";
 
 const CTitleText = ({ classes, contentData }) => {
-  const lineStyle = {
-    width: contentData.line.width ? contentData.line.width : "80px",
-    backgroundColor: contentData.line.color || contentData.color
-  };
-
   return (
-    <div
-      className={classes.container}
-      style={{ background: contentData.background }}
-    >
+    <div className={classes.container}>
       <div className={classes.contentWidth}>
-        {contentData.title && contentData.title.isVisible ? (
-          <Typography
-            variant="title"
-            align={contentData.title.align}
-            style={{ color: contentData.title.color || contentData.color }}
-          >
-            {contentData.title.text}
-          </Typography>
-        ) : null}
+        <div className={classes.paper}>
+          <Typography variant="h6">Container</Typography>
+          <Input type="color" value={contentData.color} />
+          {/* contentData.background */}
+          <Input type="color" value="#e66465" />
+        </div>
+        <Divider />
 
-        {contentData.subTitle && contentData.subTitle.isVisible ? (
-          <Typography
-            variant="subtitle1"
-            gutterBottom
-            align={contentData.subTitle.align}
-            style={{ color: contentData.subTitle.color || contentData.color }}
-          >
-            {contentData.subTitle.text}
-          </Typography>
-        ) : null}
-
-        {contentData.line && contentData.line.isVisible ? (
-          <hr
-            className={classes.hr}
-            style={lineStyle}
-            align={contentData.line.align}
+        <div className={classes.paper}>
+          <Typography variant="h6">Title</Typography>{" "}
+          <FormControlLabel
+            control={
+              <Switch
+                checked={contentData.title.isVisible}
+                value="titleVisible"
+                color="primary"
+              />
+            }
+            label="visible"
           />
-        ) : null}
+          <FormControl className={classes.inputMargin}>
+            <InputLabel htmlFor="titleText">Title Text</InputLabel>
+            <Input
+              id="titleText"
+              name="titleText"
+              autoFocus
+              value={contentData.title.text}
+            />
+          </FormControl>
+          {/* contentData.title.align */}
+          <Input type="color" value={contentData.title.color} />
+        </div>
+        <Divider />
 
-        {contentData.body && contentData.body.isVisible ? (
-          <Typography
-            variant="body1"
-            gutterBottom
-            align={contentData.body.align}
-            style={{ color: contentData.body.color || contentData.color }}
-          >
-            {contentData.body.text}
-          </Typography>
-        ) : null}
+        <div className={classes.paper}>
+          <Typography variant="h6">Sub Title</Typography>
+          <FormControl className={classes.inputMargin}>
+            <InputLabel htmlFor="subTitleText">Sub Title Text</InputLabel>
+            <Input
+              id="subTitleText"
+              name="subTitleText"
+              autoFocus
+              value={contentData.subTitle.text}
+            />
+          </FormControl>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={contentData.subTitle.isVisible}
+                value="subTitleVisible"
+                color="primary"
+              />
+            }
+            label="visible"
+          />
+          {/* contentData.subTitle.align */}
 
-        {contentData.readMore && contentData.readMore.isVisible ? (
-          <Typography
-            variant="body1"
-            gutterBottom
-            align={contentData.readMore.align}
-            style={{ color: contentData.readMore.color || contentData.color }}
-          >
-            <ButtonBase href={contentData.readMore.url}>
-              {contentData.readMore.text}
-            </ButtonBase>
-          </Typography>
-        ) : null}
+          <Input type="color" value={contentData.subTitle.color} />
+        </div>
+        <Divider />
+
+        <div className={classes.paper}>
+          <Typography variant="h6">Line</Typography>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={contentData.line.isVisible}
+                value="lineVisible"
+                color="primary"
+              />
+            }
+            label="visible"
+          />
+          {/* contentData.line.align  */}
+
+          <FormControl className={classes.inputMargin}>
+            <InputLabel htmlFor="lineWidth">Line Width</InputLabel>
+            <Input
+              id="lineWidth"
+              name="lineWidth"
+              autoFocus
+              value={contentData.line.width}
+            />
+          </FormControl>
+
+          <Input type="color" value={contentData.line.color} />
+        </div>
+        <Divider />
+
+        <div className={classes.paper}>
+          <Typography variant="h6">Body</Typography>
+          <FormControl className={classes.inputMargin}>
+            <InputLabel htmlFor="bodyText">Body Content</InputLabel>
+            <Input
+              id="bodyText"
+              name="bodyText"
+              autoFocus
+              value={contentData.body.text}
+            />
+          </FormControl>
+
+          <FormControlLabel
+            control={
+              <Switch
+                checked={contentData.body.isVisible}
+                value="bodyVisible"
+                color="primary"
+              />
+            }
+            label="visible"
+          />
+          {/* contentData.body.align  */}
+
+          <Input type="color" value={contentData.body.color} />
+        </div>
+        <Divider />
+
+        <div className={classes.paper}>
+          <Typography variant="h6">Read More</Typography>
+          <FormControl className={classes.inputMargin}>
+            <InputLabel htmlFor="readMoreText">Read More Text</InputLabel>
+            <Input
+              id="readMoreText"
+              name="readMoreText"
+              autoFocus
+              value={contentData.readMore.text}
+            />
+          </FormControl>
+
+          <FormControl className={classes.inputMargin}>
+            <InputLabel htmlFor="readMoreUrl">Url</InputLabel>
+            <Input
+              id="readMoreUrl"
+              name="bodyText"
+              autoFocus
+              value={contentData.readMore.url}
+            />
+          </FormControl>
+
+          <FormControlLabel
+            control={
+              <Switch
+                checked={contentData.readMore.isVisible}
+                value="readMoreVisible"
+                color="primary"
+              />
+            }
+            label="visible"
+          />
+          {/* contentData.readMore.align */}
+
+          <Input type="color" value={contentData.readMore.color} />
+        </div>
+        <Divider />
       </div>
     </div>
   );

@@ -15,6 +15,12 @@ const styles = theme => ({
     height: "3px",
     marginTop: "35px",
     marginBottom: "38px"
+  },
+  paper: {
+    padding: "30px",
+    marginBottom: "10px",
+    display: "flex",
+    flexDirection: "column"
   }
 });
 
