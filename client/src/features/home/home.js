@@ -1,5 +1,5 @@
 import React from "react";
-import CCenterTitleText from "../contentModules/cCenterTitleText";
+import CTitleText from "../contentModules/cTitleText";
 import CImageText from "../contentModules/cImageText";
 import CImageTile from "../contentModules/cImageTile";
 import CIconTitleText from "../contentModules/CIconTitleText";
@@ -11,7 +11,7 @@ const Home = props => {
   const { homeSt, layoutSt, onToggleDrawer } = props;
 
   const componentMap = {
-    CCenterTitleText: CCenterTitleText,
+    CTitleText: CTitleText,
     CImageText: CImageText,
     CImageTile: CImageTile,
     CIconTitleText: CIconTitleText,

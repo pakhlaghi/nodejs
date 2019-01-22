@@ -24,7 +24,7 @@ import {
 } from "@material-ui/core";
 
 // content modules
-import CCenterTitleText from "./../../../../contentModules/cCenterTitleText";
+import CTitleText from "../../../../contentModules/cTitleText";
 import CImageText from "./../../../../contentModules/cImageText";
 import CImageTile from "./../../../../contentModules/cImageTile";
 import CIconTitleText from "./../../../../contentModules/CIconTitleText";
@@ -49,7 +49,7 @@ const NewPageAddModules = props => {
   } = props;
 
   const componentMap = {
-    CCenterTitleText: CCenterTitleText,
+    CTitleText: CTitleText,
     CImageText: CImageText,
     CImageTile: CImageTile,
     CIconTitleText: CIconTitleText,

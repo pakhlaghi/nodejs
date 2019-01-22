@@ -124,19 +124,41 @@ const getContentById = id => {
       },
       {
         id: 1,
-        type: "CCenterTitleText",
+        type: "CTitleText",
         contents: {
-          title: "GET OUR APP AND TURN EVERY PHOTO",
-          subTitle: "You Take Into a Masterpiece!",
-          body: `Despite all the intuitiveness of interface and easy-to-understand UX
-                  and UI, an application as complex as ours can get you bumping into
-                  some roadblocks or asking some technical questions over time. We can
-                  assure you, that while our Customer Support dept. will be ready to
-                  help you 24/7, we have also placed all the most frequently asked
-                  questions and issues on this page…`,
+          title: {
+            text: "GET OUR APP AND TURN EVERY PHOTO",
+            isVisible: true,
+            align: "center",
+            color: "#000"
+          },
+          subTitle: {
+            text: "You Take Into a Masterpiece!",
+            isVisible: true,
+            align: "center",
+            color: "#000"
+          },
+          line: {
+            isVisible: true,
+            align: "center"
+          },
+          body: {
+            text: `Despite all the intuitiveness of interface and easy-to-understand UX
+                    and UI, an application as complex as ours can get you bumping into
+                    some roadblocks or asking some technical questions over time. We can
+                    assure you, that while our Customer Support dept. will be ready to
+                    help you 24/7, we have also placed all the most frequently asked
+                    questions and issues on this page…`,
+            isVisible: true,
+            align: "center",
+            color: "#000"
+          },
           readMore: {
             text: "Read More",
-            url: "#"
+            url: "#",
+            isVisible: true,
+            align: "center",
+            color: "#000"
           }
         }
       },
@@ -276,19 +298,41 @@ const getContentById = id => {
       },
       {
         id: 1,
-        type: "CCenterTitleText",
+        type: "CTitleText",
         contents: {
-          title: "GET OUR APP AND TURN EVERY PHOTO",
-          subTitle: "You Take Into a Masterpiece!",
-          body: `Despite all the intuitiveness of interface and easy-to-understand UX
-                  and UI, an application as complex as ours can get you bumping into
-                  some roadblocks or asking some technical questions over time. We can
-                  assure you, that while our Customer Support dept. will be ready to
-                  help you 24/7, we have also placed all the most frequently asked
-                  questions and issues on this page…`,
+          title: {
+            text: "GET OUR APP AND TURN EVERY PHOTO",
+            isVisible: true,
+            align: "center",
+            color: "#000"
+          },
+          subTitle: {
+            text: "You Take Into a Masterpiece!",
+            isVisible: true,
+            align: "center",
+            color: "#000"
+          },
+          line: {
+            isVisible: true,
+            align: "center"
+          },
+          body: {
+            text: `Despite all the intuitiveness of interface and easy-to-understand UX
+                    and UI, an application as complex as ours can get you bumping into
+                    some roadblocks or asking some technical questions over time. We can
+                    assure you, that while our Customer Support dept. will be ready to
+                    help you 24/7, we have also placed all the most frequently asked
+                    questions and issues on this page…`,
+            isVisible: true,
+            align: "center",
+            color: "#000"
+          },
           readMore: {
             text: "Read More",
-            url: "#"
+            url: "#",
+            isVisible: true,
+            align: "center",
+            color: "#000"
           }
         }
       },

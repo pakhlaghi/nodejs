@@ -24,7 +24,7 @@ import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 
 // content modules
-import CCenterTitleText from "./../../../../contentModules/cCenterTitleText";
+import CTitleText from "../../../../contentModules/cTitleText";
 import CImageText from "./../../../../contentModules/cImageText";
 import CImageTile from "./../../../../contentModules/cImageTile";
 import CIconTitleText from "./../../../../contentModules/CIconTitleText";
@@ -41,7 +41,7 @@ const NewPageModule = props => {
   } = props;
 
   const componentMap = {
-    CCenterTitleText: CCenterTitleText,
+    CTitleText: CTitleText,
     CImageText: CImageText,
     CImageTile: CImageTile,
     CIconTitleText: CIconTitleText,
