@@ -20,7 +20,55 @@ const styles = theme => ({
     padding: "30px",
     marginBottom: "10px",
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+    "& h6": {
+      marginBottom: "20px"
+    }
+  },
+  topLayer: {
+    zIndex: "20000",
+    position: "relative",
+    width: "90%"
+  },
+  noTopPadding: {
+    paddingTop: "0"
+  },
+  editHeader: {
+    backgroundColor: theme.palette.primary.main,
+    padding: "10px 20px",
+    color: theme.palette.secondary.contrastText,
+    display: "flex"
+  },
+  closeIcon: {
+    padding: "0",
+    marginLeft: "auto",
+    display: "flex"
+  }  
+  ,button: {
+    margin: theme.spacing.unit
+  },
+  rightIcon: {
+    marginLeft: theme.spacing.unit
+  },
+  footer:{
+    display: "flex",
+    justifyContent: "flex-end",
+    padding: "10px"
+  },
+  color: {
+    width: "80px",
+    margin: "10px 10px 10px 50px"
+  },
+  input: {
+    margin: "10px 10px 20px 40px",
+    width: "70%"
+  },
+  title: {
+    display: "flex",
+    marginBottom: "20px"
+  },
+  pullRight: {
+    marginLeft: "auto",
   }
 });
 
