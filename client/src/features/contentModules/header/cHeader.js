@@ -28,16 +28,16 @@ const CHeader = props => {
         [classes.fullHeader]: isFullHeader
       })}
     >
-      {contentData && contentData.topBar ? (
+      {contentData && contentData.topBar && (
         <TopBar
           isDrawerOpen={isDrawerOpen}
           onToggleDrawer={onToggleDrawer}
           contentData={contentData.topBar}
         />
-      ) : null}
-      {contentData ? (
+      )}
+      {contentData && (
         <HeaderContent isVisible={isFullHeader} contentData={contentData} />
-      ) : null}
+      )}
     </Grid>
   );
 };

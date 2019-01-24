@@ -5,7 +5,13 @@ import { withStyles } from "@material-ui/core/styles";
 import { Typography, ButtonBase } from "@material-ui/core";
 import CTitleTextEdit from "./cTitleTextEdit";
 
-const CTitleText = ({ classes, contentData }) => {
+const CTitleText = props => {
+  const {
+    classes,
+    contentData,
+    handleApplyChanges,
+    handleCancelEditing
+  } = props;
   const lineStyle = {
     width: contentData.line.width ? contentData.line.width : "80px",
     backgroundColor: contentData.line.color || contentData.color
@@ -18,7 +24,7 @@ const CTitleText = ({ classes, contentData }) => {
         style={{ background: contentData.background }}
       >
         <div className={classes.contentWidth}>
-          {contentData.title && contentData.title.isVisible ? (
+          {contentData.title && contentData.title.isVisible && (
             <Typography
               variant="title"
               align={contentData.title.align}
@@ -26,9 +32,9 @@ const CTitleText = ({ classes, contentData }) => {
             >
               {contentData.title.text}
             </Typography>
-          ) : null}
+          )}
 
-          {contentData.subTitle && contentData.subTitle.isVisible ? (
+          {contentData.subTitle && contentData.subTitle.isVisible && (
             <Typography
               variant="subtitle1"
               gutterBottom
@@ -37,17 +43,17 @@ const CTitleText = ({ classes, contentData }) => {
             >
               {contentData.subTitle.text}
             </Typography>
-          ) : null}
+          )}
 
-          {contentData.line && contentData.line.isVisible ? (
+          {contentData.line && contentData.line.isVisible && (
             <hr
               className={classes.hr}
               style={lineStyle}
               align={contentData.line.align}
             />
-          ) : null}
+          )}
 
-          {contentData.body && contentData.body.isVisible ? (
+          {contentData.body && contentData.body.isVisible && (
             <Typography
               variant="body1"
               gutterBottom
@@ -56,9 +62,9 @@ const CTitleText = ({ classes, contentData }) => {
             >
               {contentData.body.text}
             </Typography>
-          ) : null}
+          )}
 
-          {contentData.readMore && contentData.readMore.isVisible ? (
+          {contentData.readMore && contentData.readMore.isVisible && (
             <Typography
               variant="body1"
               gutterBottom
@@ -69,10 +75,16 @@ const CTitleText = ({ classes, contentData }) => {
                 {contentData.readMore.text}
               </ButtonBase>
             </Typography>
-          ) : null}
+          )}
         </div>
       </div>
-      <CTitleTextEdit contentData={contentData} />
+      {contentData.isEditing && (
+        <CTitleTextEdit
+          contentData={contentData}
+          handleApplyChanges={handleApplyChanges}
+          handleCancelEditing={handleCancelEditing}
+        />
+      )}
     </React.Fragment>
   );
 };

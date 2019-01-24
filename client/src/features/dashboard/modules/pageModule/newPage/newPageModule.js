@@ -107,7 +107,7 @@ const NewPageModule = props => {
                 >
                   <ControlCameraIcon />
                 </IconButton>
-                {newPageSt.isAnyModuleMoving && !module.isMoving ? (
+                {newPageSt.isAnyModuleMoving && !module.isMoving && (
                   <React.Fragment>
                     <IconButton
                       color="secondary"
@@ -122,9 +122,9 @@ const NewPageModule = props => {
                       <ArrowUpwardIcon />
                     </IconButton>
                   </React.Fragment>
-                ) : null}
+                )}
 
-                {!newPageSt.isAnyModuleMoving ? (
+                {!newPageSt.isAnyModuleMoving && (
                   <React.Fragment>
                     <IconButton onClick={handleAddBottomClick(module.id)}>
                       <LibraryAddIcon />
@@ -151,14 +151,16 @@ const NewPageModule = props => {
                       <EditIcon />
                     </IconButton>
                   </React.Fragment>
-                ) : null}
+                )}
                 <Paper
                   className={`${classes.module} ${classes.overlayer} ${
                     module.visible ? "" : classes.invisible
                   } ${module.isMoving ? classes.moving : ""}`}
                 >
                   {React.createElement(componentMap[module.type], {
-                    contentData: module.contents
+                    contentData: module.contents,
+                    handleApplyChanges: newPageHandler.handleApplyChanges,
+                    handleCancelEditing: newPageHandler.handleCancelEditing
                   })}
                 </Paper>
               </div>

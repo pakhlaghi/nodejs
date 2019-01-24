@@ -9,7 +9,7 @@ import classNames from "classnames";
 const HeaderContent = ({ classes, isVisible, contentData }) => {
   return (
     <React.Fragment>
-      {isVisible ? (
+      {isVisible && (
         <Grid
           container
           direction="column"
@@ -34,7 +34,7 @@ const HeaderContent = ({ classes, isVisible, contentData }) => {
             {contentData.subTitle ? contentData.subTitle : ""}
           </Typography>
           <div>
-            {contentData.buttons && contentData.buttons.primary ? (
+            {contentData.buttons && contentData.buttons.primary && (
               <Button
                 url={
                   contentData.buttons ? contentData.buttons.primary.url : "#"
@@ -46,8 +46,8 @@ const HeaderContent = ({ classes, isVisible, contentData }) => {
               >
                 {contentData.buttons.primary.title}
               </Button>
-            ) : null}
-            {contentData.buttons && contentData.buttons.secondary ? (
+            )}
+            {contentData.buttons && contentData.buttons.secondary && (
               <Button
                 url={
                   contentData.buttons ? contentData.buttons.secondary.url : "#"
@@ -58,10 +58,10 @@ const HeaderContent = ({ classes, isVisible, contentData }) => {
               >
                 {contentData.buttons ? contentData.buttons.secondary.title : ""}
               </Button>
-            ) : null}
+            )}
           </div>
         </Grid>
-      ) : null}
+      )}
     </React.Fragment>
   );
 };

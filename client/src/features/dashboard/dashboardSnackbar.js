@@ -141,9 +141,8 @@ const DashboardSnackbar = props => {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
 
-        {componentMap[match.params.module]
-          ? React.createElement(componentMap[match.params.module])
-          : null}
+        {componentMap[match.params.module] &&
+          React.createElement(componentMap[match.params.module])}
       </main>
     </div>
   );

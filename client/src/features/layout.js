@@ -29,18 +29,18 @@ const Layout = props => {
 
   return (
     <div className={classes.layout}>
-      {showHeader ? (
+      {showHeader && (
         <CHeader
           isFullHeader={isFullHeader}
           isDrawerOpen={layoutSt.isDrawerOpen}
           contentData={layoutSt.contentData.headerContent}
           onToggleDrawer={onToggleDrawer}
         />
-      ) : null}
+      )}
       <section className={classes.content}>{children}</section>
-      {showFooter ? (
+      {showFooter && (
         <CFooter contentData={layoutSt.contentData.footerContent} />
-      ) : null}
+      )}
     </div>
   );
 };

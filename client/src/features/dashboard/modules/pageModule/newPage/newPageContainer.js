@@ -16,7 +16,9 @@ import {
   openAddModuleModalAsync,
   removeModule,
   moveModule,
-  moveToModule
+  moveToModule,
+  cancelEditing,
+  applyChanges
 } from "../../../../../redux/dashboard/modules/pageModule/newPage/action";
 
 import { connect } from "react-redux";
@@ -47,7 +49,10 @@ const mapDispatchToProps = dispatch => {
       removeModule: moduleId => dispatch(removeModule(moduleId)),
       moveModule: moduleId => dispatch(moveModule(moduleId)),
       moveToModule: (moduleId, enqueueSnackbar) =>
-        dispatch(moveToModule(moduleId, enqueueSnackbar))
+        dispatch(moveToModule(moduleId, enqueueSnackbar)),
+      handleCancelEditing: _ => dispatch(cancelEditing()),
+      handleApplyChanges: (inputs, moduleType) =>
+        dispatch(applyChanges(inputs, moduleType))
     }
   };
 };

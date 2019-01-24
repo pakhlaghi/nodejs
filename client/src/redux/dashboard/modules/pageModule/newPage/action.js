@@ -12,7 +12,9 @@ import {
   REMOVE_MODULE,
   EDIT_MODULE,
   MOVE_MODULE,
-  MOVE_TO_MODULE
+  MOVE_TO_MODULE,
+  CANCEL_EDITING,
+  APPLY_CHANGES
 } from "./types";
 import { dataService } from "../../../../../service/dataService";
 
@@ -108,6 +110,16 @@ export const moveToModule = (moduleId, enqueueSnackbar) => ({
     moduleId,
     enqueueSnackbar
   }
+});
+
+export const cancelEditing = _ => ({
+  type: CANCEL_EDITING,
+  payload: {}
+});
+
+export const applyChanges = (inputs, moduleType) => ({
+  type: APPLY_CHANGES,
+  payload: { inputs, moduleType }
 });
 
 // async: ------------------------------------------------------------------------

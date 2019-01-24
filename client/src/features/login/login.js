@@ -20,10 +20,10 @@ import CCSnackbar from "../../utility/ccSnackbar";
 const Login = props => {
   const { loginSt, classes, onSignIn, onToggleSnackbar } = props;
 
-let inputs = {
-  email: "",
-  password: ""
-};
+  let inputs = {
+    email: "",
+    password: ""
+  };
 
   const handleSnackbarClick = () => {
     onToggleSnackbar(false, null, null);
@@ -34,23 +34,22 @@ let inputs = {
     onSignIn(inputs.email, inputs.password);
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = e => {
     inputs[e.target.name] = e.target.value;
-}
-
+  };
 
   if (loginSt.token) {
     return <Redirect to="/dashboard/main" />;
   }
   return (
     <div className={classes.main}>
-      {loginSt.snackbar.isOpen ? (
+      {loginSt.snackbar.isOpen && (
         <CCSnackbar
           variant={loginSt.snackbar.variant}
           message={loginSt.snackbar.message}
           onClose={handleSnackbarClick}
         />
-      ) : null}
+      )}
       <CssBaseline />
       <Paper className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -62,10 +61,16 @@ let inputs = {
         <div className={classes.form}>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="email">Email Address</InputLabel>
-            <Input id="email" name="email" autoComplete="email" autoFocus onChange={handleInputChange}/>
+            <Input
+              id="email"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              onChange={handleInputChange}
+            />
           </FormControl>
           <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="password" >Password</InputLabel>
+            <InputLabel htmlFor="password">Password</InputLabel>
             <Input
               name="password"
               type="password"

@@ -15,45 +15,46 @@ import CCMaterialIcon from "./../../utility/ccMaterialIcon";
 
 const ListItems = props => {
   const { classes, items } = props;
-  
+
   return (
     <List>
-      {items && items.map((item, index) => (
-        <React.Fragment key={index}>
-          <Link to={item.action} className={classes.link}>
-            <ListItem button>
-              <ListItemIcon>
-                <CCMaterialIcon icon={item.icon} />
-              </ListItemIcon>
-              <ListItemText primary={item.text} />
-              {item.children.length > 0 ? <ExpandMore /> : null}
-            </ListItem>
-          </Link>
+      {items &&
+        items.map((item, index) => (
+          <React.Fragment key={index}>
+            <Link to={item.action} className={classes.link}>
+              <ListItem button>
+                <ListItemIcon>
+                  <CCMaterialIcon icon={item.icon} />
+                </ListItemIcon>
+                <ListItemText primary={item.text} />
+                {item.children.length > 0 && <ExpandMore />}
+              </ListItem>
+            </Link>
 
-          {item.children.length > 0 ? (
-            <Collapse
-              in={true}
-              timeout="auto"
-              timeout="auto"
-              unmountOnExit
-              className={classes.nested}
-            >
-              <List component="div">
-                {item.children.map(child => (
-                  <Link to={child.action} className={classes.link}>
-                    <ListItem button>
-                      <ListItemIcon>
-                        <CCMaterialIcon icon={child.icon} />
-                      </ListItemIcon>
-                      <ListItemText inset primary={child.text} />
-                    </ListItem>
-                  </Link>
-                ))}
-              </List>
-            </Collapse>
-          ) : null}
-        </React.Fragment>
-      ))}
+            {item.children.length > 0 && (
+              <Collapse
+                in={true}
+                timeout="auto"
+                timeout="auto"
+                unmountOnExit
+                className={classes.nested}
+              >
+                <List component="div">
+                  {item.children.map(child => (
+                    <Link to={child.action} className={classes.link}>
+                      <ListItem button>
+                        <ListItemIcon>
+                          <CCMaterialIcon icon={child.icon} />
+                        </ListItemIcon>
+                        <ListItemText inset primary={child.text} />
+                      </ListItem>
+                    </Link>
+                  ))}
+                </List>
+              </Collapse>
+            )}
+          </React.Fragment>
+        ))}
     </List>
   );
 };
