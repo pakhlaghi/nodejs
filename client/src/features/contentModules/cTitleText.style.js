@@ -21,6 +21,7 @@ const styles = theme => ({
     marginBottom: "10px",
     display: "flex",
     flexDirection: "column",
+    alignItems: "flex-start",
     "& h6": {
       marginBottom: "20px"
     }
@@ -65,7 +66,8 @@ const styles = theme => ({
   },
   title: {
     display: "flex",
-    marginBottom: "20px"
+    marginBottom: "20px",
+    alignSelf: "stretch"
   },
   pullRight: {
     marginLeft: "auto"

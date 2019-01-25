@@ -7,6 +7,7 @@ import { withStyles } from "@material-ui/core/styles";
 import CloseIcon from "@material-ui/icons/Close";
 import SaveIcon from "@material-ui/icons/Save";
 import CancelIcon from "@material-ui/icons/Cancel";
+import FormatColorResetIcon from "@material-ui/icons/FormatColorReset";
 
 import {
   Input,
@@ -162,6 +163,8 @@ class CTitleText extends React.Component {
       handleCancelEditing();
     };
 
+    const handleNoColor = _ => {};
+
     return (
       <div className={classNames(classes.container, classes.noTopPadding)}>
         <Paper className={classes.topLayer}>
@@ -185,26 +188,36 @@ class CTitleText extends React.Component {
 
               <FormControlLabel
                 control={
-                  <Input
-                    id="containerColor"
-                    type="color"
-                    defaultValue={inputs.containerColor}
-                    className={classes.color}
-                    onChange={handleInputChange}
-                  />
+                  <React.Fragment>
+                    <Input
+                      id="containerColor"
+                      type="color"
+                      defaultValue={inputs.containerColor}
+                      className={classes.color}
+                      onChange={handleInputChange}
+                    />
+                    <IconButton aria-label="No Color" onClick={handleNoColor}>
+                      <FormatColorResetIcon fontSize="small" />
+                    </IconButton>
+                  </React.Fragment>
                 }
                 label={staticContent.container.label.color.text}
               />
 
               <FormControlLabel
                 control={
-                  <Input
-                    id="containerBackground"
-                    type="color"
-                    defaultValue={inputs.containerBackground}
-                    onChange={handleInputChange}
-                    className={classes.color}
-                  />
+                  <React.Fragment>
+                    <Input
+                      id="containerBackground"
+                      type="color"
+                      defaultValue={inputs.containerBackground}
+                      onChange={handleInputChange}
+                      className={classes.color}
+                    />
+                    <IconButton aria-label="No Color" onClick={handleNoColor}>
+                      <FormatColorResetIcon fontSize="small" />
+                    </IconButton>
+                  </React.Fragment>
                 }
                 label={staticContent.container.label.color.background}
               />
@@ -270,13 +283,18 @@ class CTitleText extends React.Component {
 
               <FormControlLabel
                 control={
-                  <Input
-                    id="titleColor"
-                    type="color"
-                    defaultValue={inputs.titleColor}
-                    className={classes.color}
-                    onChange={handleInputChange}
-                  />
+                  <React.Fragment>
+                    <Input
+                      id="titleColor"
+                      type="color"
+                      defaultValue={inputs.titleColor}
+                      className={classes.color}
+                      onChange={handleInputChange}
+                    />{" "}
+                    <IconButton aria-label="No Color" onClick={handleNoColor}>
+                      <FormatColorResetIcon fontSize="small" />
+                    </IconButton>
+                  </React.Fragment>
                 }
                 label={staticContent.title.label.color}
               />
@@ -342,13 +360,18 @@ class CTitleText extends React.Component {
 
               <FormControlLabel
                 control={
-                  <Input
-                    id="subTitleColor"
-                    type="color"
-                    defaultValue={inputs.subTitleColor}
-                    onChange={handleInputChange}
-                    className={classes.color}
-                  />
+                  <React.Fragment>
+                    <Input
+                      id="subTitleColor"
+                      type="color"
+                      defaultValue={inputs.subTitleColor}
+                      onChange={handleInputChange}
+                      className={classes.color}
+                    />{" "}
+                    <IconButton aria-label="No Color" onClick={handleNoColor}>
+                      <FormatColorResetIcon fontSize="small" />
+                    </IconButton>
+                  </React.Fragment>
                 }
                 label={staticContent.subTitle.label.color}
               />
@@ -411,13 +434,18 @@ class CTitleText extends React.Component {
               />
               <FormControlLabel
                 control={
-                  <Input
-                    id="lineColor"
-                    type="color"
-                    defaultValue={inputs.lineColor}
-                    onChange={handleInputChange}
-                    className={classes.color}
-                  />
+                  <React.Fragment>
+                    <Input
+                      id="lineColor"
+                      type="color"
+                      defaultValue={inputs.lineColor}
+                      onChange={handleInputChange}
+                      className={classes.color}
+                    />{" "}
+                    <IconButton aria-label="No Color" onClick={handleNoColor}>
+                      <FormatColorResetIcon fontSize="small" />
+                    </IconButton>
+                  </React.Fragment>
                 }
                 label={staticContent.line.label.color}
               />
@@ -482,13 +510,18 @@ class CTitleText extends React.Component {
 
               <FormControlLabel
                 control={
-                  <Input
-                    id="bodyColor"
-                    type="color"
-                    defaultValue={inputs.bodyColor}
-                    onChange={handleInputChange}
-                    className={classes.color}
-                  />
+                  <React.Fragment>
+                    <Input
+                      id="bodyColor"
+                      type="color"
+                      defaultValue={inputs.bodyColor}
+                      onChange={handleInputChange}
+                      className={classes.color}
+                    />{" "}
+                    <IconButton aria-label="No Color" onClick={handleNoColor}>
+                      <FormatColorResetIcon fontSize="small" />
+                    </IconButton>
+                  </React.Fragment>
                 }
                 label={staticContent.body.label.color}
               />
@@ -563,13 +596,18 @@ class CTitleText extends React.Component {
 
               <FormControlLabel
                 control={
-                  <Input
-                    id="readMoreColor"
-                    type="color"
-                    defaultValue={inputs.readMoreColor}
-                    onChange={handleInputChange}
-                    className={classes.color}
-                  />
+                  <React.Fragment>
+                    <Input
+                      id="readMoreColor"
+                      type="color"
+                      defaultValue={inputs.readMoreColor}
+                      onChange={handleInputChange}
+                      className={classes.color}
+                    />{" "}
+                    <IconButton aria-label="No Color" onClick={handleNoColor}>
+                      <FormatColorResetIcon fontSize="small" />
+                    </IconButton>
+                  </React.Fragment>
                 }
                 label={staticContent.readMore.label.color}
               />
