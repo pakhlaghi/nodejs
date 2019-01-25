@@ -306,23 +306,28 @@ const mapInputsTitleText = (module, inputs) => {
   module.contents.title.text = inputs.titleText;
   module.contents.title.color = inputs.titleColor;
   module.contents.title.isVisible = inputs.titleSwitch;
+  module.contents.title.align = inputs.titleAlign;
 
   module.contents.subTitle.text = inputs.subTitleText;
   module.contents.subTitle.color = inputs.subTitleColor;
   module.contents.subTitle.isVisible = inputs.subTitleSwitch;
+  module.contents.subTitle.align = inputs.subTitleAlign;
 
   module.contents.line.width = inputs.lineWidth;
   module.contents.line.color = inputs.lineColor;
   module.contents.line.isVisible = inputs.lineSwitch;
+  module.contents.line.align = inputs.lineAlign;
 
   module.contents.body.text = inputs.bodyText;
   module.contents.body.color = inputs.bodyColor;
   module.contents.body.isVisible = inputs.bodySwitch;
+  module.contents.body.align = inputs.bodyAlign;
 
   module.contents.readMore.text = inputs.readMoreText;
   module.contents.readMore.url = inputs.readMoreUrl;
   module.contents.readMore.color = inputs.readMoreColor;
   module.contents.readMore.isVisible = inputs.readMoreSwitch;
+  module.contents.readMore.align = inputs.readMoreAlign;
 
   return module;
 };

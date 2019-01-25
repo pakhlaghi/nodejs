@@ -43,14 +43,14 @@ const styles = theme => ({
     padding: "0",
     marginLeft: "auto",
     display: "flex"
-  }  
-  ,button: {
+  },
+  button: {
     margin: theme.spacing.unit
   },
   rightIcon: {
     marginLeft: theme.spacing.unit
   },
-  footer:{
+  footer: {
     display: "flex",
     justifyContent: "flex-end",
     padding: "10px"
@@ -68,7 +68,13 @@ const styles = theme => ({
     marginBottom: "20px"
   },
   pullRight: {
-    marginLeft: "auto",
+    marginLeft: "auto"
+  },
+  radioGroup: {
+    flexDirection: "row"
+  },
+  margin: {
+    margin: "10px 10px 0px 40px"
   }
 });
 
