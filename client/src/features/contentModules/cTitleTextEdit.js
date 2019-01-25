@@ -172,7 +172,11 @@ class CTitleText extends React.Component {
             <Typography color="inherit" variant="h6">
               {staticContent.header.title}
             </Typography>
-            <IconButton color="inherit" className={classes.closeIcon}>
+            <IconButton
+              color="inherit"
+              className={classes.closeIcon}
+              onClick={handleCancelEditing}
+            >
               <CloseIcon />
             </IconButton>
           </div>
