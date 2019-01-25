@@ -238,8 +238,8 @@ class CTitleText extends React.Component {
                   aria-label="Alignment"
                   value={inputs.titleAlign}
                   onChange={handleInputChange}
-                  className={classes.radioGroup}
                   name="titleAlign"
+                  row={true}
                 >
                   <FormControlLabel
                     value="left"
@@ -310,7 +310,7 @@ class CTitleText extends React.Component {
                   aria-label="Alignment"
                   value={inputs.subTitleAlign}
                   onChange={handleInputChange}
-                  className={classes.radioGroup}
+                  row={true}
                   name="subTitleAlign"
                 >
                   <FormControlLabel
@@ -380,7 +380,7 @@ class CTitleText extends React.Component {
                   aria-label="Alignment"
                   value={inputs.lineAlign}
                   onChange={handleInputChange}
-                  className={classes.radioGroup}
+                  row={true}
                   name="lineAlign"
                 >
                   <FormControlLabel
@@ -449,7 +449,7 @@ class CTitleText extends React.Component {
                   aria-label="Alignment"
                   value={inputs.bodyAlign}
                   onChange={handleInputChange}
-                  className={classes.radioGroup}
+                  row={true}
                   name="bodyAlign"
                 >
                   <FormControlLabel
@@ -522,7 +522,7 @@ class CTitleText extends React.Component {
                   aria-label="Alignment"
                   value={inputs.readMoreAlign}
                   onChange={handleInputChange}
-                  className={classes.radioGroup}
+                  row={true}
                   name="readMoreAlign"
                 >
                   <FormControlLabel

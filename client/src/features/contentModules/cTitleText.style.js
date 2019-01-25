@@ -70,9 +70,6 @@ const styles = theme => ({
   pullRight: {
     marginLeft: "auto"
   },
-  radioGroup: {
-    flexDirection: "row"
-  },
   margin: {
     margin: "10px 10px 0px 40px"
   }

@@ -170,7 +170,7 @@ export const addModuleFromList = (state, action) => {
     state.modulesToAdd.length !== 0
       ? state.modulesToAdd.map(el => el.id).reduce(maxCallback, 0)
       : 0;
-  const cloneModule = { ...selectedModule[0] };
+  const cloneModule = cloneDeep(selectedModule[0]);
   cloneModule.id = maxId + 1;
 
   // push cloned obj {...
@@ -235,9 +235,7 @@ export const moveToModule = (state, action) => {
 
 export const editModule = (state, action) => {
   state.page.modules = state.page.modules.map(module => {
-    if (module.id == action.payload.moduleId) {
-      module.contents.isEditing = true;
-    }
+    module.contents.isEditing = module.id == action.payload.moduleId;
     return module;
   });
 
@@ -330,4 +328,9 @@ const mapInputsTitleText = (module, inputs) => {
   module.contents.readMore.align = inputs.readMoreAlign;
 
   return module;
+};
+
+const cloneDeep = obj => {
+  // return { ...selectedModule[0] }; // shallow
+  return JSON.parse(JSON.stringify(obj));
 };
