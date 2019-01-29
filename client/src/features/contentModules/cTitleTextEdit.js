@@ -38,6 +38,13 @@ class CTitleText extends React.Component {
         containerColor: contentData.color,
         containerBackground: contentData.background,
 
+        imageWidth: contentData.image.width,
+        imagePosition: contentData.image.position,
+        imageSwitch: contentData.image.isVisible,
+        imageAlign: contentData.image.align,
+        imageTitle: contentData.image.title,
+        imageUrl: contentData.image.url,
+
         titleText: contentData.title.text,
         titleColor: contentData.title.color,
         titleSwitch: contentData.title.isVisible,
@@ -68,7 +75,12 @@ class CTitleText extends React.Component {
   }
 
   render() {
-    const { classes, handleApplyChanges, handleCancelEditing } = this.props;
+    const {
+      classes,
+      handleApplyChanges,
+      handleCancelEditing,
+      moduleType
+    } = this.props;
     const { inputs } = this.state;
     const staticContent = {
       header: {
@@ -81,6 +93,15 @@ class CTitleText extends React.Component {
             text: "Module Text Color",
             background: "Module Background"
           }
+        }
+      },
+      image: {
+        title: "Image",
+        label: {
+          width: "Image Width",
+          switch: "Visible",
+          title: "Image Title",
+          url: "Image URL"
         }
       },
       title: {
@@ -102,7 +123,7 @@ class CTitleText extends React.Component {
       line: {
         title: "Line",
         label: {
-          width: "Line Widthh",
+          width: "Line Width",
           color: "Text Color",
           switch: "Visible"
         }
@@ -158,7 +179,7 @@ class CTitleText extends React.Component {
     };
 
     const handleApply = _ => {
-      handleApplyChanges(this.state.inputs, "cTitleText");
+      handleApplyChanges(this.state.inputs, moduleType);
     };
 
     const handleCancel = _ => {
@@ -189,6 +210,117 @@ class CTitleText extends React.Component {
           <Divider />
 
           <div>
+            <div className={classes.paper}>
+              <div className={classes.title}>
+                <Typography variant="h6">
+                  {staticContent.image.title}
+                </Typography>
+                <FormControlLabel
+                  control={
+                    <Switch
+                      id="imageSwitch"
+                      defaultChecked={inputs.imageSwitch}
+                      onChange={handleInputChange}
+                      color="primary"
+                    />
+                  }
+                  label={staticContent.image.label.switch}
+                  className={classes.pullRight}
+                />
+              </div>
+
+              <FormControl component="fieldset" className={classes.margin}>
+                <FormLabel component="legend" className={classes.legend}>
+                  Alignment
+                </FormLabel>
+                <RadioGroup
+                  aria-label="Alignment"
+                  value={inputs.imageAlign}
+                  onChange={handleInputChange}
+                  row={true}
+                  name="imageAlign"
+                >
+                  <FormControlLabel
+                    value="start"
+                    control={<Radio />}
+                    label="Start"
+                  />
+                  <FormControlLabel
+                    value="center"
+                    control={<Radio />}
+                    label="Center"
+                  />
+                  <FormControlLabel
+                    value="end"
+                    control={<Radio />}
+                    label="End"
+                  />
+                </RadioGroup>
+              </FormControl>
+
+              <FormControl component="fieldset" className={classes.margin}>
+                <FormLabel component="legend" className={classes.legend}>
+                  Position
+                </FormLabel>
+                <RadioGroup
+                  aria-label="Position"
+                  value={inputs.imagePosition}
+                  onChange={handleInputChange}
+                  row={true}
+                  name="imagePosition"
+                >
+                  <FormControlLabel
+                    value="top"
+                    control={<Radio />}
+                    label="Top"
+                  />
+                  <FormControlLabel
+                    value="right"
+                    control={<Radio />}
+                    label="Right"
+                  />
+                  <FormControlLabel
+                    value="bottom"
+                    control={<Radio />}
+                    label="Bottom"
+                  />
+                  <FormControlLabel
+                    value="left"
+                    control={<Radio />}
+                    label="Left"
+                  />
+                </RadioGroup>
+              </FormControl>
+
+              <TextField
+                id="imageUrl"
+                label={staticContent.image.label.url}
+                className={classes.input}
+                variant="filled"
+                defaultValue={inputs.imageUrl}
+                onChange={handleInputChange}
+              />
+
+              <TextField
+                id="imageTitle"
+                label={staticContent.image.label.title}
+                className={classes.input}
+                variant="filled"
+                defaultValue={inputs.imageTitle}
+                onChange={handleInputChange}
+              />
+
+              <TextField
+                id="imageWidth"
+                label={staticContent.image.label.width}
+                className={classes.input}
+                variant="filled"
+                defaultValue={inputs.imageWidth}
+                onChange={handleInputChange}
+              />
+            </div>
+            <Divider />
+
             <div className={classes.paper}>
               <div className={classes.title}>
                 <Typography variant="h6">
@@ -555,6 +687,7 @@ class CTitleText extends React.Component {
             </div>
           </div>
           <Divider />
+
           <div className={classes.footer}>
             <Button
               variant="contained"

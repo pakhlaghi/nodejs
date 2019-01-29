@@ -83,6 +83,7 @@ const CTitleText = props => {
           contentData={contentData}
           handleApplyChanges={handleApplyChanges}
           handleCancelEditing={handleCancelEditing}
+          moduleType="cTitleText"
         />
       )}
     </React.Fragment>

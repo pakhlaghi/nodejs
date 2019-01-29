@@ -292,14 +292,25 @@ const mapInputToState = (moduleType, module, inputs) => {
   switch (moduleType) {
     case "cTitleText":
       return mapInputsTitleText(module, inputs);
+    case "cImageText":
+      return mapInputsTitleText(module, inputs, moduleType);
     default:
       return;
   }
 };
 
-const mapInputsTitleText = (module, inputs) => {
+const mapInputsTitleText = (module, inputs, moduleType) => {
   module.contents.color = inputs.containerColor;
   module.contents.background = inputs.containerBackground;
+
+  if (moduleType === "cImageText") {
+    module.contents.image.position = inputs.imagePosition;
+    module.contents.image.width = inputs.imageWidth;
+    module.contents.image.isVisible = inputs.imageSwitch;
+    module.contents.image.align = inputs.imageAlign;
+    module.contents.image.title = inputs.imageTitle;
+    module.contents.image.url = inputs.imageUrl;
+  }
 
   module.contents.title.text = inputs.titleText;
   module.contents.title.color = inputs.titleColor;

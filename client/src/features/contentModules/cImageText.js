@@ -131,6 +131,7 @@ const CImageText = props => {
           contentData={contentData}
           handleApplyChanges={handleApplyChanges}
           handleCancelEditing={handleCancelEditing}
+          moduleType="cImageText"
         />
       )}
     </React.Fragment>
