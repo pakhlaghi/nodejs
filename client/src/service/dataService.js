@@ -3,7 +3,8 @@ import { query } from "./../constant/query";
 import { mockData } from "./../test/mock/mockData";
 import axios from "axios";
 
-const isDevelopment = !process.env.mode || process.env.mode === "development";
+const isDevelopment =
+  process.env.NODE_ENV && process.env.NODE_ENV === "development";
 
 // create promise from mock data
 const mockPromise = data => {

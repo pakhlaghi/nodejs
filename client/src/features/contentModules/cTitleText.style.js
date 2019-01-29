@@ -74,6 +74,13 @@ const styles = theme => ({
   },
   margin: {
     margin: "10px 10px 0px 40px"
+  },
+  noColor: {
+    "& ::-webkit-color-swatch": {
+      background: `linear-gradient(6deg, white calc(50% - 1.5px), ${
+        theme.palette.secondary.main
+      } calc(50%), white calc(50% + 1.5px)) !important`
+    }
   }
 });
 

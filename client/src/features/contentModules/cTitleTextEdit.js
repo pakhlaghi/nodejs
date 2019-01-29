@@ -25,6 +25,9 @@ import {
   FormLabel
 } from "@material-ui/core";
 
+// Utility
+import CCColorPicker from "../../utility/ccColorPicker";
+
 class CTitleText extends React.Component {
   // add state because of radio button
   constructor(props) {
@@ -163,7 +166,11 @@ class CTitleText extends React.Component {
       handleCancelEditing();
     };
 
-    const handleNoColor = _ => {};
+    const handleNoColor = id => _ => {
+      this.setState({
+        inputs: { ...inputs, [id]: null }
+      });
+    };
 
     return (
       <div className={classNames(classes.container, classes.noTopPadding)}>
@@ -190,39 +197,19 @@ class CTitleText extends React.Component {
                 </Typography>
               </div>
 
-              <FormControlLabel
-                control={
-                  <React.Fragment>
-                    <Input
-                      id="containerColor"
-                      type="color"
-                      defaultValue={inputs.containerColor}
-                      className={classes.color}
-                      onChange={handleInputChange}
-                    />
-                    <IconButton aria-label="No Color" onClick={handleNoColor}>
-                      <FormatColorResetIcon fontSize="small" />
-                    </IconButton>
-                  </React.Fragment>
-                }
+              <CCColorPicker
+                id="containerColor"
+                value={inputs.containerColor}
+                handleInputChange={handleInputChange}
+                handleNoColor={handleNoColor}
                 label={staticContent.container.label.color.text}
               />
 
-              <FormControlLabel
-                control={
-                  <React.Fragment>
-                    <Input
-                      id="containerBackground"
-                      type="color"
-                      defaultValue={inputs.containerBackground}
-                      onChange={handleInputChange}
-                      className={classes.color}
-                    />
-                    <IconButton aria-label="No Color" onClick={handleNoColor}>
-                      <FormatColorResetIcon fontSize="small" />
-                    </IconButton>
-                  </React.Fragment>
-                }
+              <CCColorPicker
+                id="containerBackground"
+                value={inputs.containerBackground}
+                handleInputChange={handleInputChange}
+                handleNoColor={handleNoColor}
                 label={staticContent.container.label.color.background}
               />
             </div>
@@ -285,21 +272,11 @@ class CTitleText extends React.Component {
                 onChange={handleInputChange}
               />
 
-              <FormControlLabel
-                control={
-                  <React.Fragment>
-                    <Input
-                      id="titleColor"
-                      type="color"
-                      defaultValue={inputs.titleColor}
-                      className={classes.color}
-                      onChange={handleInputChange}
-                    />{" "}
-                    <IconButton aria-label="No Color" onClick={handleNoColor}>
-                      <FormatColorResetIcon fontSize="small" />
-                    </IconButton>
-                  </React.Fragment>
-                }
+              <CCColorPicker
+                id="titleColor"
+                value={inputs.titleColor}
+                handleInputChange={handleInputChange}
+                handleNoColor={handleNoColor}
                 label={staticContent.title.label.color}
               />
             </div>
@@ -362,21 +339,11 @@ class CTitleText extends React.Component {
                 onChange={handleInputChange}
               />
 
-              <FormControlLabel
-                control={
-                  <React.Fragment>
-                    <Input
-                      id="subTitleColor"
-                      type="color"
-                      defaultValue={inputs.subTitleColor}
-                      onChange={handleInputChange}
-                      className={classes.color}
-                    />{" "}
-                    <IconButton aria-label="No Color" onClick={handleNoColor}>
-                      <FormatColorResetIcon fontSize="small" />
-                    </IconButton>
-                  </React.Fragment>
-                }
+              <CCColorPicker
+                id="subTitleColor"
+                value={inputs.subTitleColor}
+                handleInputChange={handleInputChange}
+                handleNoColor={handleNoColor}
                 label={staticContent.subTitle.label.color}
               />
             </div>
@@ -436,21 +403,12 @@ class CTitleText extends React.Component {
                 defaultValue={inputs.lineWidth}
                 onChange={handleInputChange}
               />
-              <FormControlLabel
-                control={
-                  <React.Fragment>
-                    <Input
-                      id="lineColor"
-                      type="color"
-                      defaultValue={inputs.lineColor}
-                      onChange={handleInputChange}
-                      className={classes.color}
-                    />{" "}
-                    <IconButton aria-label="No Color" onClick={handleNoColor}>
-                      <FormatColorResetIcon fontSize="small" />
-                    </IconButton>
-                  </React.Fragment>
-                }
+
+              <CCColorPicker
+                id="lineColor"
+                value={inputs.lineColor}
+                handleInputChange={handleInputChange}
+                handleNoColor={handleNoColor}
                 label={staticContent.line.label.color}
               />
             </div>
@@ -512,21 +470,11 @@ class CTitleText extends React.Component {
                 onChange={handleInputChange}
               />
 
-              <FormControlLabel
-                control={
-                  <React.Fragment>
-                    <Input
-                      id="bodyColor"
-                      type="color"
-                      defaultValue={inputs.bodyColor}
-                      onChange={handleInputChange}
-                      className={classes.color}
-                    />{" "}
-                    <IconButton aria-label="No Color" onClick={handleNoColor}>
-                      <FormatColorResetIcon fontSize="small" />
-                    </IconButton>
-                  </React.Fragment>
-                }
+              <CCColorPicker
+                id="bodyColor"
+                value={inputs.bodyColor}
+                handleInputChange={handleInputChange}
+                handleNoColor={handleNoColor}
                 label={staticContent.body.label.color}
               />
             </div>
@@ -598,21 +546,11 @@ class CTitleText extends React.Component {
                 onChange={handleInputChange}
               />
 
-              <FormControlLabel
-                control={
-                  <React.Fragment>
-                    <Input
-                      id="readMoreColor"
-                      type="color"
-                      defaultValue={inputs.readMoreColor}
-                      onChange={handleInputChange}
-                      className={classes.color}
-                    />{" "}
-                    <IconButton aria-label="No Color" onClick={handleNoColor}>
-                      <FormatColorResetIcon fontSize="small" />
-                    </IconButton>
-                  </React.Fragment>
-                }
+              <CCColorPicker
+                id="readMoreColor"
+                value={inputs.readMoreColor}
+                handleInputChange={handleInputChange}
+                handleNoColor={handleNoColor}
                 label={staticContent.readMore.label.color}
               />
             </div>
