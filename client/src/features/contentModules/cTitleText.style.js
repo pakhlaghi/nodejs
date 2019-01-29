@@ -56,10 +56,6 @@ const styles = theme => ({
     justifyContent: "flex-end",
     padding: "10px"
   },
-  color: {
-    width: "80px",
-    margin: "10px 10px 10px 50px"
-  },
   input: {
     margin: "10px 10px 20px 40px",
     width: "70%"
@@ -74,13 +70,6 @@ const styles = theme => ({
   },
   margin: {
     margin: "10px 10px 0px 40px"
-  },
-  noColor: {
-    "& ::-webkit-color-swatch": {
-      background: `linear-gradient(6deg, white calc(50% - 1.5px), ${
-        theme.palette.secondary.main
-      } calc(50%), white calc(50% + 1.5px)) !important`
-    }
   }
 });
 

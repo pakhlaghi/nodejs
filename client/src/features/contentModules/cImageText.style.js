@@ -3,10 +3,6 @@ const styles = theme => ({
     marginTop: "auto",
     display: "flex",
     justifyContent: "center",
-    background: "rgb(253, 29, 78)",
-    background:
-      "linear-gradient(0deg, rgba(253,29,78,1) 0%, rgba(175,56,13,0.9917717086834734) 100%)",
-    minHeight: "400px",
     color: theme.palette.secondary.contrastText
   },
   contentWidth: {
@@ -19,7 +15,6 @@ const styles = theme => ({
     display: "flex"
   },
   box: {
-    width: "50%",
     [theme.breakpoints.down("md")]: {
       width: "100%"
     },

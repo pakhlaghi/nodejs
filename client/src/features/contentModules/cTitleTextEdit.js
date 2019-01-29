@@ -7,7 +7,6 @@ import { withStyles } from "@material-ui/core/styles";
 import CloseIcon from "@material-ui/icons/Close";
 import SaveIcon from "@material-ui/icons/Save";
 import CancelIcon from "@material-ui/icons/Cancel";
-import FormatColorResetIcon from "@material-ui/icons/FormatColorReset";
 
 import {
   Input,
@@ -168,7 +167,7 @@ class CTitleText extends React.Component {
 
     const handleNoColor = id => _ => {
       this.setState({
-        inputs: { ...inputs, [id]: "#" }
+        inputs: { ...inputs, [id]: "" }
       });
     };
 

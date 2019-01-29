@@ -31,7 +31,7 @@ const CCColorPicker = props => {
             id={id}
             type="color"
             value={value}
-            className={`${classes.color} ${value == "#" && classes.noColor}`}
+            className={`${classes.color} ${value == "" && classes.noColor}`}
             onInput={handleInputChange}
           />
           <IconButton aria-label="No Color" onClick={handleNoColor(id)}>
