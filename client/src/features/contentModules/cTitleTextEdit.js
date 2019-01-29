@@ -168,7 +168,7 @@ class CTitleText extends React.Component {
 
     const handleNoColor = id => _ => {
       this.setState({
-        inputs: { ...inputs, [id]: null }
+        inputs: { ...inputs, [id]: "#" }
       });
     };
 

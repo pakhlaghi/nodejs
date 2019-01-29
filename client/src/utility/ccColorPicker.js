@@ -13,9 +13,9 @@ const styles = theme => ({
   },
   noColor: {
     "& ::-webkit-color-swatch": {
-      background: `linear-gradient(6deg, white calc(50% - 1.5px), ${
+      background: `linear-gradient(6deg, black calc(50% - 2px), ${
         theme.palette.secondary.main
-      } calc(50%), white calc(50% + 1.5px)) !important`
+      } calc(50%), black calc(50% + 2px)) !important`
     }
   }
 });
@@ -30,9 +30,9 @@ const CCColorPicker = props => {
           <Input
             id={id}
             type="color"
-            defaultValue={value}
-            className={`${classes.color} ${!value && classes.noColor}`}
-            onChange={handleInputChange}
+            value={value}
+            className={`${classes.color} ${value == "#" && classes.noColor}`}
+            onInput={handleInputChange}
           />
           <IconButton aria-label="No Color" onClick={handleNoColor(id)}>
             <FormatColorResetIcon fontSize="small" />
