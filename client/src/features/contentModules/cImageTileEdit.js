@@ -38,12 +38,12 @@ class CTitleText extends React.Component {
         containerColor: contentData.color,
         containerBackground: contentData.background,
 
-        imageWidth: contentData.image && contentData.image.width,
-        imagePosition: contentData.image && contentData.image.position,
-        imageSwitch: contentData.image && contentData.image.isVisible,
-        imageAlign: contentData.image && contentData.image.align,
-        imageTitle: contentData.image && contentData.image.title,
-        imageUrl: contentData.image && contentData.image.url,
+        imageWidth: contentData.image.width,
+        imagePosition: contentData.image.position,
+        imageSwitch: contentData.image.isVisible,
+        imageAlign: contentData.image.align,
+        imageTitle: contentData.image.title,
+        imageUrl: contentData.image.url,
 
         titleText: contentData.title.text,
         titleColor: contentData.title.color,
@@ -75,14 +75,19 @@ class CTitleText extends React.Component {
   }
 
   render() {
+
+    // from props
     const {
       classes,
       handleApplyChanges,
       handleCancelEditing,
-      moduleType,
-      contentData
+      moduleType
     } = this.props;
+
+    // from state
     const { inputs } = this.state;
+
+    // static content
     const staticContent = {
       header: {
         title: "Edit"
@@ -90,16 +95,15 @@ class CTitleText extends React.Component {
       container: {
         title: "Global",
         label: {
+            columnNumber: "Nomber of Columns",
           color: {
-            text: "Module Text Color",
-            background: "Module Background"
+            text: "Module Text Color"
           }
         }
       },
       image: {
         title: "Image",
         label: {
-          width: "Image Width",
           switch: "Visible",
           title: "Image Title",
           url: "Image URL"
@@ -109,41 +113,22 @@ class CTitleText extends React.Component {
         title: "Title",
         label: {
           text: "Title Text",
-          color: "Text Color",
-          switch: "Visible"
+          url: "Url",
+          color: "Text Color"
         }
       },
       subTitle: {
         title: "Sub-Title",
         label: {
           text: "Sub-Title Text",
-          color: "Text Color",
-          switch: "Visible"
+          color: "Text Color"
         }
       },
-      line: {
-        title: "Line",
-        label: {
-          width: "Line Width",
-          color: "Text Color",
-          switch: "Visible"
-        }
-      },
-      body: {
+      details: {
         title: "Body",
         label: {
-          text: "Body Content",
-          color: "Text Color",
-          switch: "Visible"
-        }
-      },
-      readMore: {
-        title: "Read More Link",
-        label: {
-          text: "Read More Text",
-          url: "Url",
-          color: "Text Color",
-          switch: "Visible"
+          text: "Details Content",
+          color: "Text Color"
         }
       },
       footer: {
@@ -242,8 +227,7 @@ class CTitleText extends React.Component {
             <Divider />
 
            {/* --Image-- */}
-            {contentData.image && <React.Fragment>
-              <div className={classes.paper}>
+            <div className={classes.paper}>
               <div className={classes.title}>
                 <Typography variant="h6">
                   {staticContent.image.title}
@@ -352,7 +336,7 @@ class CTitleText extends React.Component {
                 onChange={handleInputChange}
               />
             </div>
-            <Divider /></React.Fragment>}
+            <Divider />
 
             {/* --Title-- */}
             <div className={classes.paper}>

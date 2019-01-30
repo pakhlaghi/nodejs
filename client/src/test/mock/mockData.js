@@ -163,44 +163,52 @@ const home = id => {
       {
         id: 3,
         type: "CImageTile",
-        contents: [
+        contents: {
+          columnNumber: 5,
+          tiles: [
           {
             img:
               "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img1.jpg",
             title: "Image",
-            author: "author"
+            subTitle: "subTitle",
+            details: "details"
           },
           {
             img:
               "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img2.jpg",
             title: "Image",
-            author: "author"
+            subTitle: "subTitle",
+            details: "details"
           },
           {
             img:
               "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img3.jpg",
             title: "Image",
-            author: "author"
+            subTitle: "subTitle",
+            details: "details"
           },
           {
             img:
               "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img4.jpg",
             title: "Image",
-            author: "author"
+            subTitle: "subTitle",
+            details: "details"
           },
           {
             img:
               "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img5.jpg",
             title: "Image",
-            author: "author"
+            subTitle: "subTitle",
+            details: "details"
           },
           {
             img:
               "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img6.jpg",
             title: "Image",
-            author: "author"
+            subTitle: "subTitle",
+            details: "details"
           }
-        ]
+        ]}
       },
       {
         id: 4,
@@ -321,37 +329,43 @@ const home = id => {
             img:
               "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img1.jpg",
             title: "Image",
-            author: "author"
+            subTitle: "subTitle",
+            details: "details"
           },
           {
             img:
               "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img2.jpg",
             title: "Image",
-            author: "author"
+            subTitle: "subTitle",
+            details: "details"
           },
           {
             img:
               "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img3.jpg",
             title: "Image",
-            author: "author"
+            subTitle: "subTitle",
+            details: "details"
           },
           {
             img:
               "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img4.jpg",
             title: "Image",
-            author: "author"
+            subTitle: "subTitle",
+            details: "details"
           },
           {
             img:
               "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img5.jpg",
             title: "Image",
-            author: "author"
+            subTitle: "subTitle",
+            details: "details"
           },
           {
             img:
               "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img6.jpg",
             title: "Image",
-            author: "author"
+            subTitle: "subTitle",
+            details: "details"
           }
         ]
       },
@@ -550,37 +564,43 @@ const dashboard = {
           img:
             "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img1.jpg",
           title: "Image",
-          author: "author"
+          subTitle: "subTitle",
+          details: "details"
         },
         {
           img:
             "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img2.jpg",
           title: "Image",
-          author: "author"
+          subTitle: "subTitle",
+          details: "details"
         },
         {
           img:
             "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img3.jpg",
           title: "Image",
-          author: "author"
+          subTitle: "subTitle",
+          details: "details"
         },
         {
           img:
             "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img4.jpg",
           title: "Image",
-          author: "author"
+          subTitle: "subTitle",
+          details: "details"
         },
         {
           img:
             "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img5.jpg",
           title: "Image",
-          author: "author"
+          subTitle: "subTitle",
+          details: "details"
         },
         {
           img:
             "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img6.jpg",
           title: "Image",
-          author: "author"
+          subTitle: "subTitle",
+          details: "details"
         }
       ]
     },

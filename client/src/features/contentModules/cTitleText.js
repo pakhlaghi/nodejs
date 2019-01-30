@@ -2,19 +2,24 @@ import React from "react";
 // UI
 import styles from "./cTitleText.style";
 import { withStyles } from "@material-ui/core/styles";
-import { Typography, ButtonBase } from "@material-ui/core";
+import { Typography, ButtonBase, withTheme } from "@material-ui/core";
 import CTitleTextEdit from "./cTitleTextEdit";
 
 const CTitleText = props => {
+  // from props
   const {
     classes,
+    theme,
     contentData,
     handleApplyChanges,
     handleCancelEditing
   } = props;
+
+  // line style
   const lineStyle = {
     width: contentData.line.width ? contentData.line.width : "80px",
-    backgroundColor: contentData.line.color || contentData.color
+    backgroundColor: 
+    (contentData.line && contentData.line.color) || contentData.color || theme.palette.secondary.main
   };
 
   return (
@@ -90,4 +95,4 @@ const CTitleText = props => {
   );
 };
 
-export default withStyles(styles)(CTitleText);
+export default withStyles(styles)(withTheme()(CTitleText));

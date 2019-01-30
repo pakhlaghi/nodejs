@@ -13,20 +13,23 @@ import InfoIcon from "@material-ui/icons/Info";
 function CImageTile(props) {
   const { classes, width, contentData } = props;
   const isSmall = width.indexOf("s") >= 0;
+
+  const columnNumber  =  contentData.columnNumber || 3;
+
   return (
     <div>
       <div className={classes.root}>
         <GridList
-          cellHeight={isSmall ? 200 : 400}
+          cellHeight={isSmall ? 200 : 1200/ columnNumber }
           className={classes.gridList}
-          cols={isSmall ? 2 : 3}
+          cols={isSmall ? 2 : columnNumber}
         >
-          {contentData.map(tile => (
+          {contentData.tiles.map(tile => (
             <GridListTile cols={tile.cols || 1} key={tile.img}>
               <img src={tile.img} alt={tile.title} />
               <GridListTileBar
                 title={tile.title}
-                subtitle={<span>by: {tile.author}</span>}
+                subtitle={<span>by: {tile.subTitle}</span>}
                 actionIcon={
                   <IconButton className={classes.icon}>
                     <InfoIcon />
