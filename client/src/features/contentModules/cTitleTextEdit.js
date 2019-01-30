@@ -195,6 +195,8 @@ class CTitleText extends React.Component {
     return (
       <div className={classNames(classes.container, classes.noTopPadding)}>
         <Paper className={classes.topLayer}>
+       
+        {/* --Header-- */}
           <div className={classes.editHeader}>
             <Typography color="inherit" variant="h6">
               {staticContent.header.title}
@@ -209,7 +211,36 @@ class CTitleText extends React.Component {
           </div>
           <Divider />
 
-          <div>
+          <div>           
+
+            {/* --Container-- */}
+            <div className={classes.paper}>
+              <div className={classes.title}>
+                <Typography variant="h6">
+                  {staticContent.container.title}
+                </Typography>
+              </div>
+
+              <CCColorPicker
+                id="containerColor"
+                value={inputs.containerColor}
+                handleInputChange={handleInputChange}
+                handleNoColor={handleNoColor}
+                label={staticContent.container.label.color.text}
+              />
+
+              <CCColorPicker
+                id="containerBackground"
+                value={inputs.containerBackground}
+                handleInputChange={handleInputChange}
+                handleNoColor={handleNoColor}
+                label={staticContent.container.label.color.background}
+                defaultColor="white"
+              />
+            </div>
+            <Divider />
+
+           {/* --Image-- */}
             <div className={classes.paper}>
               <div className={classes.title}>
                 <Typography variant="h6">
@@ -321,31 +352,7 @@ class CTitleText extends React.Component {
             </div>
             <Divider />
 
-            <div className={classes.paper}>
-              <div className={classes.title}>
-                <Typography variant="h6">
-                  {staticContent.container.title}
-                </Typography>
-              </div>
-
-              <CCColorPicker
-                id="containerColor"
-                value={inputs.containerColor}
-                handleInputChange={handleInputChange}
-                handleNoColor={handleNoColor}
-                label={staticContent.container.label.color.text}
-              />
-
-              <CCColorPicker
-                id="containerBackground"
-                value={inputs.containerBackground}
-                handleInputChange={handleInputChange}
-                handleNoColor={handleNoColor}
-                label={staticContent.container.label.color.background}
-              />
-            </div>
-            <Divider />
-
+            {/* --Title-- */}
             <div className={classes.paper}>
               <div className={classes.title}>
                 <Typography variant="h6">
@@ -413,6 +420,7 @@ class CTitleText extends React.Component {
             </div>
             <Divider />
 
+            {/* --Sub Title-- */}
             <div className={classes.paper}>
               <div className={classes.title}>
                 <Typography variant="h6">
@@ -480,6 +488,7 @@ class CTitleText extends React.Component {
             </div>
             <Divider />
 
+            {/* --Line-- */}
             <div className={classes.paper}>
               <div className={classes.title}>
                 <Typography variant="h6">{staticContent.line.title}</Typography>
@@ -545,6 +554,7 @@ class CTitleText extends React.Component {
             </div>
             <Divider />
 
+            {/* --Body-- */}
             <div className={classes.paper}>
               <div className={classes.title}>
                 <Typography variant="h6">{staticContent.body.title}</Typography>
@@ -611,6 +621,7 @@ class CTitleText extends React.Component {
             </div>
             <Divider />
 
+            {/* --Read More-- */}
             <div className={classes.paper}>
               <div className={classes.title}>
                 <Typography variant="h6">
@@ -688,6 +699,7 @@ class CTitleText extends React.Component {
           </div>
           <Divider />
 
+          {/* --Footer-- */}
           <div className={classes.footer}>
             <Button
               variant="contained"
