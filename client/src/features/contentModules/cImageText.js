@@ -3,21 +3,23 @@ import CTitleTextEdit from "./cTitleTextEdit";
 
 // UI
 import styles from "./cImageText.style";
-import { withStyles } from "@material-ui/core/styles";
+import { withStyles, withTheme } from "@material-ui/core/styles";
 import { Typography, ButtonBase } from "@material-ui/core";
 import classNames from "classnames";
 
 const CImageText = props => {
   const {
     classes,
+    theme,
     contentData,
     handleApplyChanges,
     handleCancelEditing
   } = props;
 
   const lineStyle = {
-    width: contentData.line.width ? contentData.line.width : "80px",
-    backgroundColor: contentData.line.color || contentData.color
+    width: contentData.line && contentData.line.width ? contentData.line.width : "80px",
+    backgroundColor: 
+    (contentData.line && contentData.line.color) || contentData.color || theme.palette.secondary.main
   };
 
   const imagePosisionMap = {
@@ -33,11 +35,11 @@ const CImageText = props => {
     end: "flex-end"
   };
 
-  const imagePosition =
-    contentData.image.position && imagePosisionMap[contentData.image.position];
+  const imagePosition = 
+    contentData.image.position && imagePosisionMap[contentData.image.position] || null;
 
   const imageAlign =
-    contentData.image.align && imageAlignMap[contentData.image.align];
+    contentData.image.align && imageAlignMap[contentData.image.align] || null;
 
   return (
     <React.Fragment>
@@ -49,7 +51,7 @@ const CImageText = props => {
           className={classes.contentWidth}
           style={{ flexDirection: imagePosition }}
         >
-          {contentData.image.isVisible && (
+          {contentData.image.isVisible && contentData.image.url && (
             <div
               className={classNames(classes.box, classes.imageBox)}
               style={{ width: contentData.image.width, alignSelf: imageAlign }}
@@ -57,7 +59,7 @@ const CImageText = props => {
               <img
                 className={classes.image}
                 src={contentData.image.url}
-                alt={contentData.image.title}
+                alt={contentData.image.title || ""}
               />
             </div>
           )}
@@ -138,4 +140,4 @@ const CImageText = props => {
   );
 };
 
-export default withStyles(styles)(CImageText);
+export default withStyles(styles)(withTheme()(CImageText));

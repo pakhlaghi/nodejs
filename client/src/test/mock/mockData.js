@@ -118,20 +118,45 @@ const home = id => {
         id: 2,
         type: "CImageText",
         contents: {
+          color: "white",
+          background:
+            "linear-gradient(0deg, rgba(253,29,78,1) 0%, rgba(175,56,13,0.9917717086834734) 100%)",
+          contentWidth: "50%",
           image: {
+            isVisible: true,
+            position: "left",
+            align: "center",
+            width: "50%",
             url:
               "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/bg5.png",
             title: "mobile"
           },
-          title: "EDIT PHOTOS on the Go Peyman!",
-          subtitle: `Our app has the most essential editing features, allowing you to
-                enhance all the pictures you’ve taken on the go!`,
-          body: `As a team of professional photographers who were all young enough to
-                remember working with the Photoshop V 1.0, we were always on the
-                verge of cutting-edge photos post-processing technologies.`,
+          
+          title: {
+            text: "GET OUR APP AND TURN EVERY PHOTO",
+            isVisible: true,
+          },
+          subTitle: {
+            text: "You Take Into a Masterpiece!",
+            isVisible: true,
+          },
+          line: {
+            isVisible: true,
+            width: null,
+          },
+          body: {
+            text: `Despite all the intuitiveness of interface and easy-to-understand UX
+                      and UI, an application as complex as ours can get you bumping into
+                      some roadblocks or asking some technical questions over time. We can
+                      assure you, that while our Customer Support dept. will be ready to
+                      help you 24/7, we have also placed all the most frequently asked
+                      questions and issues on this page…`,
+            isVisible: true,
+          },
           readMore: {
             text: "Read More",
-            url: "#"
+            url: "#",
+            isVisible: true,
           }
         }
       },
@@ -463,6 +488,9 @@ const dashboard = {
       name: "Image & Text",
       type: "CImageText",
       contents: {
+        background:
+          "linear-gradient(0deg, rgba(253,29,78,1) 0%, rgba(175,56,13,0.9917717086834734) 100%)",
+        contentWidth: "80%",
         image: {
           isVisible: true,
           position: "right",
@@ -472,9 +500,7 @@ const dashboard = {
             "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/bg5.png",
           title: "mobile"
         },
-        background:
-          "linear-gradient(0deg, rgba(253,29,78,1) 0%, rgba(175,56,13,0.9917717086834734) 100%)",
-        contentWidth: "80%",
+        
         title: {
           text: "GET OUR APP AND TURN EVERY PHOTO",
           isVisible: true,
