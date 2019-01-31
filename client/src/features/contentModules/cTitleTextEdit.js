@@ -194,10 +194,15 @@ class CTitleText extends React.Component {
     };
 
     return (
-      <div className={classNames(classes.container, classes.noTopPadding)}>
+      <div
+        className={classNames(
+          classes.container,
+          classes.noTopPadding,
+          classes.topMargin
+        )}
+      >
         <Paper className={classes.topLayer}>
-       
-        {/* --Header-- */}
+          {/* --Header-- */}
           <div className={classes.editHeader}>
             <Typography color="inherit" variant="h6">
               {staticContent.header.title}
@@ -212,8 +217,7 @@ class CTitleText extends React.Component {
           </div>
           <Divider />
 
-          <div>           
-
+          <div>
             {/* --Container-- */}
             <div className={classes.paper}>
               <div className={classes.title}>
@@ -241,118 +245,121 @@ class CTitleText extends React.Component {
             </div>
             <Divider />
 
-           {/* --Image-- */}
-            {contentData.image && <React.Fragment>
-              <div className={classes.paper}>
-              <div className={classes.title}>
-                <Typography variant="h6">
-                  {staticContent.image.title}
-                </Typography>
-                <FormControlLabel
-                  control={
-                    <Switch
-                      id="imageSwitch"
-                      defaultChecked={inputs.imageSwitch}
-                      onChange={handleInputChange}
-                      color="primary"
+            {/* --Image-- */}
+            {contentData.image && (
+              <React.Fragment>
+                <div className={classes.paper}>
+                  <div className={classes.title}>
+                    <Typography variant="h6">
+                      {staticContent.image.title}
+                    </Typography>
+                    <FormControlLabel
+                      control={
+                        <Switch
+                          id="imageSwitch"
+                          defaultChecked={inputs.imageSwitch}
+                          onChange={handleInputChange}
+                          color="primary"
+                        />
+                      }
+                      label={staticContent.image.label.switch}
+                      className={classes.pullRight}
                     />
-                  }
-                  label={staticContent.image.label.switch}
-                  className={classes.pullRight}
-                />
-              </div>
+                  </div>
 
-              <FormControl component="fieldset" className={classes.margin}>
-                <FormLabel component="legend" className={classes.legend}>
-                  Alignment
-                </FormLabel>
-                <RadioGroup
-                  aria-label="Alignment"
-                  value={inputs.imageAlign}
-                  onChange={handleInputChange}
-                  row={true}
-                  name="imageAlign"
-                >
-                  <FormControlLabel
-                    value="start"
-                    control={<Radio />}
-                    label="Start"
-                  />
-                  <FormControlLabel
-                    value="center"
-                    control={<Radio />}
-                    label="Center"
-                  />
-                  <FormControlLabel
-                    value="end"
-                    control={<Radio />}
-                    label="End"
-                  />
-                </RadioGroup>
-              </FormControl>
+                  <FormControl component="fieldset" className={classes.margin}>
+                    <FormLabel component="legend" className={classes.legend}>
+                      Alignment
+                    </FormLabel>
+                    <RadioGroup
+                      aria-label="Alignment"
+                      value={inputs.imageAlign}
+                      onChange={handleInputChange}
+                      row={true}
+                      name="imageAlign"
+                    >
+                      <FormControlLabel
+                        value="start"
+                        control={<Radio />}
+                        label="Start"
+                      />
+                      <FormControlLabel
+                        value="center"
+                        control={<Radio />}
+                        label="Center"
+                      />
+                      <FormControlLabel
+                        value="end"
+                        control={<Radio />}
+                        label="End"
+                      />
+                    </RadioGroup>
+                  </FormControl>
 
-              <FormControl component="fieldset" className={classes.margin}>
-                <FormLabel component="legend" className={classes.legend}>
-                  Position
-                </FormLabel>
-                <RadioGroup
-                  aria-label="Position"
-                  value={inputs.imagePosition}
-                  onChange={handleInputChange}
-                  row={true}
-                  name="imagePosition"
-                >
-                  <FormControlLabel
-                    value="top"
-                    control={<Radio />}
-                    label="Top"
-                  />
-                  <FormControlLabel
-                    value="right"
-                    control={<Radio />}
-                    label="Right"
-                  />
-                  <FormControlLabel
-                    value="bottom"
-                    control={<Radio />}
-                    label="Bottom"
-                  />
-                  <FormControlLabel
-                    value="left"
-                    control={<Radio />}
-                    label="Left"
-                  />
-                </RadioGroup>
-              </FormControl>
+                  <FormControl component="fieldset" className={classes.margin}>
+                    <FormLabel component="legend" className={classes.legend}>
+                      Position
+                    </FormLabel>
+                    <RadioGroup
+                      aria-label="Position"
+                      value={inputs.imagePosition}
+                      onChange={handleInputChange}
+                      row={true}
+                      name="imagePosition"
+                    >
+                      <FormControlLabel
+                        value="top"
+                        control={<Radio />}
+                        label="Top"
+                      />
+                      <FormControlLabel
+                        value="right"
+                        control={<Radio />}
+                        label="Right"
+                      />
+                      <FormControlLabel
+                        value="bottom"
+                        control={<Radio />}
+                        label="Bottom"
+                      />
+                      <FormControlLabel
+                        value="left"
+                        control={<Radio />}
+                        label="Left"
+                      />
+                    </RadioGroup>
+                  </FormControl>
 
-              <TextField
-                id="imageUrl"
-                label={staticContent.image.label.url}
-                className={classes.input}
-                variant="filled"
-                defaultValue={inputs.imageUrl}
-                onChange={handleInputChange}
-              />
+                  <TextField
+                    id="imageUrl"
+                    label={staticContent.image.label.url}
+                    className={classes.input}
+                    variant="filled"
+                    defaultValue={inputs.imageUrl}
+                    onChange={handleInputChange}
+                  />
 
-              <TextField
-                id="imageTitle"
-                label={staticContent.image.label.title}
-                className={classes.input}
-                variant="filled"
-                defaultValue={inputs.imageTitle}
-                onChange={handleInputChange}
-              />
+                  <TextField
+                    id="imageTitle"
+                    label={staticContent.image.label.title}
+                    className={classes.input}
+                    variant="filled"
+                    defaultValue={inputs.imageTitle}
+                    onChange={handleInputChange}
+                  />
 
-              <TextField
-                id="imageWidth"
-                label={staticContent.image.label.width}
-                className={classes.input}
-                variant="filled"
-                defaultValue={inputs.imageWidth}
-                onChange={handleInputChange}
-              />
-            </div>
-            <Divider /></React.Fragment>}
+                  <TextField
+                    id="imageWidth"
+                    label={staticContent.image.label.width}
+                    className={classes.input}
+                    variant="filled"
+                    defaultValue={inputs.imageWidth}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <Divider />
+              </React.Fragment>
+            )}
 
             {/* --Title-- */}
             <div className={classes.paper}>
@@ -703,25 +710,27 @@ class CTitleText extends React.Component {
 
           {/* --Footer-- */}
           <div className={classes.footer}>
-            <Button
-              variant="contained"
-              color="default"
-              className={classes.button}
-              onClick={handleCancel}
-            >
-              {staticContent.footer.button.cancel}
-              <CancelIcon className={classes.rightIcon} />
-            </Button>
+            <div className={classes.pullRight}>
+              <Button
+                variant="contained"
+                color="default"
+                className={classes.button}
+                onClick={handleCancel}
+              >
+                {staticContent.footer.button.cancel}
+                <CancelIcon className={classes.rightIcon} />
+              </Button>
 
-            <Button
-              variant="contained"
-              color="secondary"
-              className={classes.button}
-              onClick={handleApply}
-            >
-              {staticContent.footer.button.apply}
-              <SaveIcon className={classes.rightIcon} />
-            </Button>
+              <Button
+                variant="contained"
+                color="secondary"
+                className={classes.button}
+                onClick={handleApply}
+              >
+                {staticContent.footer.button.apply}
+                <SaveIcon className={classes.rightIcon} />
+              </Button>
+            </div>
           </div>
         </Paper>
       </div>

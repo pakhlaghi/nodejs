@@ -7,21 +7,15 @@ import { withStyles } from "@material-ui/core/styles";
 import CloseIcon from "@material-ui/icons/Close";
 import SaveIcon from "@material-ui/icons/Save";
 import CancelIcon from "@material-ui/icons/Cancel";
-
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import AddBoxIcon from "@material-ui/icons/AddBox";
 import {
-  Input,
   Divider,
-  FormControlLabel,
-  Switch,
   Typography,
   Paper,
   IconButton,
   Button,
-  TextField,
-  Radio,
-  RadioGroup,
-  FormControl,
-  FormLabel
+  TextField
 } from "@material-ui/core";
 
 // Utility
@@ -36,53 +30,28 @@ class CTitleText extends React.Component {
     this.state = {
       inputs: {
         containerColor: contentData.color,
-        containerBackground: contentData.background,
-
-        imageWidth: contentData.image.width,
-        imagePosition: contentData.image.position,
-        imageSwitch: contentData.image.isVisible,
-        imageAlign: contentData.image.align,
-        imageTitle: contentData.image.title,
-        imageUrl: contentData.image.url,
-
-        titleText: contentData.title.text,
-        titleColor: contentData.title.color,
-        titleSwitch: contentData.title.isVisible,
-        titleAlign: contentData.title.align,
-
-        subTitleText: contentData.subTitle.text,
-        subTitleColor: contentData.subTitle.color,
-        subTitleSwitch: contentData.subTitle.isVisible,
-        subTitleAlign: contentData.subTitle.align,
-
-        lineWidth: contentData.line.width,
-        lineColor: contentData.line.color,
-        lineSwitch: contentData.line.isVisible,
-        lineAlign: contentData.line.align,
-
-        bodyText: contentData.body.text,
-        bodyColor: contentData.body.color,
-        bodySwitch: contentData.body.isVisible,
-        bodyAlign: contentData.body.align,
-
-        readMoreText: contentData.readMore.text,
-        readMoreUrl: contentData.readMore.url,
-        readMoreColor: contentData.readMore.color,
-        readMoreSwitch: contentData.readMore.isVisible,
-        readMoreAlign: contentData.readMore.align
+        tiles: this.mapContentToState(contentData)
       }
     };
   }
 
-  render() {
+  mapContentToState = contentData => {
+    return contentData.tiles.map((tile, index) => {
+      return {
+        id: index + 1,
+        imageTitle: tile.title,
+        imageSubTitle: tile.subTitle,
+        imageDetails: tile.details,
+        imageUrl: tile.imageUrl,
+        imageLinkUrl: tile.linkUrl,
+        imageTextColor: tile.textColor
+      };
+    });
+  };
 
+  render() {
     // from props
-    const {
-      classes,
-      handleApplyChanges,
-      handleCancelEditing,
-      moduleType
-    } = this.props;
+    const { classes, handleApplyChanges, handleCancelEditing } = this.props;
 
     // from state
     const { inputs } = this.state;
@@ -95,39 +64,21 @@ class CTitleText extends React.Component {
       container: {
         title: "Global",
         label: {
-            columnNumber: "Nomber of Columns",
+          columnNumber: "Nomber of Columns",
           color: {
             text: "Module Text Color"
           }
         }
       },
       image: {
-        title: "Image",
+        title: "Tile",
         label: {
-          switch: "Visible",
-          title: "Image Title",
-          url: "Image URL"
-        }
-      },
-      title: {
-        title: "Title",
-        label: {
-          text: "Title Text",
-          url: "Url",
-          color: "Text Color"
-        }
-      },
-      subTitle: {
-        title: "Sub-Title",
-        label: {
-          text: "Sub-Title Text",
-          color: "Text Color"
-        }
-      },
-      details: {
-        title: "Body",
-        label: {
-          text: "Details Content",
+          delete: "Delete",
+          title: "Title",
+          imageLinkUrl: "Link to URL",
+          subTitle: "Sub-Title",
+          imageUrl: "Image URL",
+          details: "Details",
           color: "Text Color"
         }
       },
@@ -142,9 +93,23 @@ class CTitleText extends React.Component {
     const handleInputChange = e => {
       switch (e.target.type) {
         case "checkbox":
-          this.setState({
-            inputs: { ...inputs, [e.target.id]: e.target.checked }
-          });
+          if (e.target.id.indexOf("-")) {
+            const inputIndex = e.target.id.split("-")[1] - 1;
+            const inputId = e.target.id.split("-")[0];
+
+            const tiles = this.state.inputs.tiles.map((tile, index) => {
+              if (index == inputIndex) {
+                tile[inputId] = e.target.checked;
+              }
+              return tile;
+            });
+
+            this.setState({ ...inputs, tiles: tiles });
+          } else {
+            this.setState({
+              inputs: { ...inputs, [e.target.id]: e.target.checked }
+            });
+          }
           break;
 
         case "radio":
@@ -154,18 +119,33 @@ class CTitleText extends React.Component {
           break;
 
         default:
-          this.setState({
-            inputs: {
-              ...inputs,
-              [e.target.id == "" ? e.target.name : e.target.id]: e.target.value
-            }
-          });
+          if (e.target.id.indexOf("-")) {
+            const inputIndex = e.target.id.split("-")[1] - 1;
+            const inputId = e.target.id.split("-")[0];
+
+            const tiles = this.state.inputs.tiles.map((tile, index) => {
+              if (index == inputIndex) {
+                tile[inputId] = e.target.value;
+              }
+              return tile;
+            });
+
+            this.setState({ ...inputs, tiles: tiles });
+          } else {
+            this.setState({
+              inputs: {
+                ...inputs,
+                [e.target.id == "" ? e.target.name : e.target.id]: e.target
+                  .value
+              }
+            });
+          }
           break;
       }
     };
 
     const handleApply = _ => {
-      handleApplyChanges(this.state.inputs, moduleType);
+      handleApplyChanges(this.state.inputs, "cImageTile");
     };
 
     const handleCancel = _ => {
@@ -178,11 +158,42 @@ class CTitleText extends React.Component {
       });
     };
 
+    const handleRemoveClick = index => _ => {
+      this.state.inputs.tiles.splice(index, 1);
+      this.setState({
+        inputs: { ...inputs, tiles: this.state.inputs.tiles }
+      });
+    };
+
+    const handleAddTileClick = _ => {
+      const lastId = this.state.inputs.tiles[this.state.inputs.tiles.length - 1]
+        .id;
+      const emptyObj = {
+        id: lastId + 1,
+        imageTitle: "",
+        imageSubTitle: "",
+        imageDetails: "",
+        imageUrl: "",
+        imageLinkUrl: "",
+        imageTextColor: ""
+      };
+
+      this.state.inputs.tiles.push(emptyObj);
+      this.setState({
+        inputs: { ...inputs, tiles: this.state.inputs.tiles }
+      });
+    };
+
     return (
-      <div className={classNames(classes.container, classes.noTopPadding)}>
+      <div
+        className={classNames(
+          classes.container,
+          classes.noTopPadding,
+          classes.topMargin
+        )}
+      >
         <Paper className={classes.topLayer}>
-       
-        {/* --Header-- */}
+          {/* --Header-- */}
           <div className={classes.editHeader}>
             <Typography color="inherit" variant="h6">
               {staticContent.header.title}
@@ -197,8 +208,7 @@ class CTitleText extends React.Component {
           </div>
           <Divider />
 
-          <div>           
-
+          <div>
             {/* --Container-- */}
             <div className={classes.paper}>
               <div className={classes.title}>
@@ -214,474 +224,79 @@ class CTitleText extends React.Component {
                 handleNoColor={handleNoColor}
                 label={staticContent.container.label.color.text}
               />
-
-              <CCColorPicker
-                id="containerBackground"
-                value={inputs.containerBackground}
-                handleInputChange={handleInputChange}
-                handleNoColor={handleNoColor}
-                label={staticContent.container.label.color.background}
-                defaultColor="white"
-              />
             </div>
             <Divider />
 
-           {/* --Image-- */}
-            <div className={classes.paper}>
-              <div className={classes.title}>
-                <Typography variant="h6">
-                  {staticContent.image.title}
-                </Typography>
-                <FormControlLabel
-                  control={
-                    <Switch
-                      id="imageSwitch"
-                      defaultChecked={inputs.imageSwitch}
-                      onChange={handleInputChange}
-                      color="primary"
-                    />
-                  }
-                  label={staticContent.image.label.switch}
-                  className={classes.pullRight}
+            {/* --Image-- */}
+            {inputs.tiles.map((tile, index) => (
+              <div className={classes.paper} key={tile.id}>
+                <div className={classes.title}>
+                  <Typography variant="h6">
+                    {`${index + 1}- ${staticContent.image.title}`}
+                  </Typography>
+                  <IconButton
+                    onClick={handleRemoveClick(index)}
+                    className={`${classes.deleteIcon} ${classes.pullRight}`}
+                    color="secondary"
+                  >
+                    <DeleteForeverIcon />
+                  </IconButton>
+                </div>
+
+                <TextField
+                  id={`imageUrl-${index + 1}`}
+                  label={staticContent.image.label.imageUrl}
+                  className={classes.input}
+                  variant="filled"
+                  defaultValue={tile.imageUrl}
+                  onChange={handleInputChange}
+                />
+
+                <TextField
+                  id={`imageLinkUrl-${index + 1}`}
+                  label={staticContent.image.label.imageLinkUrl}
+                  className={classes.input}
+                  variant="filled"
+                  defaultValue={tile.imageLinkUrl}
+                  onChange={handleInputChange}
+                />
+
+                <TextField
+                  id={`imageTitle-${index + 1}`}
+                  label={staticContent.image.label.title}
+                  className={classes.input}
+                  variant="filled"
+                  defaultValue={tile.imageTitle}
+                  onChange={handleInputChange}
+                />
+
+                <TextField
+                  id={`imageSubTitle-${index + 1}`}
+                  label={staticContent.image.label.subTitle}
+                  className={classes.input}
+                  variant="filled"
+                  defaultValue={tile.imageSubTitle}
+                  onChange={handleInputChange}
+                />
+
+                <TextField
+                  id={`imageDetails-${index + 1}`}
+                  label={staticContent.image.label.details}
+                  className={classes.input}
+                  variant="filled"
+                  defaultValue={tile.imageDetails}
+                  onChange={handleInputChange}
+                />
+
+                <CCColorPicker
+                  id={`imageTextColor-${index + 1}`}
+                  value={tile.imageTextColor}
+                  handleInputChange={handleInputChange}
+                  handleNoColor={handleNoColor}
+                  label={staticContent.image.label.color}
                 />
               </div>
-
-              <FormControl component="fieldset" className={classes.margin}>
-                <FormLabel component="legend" className={classes.legend}>
-                  Alignment
-                </FormLabel>
-                <RadioGroup
-                  aria-label="Alignment"
-                  value={inputs.imageAlign}
-                  onChange={handleInputChange}
-                  row={true}
-                  name="imageAlign"
-                >
-                  <FormControlLabel
-                    value="start"
-                    control={<Radio />}
-                    label="Start"
-                  />
-                  <FormControlLabel
-                    value="center"
-                    control={<Radio />}
-                    label="Center"
-                  />
-                  <FormControlLabel
-                    value="end"
-                    control={<Radio />}
-                    label="End"
-                  />
-                </RadioGroup>
-              </FormControl>
-
-              <FormControl component="fieldset" className={classes.margin}>
-                <FormLabel component="legend" className={classes.legend}>
-                  Position
-                </FormLabel>
-                <RadioGroup
-                  aria-label="Position"
-                  value={inputs.imagePosition}
-                  onChange={handleInputChange}
-                  row={true}
-                  name="imagePosition"
-                >
-                  <FormControlLabel
-                    value="top"
-                    control={<Radio />}
-                    label="Top"
-                  />
-                  <FormControlLabel
-                    value="right"
-                    control={<Radio />}
-                    label="Right"
-                  />
-                  <FormControlLabel
-                    value="bottom"
-                    control={<Radio />}
-                    label="Bottom"
-                  />
-                  <FormControlLabel
-                    value="left"
-                    control={<Radio />}
-                    label="Left"
-                  />
-                </RadioGroup>
-              </FormControl>
-
-              <TextField
-                id="imageUrl"
-                label={staticContent.image.label.url}
-                className={classes.input}
-                variant="filled"
-                defaultValue={inputs.imageUrl}
-                onChange={handleInputChange}
-              />
-
-              <TextField
-                id="imageTitle"
-                label={staticContent.image.label.title}
-                className={classes.input}
-                variant="filled"
-                defaultValue={inputs.imageTitle}
-                onChange={handleInputChange}
-              />
-
-              <TextField
-                id="imageWidth"
-                label={staticContent.image.label.width}
-                className={classes.input}
-                variant="filled"
-                defaultValue={inputs.imageWidth}
-                onChange={handleInputChange}
-              />
-            </div>
-            <Divider />
-
-            {/* --Title-- */}
-            <div className={classes.paper}>
-              <div className={classes.title}>
-                <Typography variant="h6">
-                  {staticContent.title.title}
-                </Typography>
-                <FormControlLabel
-                  control={
-                    <Switch
-                      id="titleSwitch"
-                      defaultChecked={inputs.titleSwitch}
-                      onChange={handleInputChange}
-                      color="primary"
-                    />
-                  }
-                  label={staticContent.title.label.switch}
-                  className={classes.pullRight}
-                />
-              </div>
-
-              <FormControl component="fieldset" className={classes.margin}>
-                <FormLabel component="legend" className={classes.legend}>
-                  Alignment
-                </FormLabel>
-                <RadioGroup
-                  aria-label="Alignment"
-                  value={inputs.titleAlign}
-                  onChange={handleInputChange}
-                  name="titleAlign"
-                  row={true}
-                >
-                  <FormControlLabel
-                    value="left"
-                    control={<Radio />}
-                    label="Left"
-                  />
-                  <FormControlLabel
-                    value="center"
-                    control={<Radio />}
-                    label="Center"
-                  />
-                  <FormControlLabel
-                    value="right"
-                    control={<Radio />}
-                    label="Right"
-                  />
-                </RadioGroup>
-              </FormControl>
-
-              <TextField
-                id="titleText"
-                label={staticContent.title.label.text}
-                className={classes.input}
-                variant="filled"
-                defaultValue={inputs.titleText}
-                onChange={handleInputChange}
-              />
-
-              <CCColorPicker
-                id="titleColor"
-                value={inputs.titleColor}
-                handleInputChange={handleInputChange}
-                handleNoColor={handleNoColor}
-                label={staticContent.title.label.color}
-              />
-            </div>
-            <Divider />
-
-            {/* --Sub Title-- */}
-            <div className={classes.paper}>
-              <div className={classes.title}>
-                <Typography variant="h6">
-                  {staticContent.subTitle.title}
-                </Typography>
-                <FormControlLabel
-                  control={
-                    <Switch
-                      id="subTitleSwitch"
-                      defaultChecked={inputs.subTitleSwitch}
-                      onChange={handleInputChange}
-                      color="primary"
-                    />
-                  }
-                  label={staticContent.subTitle.label.switch}
-                  className={classes.pullRight}
-                />
-              </div>
-
-              <FormControl component="fieldset" className={classes.margin}>
-                <FormLabel component="legend" className={classes.legend}>
-                  Alignment
-                </FormLabel>
-                <RadioGroup
-                  aria-label="Alignment"
-                  value={inputs.subTitleAlign}
-                  onChange={handleInputChange}
-                  row={true}
-                  name="subTitleAlign"
-                >
-                  <FormControlLabel
-                    value="left"
-                    control={<Radio />}
-                    label="Left"
-                  />
-                  <FormControlLabel
-                    value="center"
-                    control={<Radio />}
-                    label="Center"
-                  />
-                  <FormControlLabel
-                    value="right"
-                    control={<Radio />}
-                    label="Right"
-                  />
-                </RadioGroup>
-              </FormControl>
-
-              <TextField
-                id="subTitleText"
-                label={staticContent.subTitle.label.text}
-                className={classes.input}
-                variant="filled"
-                defaultValue={inputs.subTitleText}
-                onChange={handleInputChange}
-              />
-
-              <CCColorPicker
-                id="subTitleColor"
-                value={inputs.subTitleColor}
-                handleInputChange={handleInputChange}
-                handleNoColor={handleNoColor}
-                label={staticContent.subTitle.label.color}
-              />
-            </div>
-            <Divider />
-
-            {/* --Line-- */}
-            <div className={classes.paper}>
-              <div className={classes.title}>
-                <Typography variant="h6">{staticContent.line.title}</Typography>
-                <FormControlLabel
-                  control={
-                    <Switch
-                      id="lineSwitch"
-                      defaultChecked={inputs.lineSwitch}
-                      onChange={handleInputChange}
-                      color="primary"
-                    />
-                  }
-                  label={staticContent.line.label.switch}
-                  className={classes.pullRight}
-                />
-              </div>
-
-              <FormControl component="fieldset" className={classes.margin}>
-                <FormLabel component="legend" className={classes.legend}>
-                  Alignment
-                </FormLabel>
-                <RadioGroup
-                  aria-label="Alignment"
-                  value={inputs.lineAlign}
-                  onChange={handleInputChange}
-                  row={true}
-                  name="lineAlign"
-                >
-                  <FormControlLabel
-                    value="left"
-                    control={<Radio />}
-                    label="Left"
-                  />
-                  <FormControlLabel
-                    value="center"
-                    control={<Radio />}
-                    label="Center"
-                  />
-                  <FormControlLabel
-                    value="right"
-                    control={<Radio />}
-                    label="Right"
-                  />
-                </RadioGroup>
-              </FormControl>
-
-              <TextField
-                id="lineWidth"
-                label={staticContent.line.label.width}
-                className={classes.input}
-                variant="filled"
-                defaultValue={inputs.lineWidth}
-                onChange={handleInputChange}
-              />
-
-              <CCColorPicker
-                id="lineColor"
-                value={inputs.lineColor}
-                handleInputChange={handleInputChange}
-                handleNoColor={handleNoColor}
-                label={staticContent.line.label.color}
-              />
-            </div>
-            <Divider />
-
-            {/* --Body-- */}
-            <div className={classes.paper}>
-              <div className={classes.title}>
-                <Typography variant="h6">{staticContent.body.title}</Typography>
-                <FormControlLabel
-                  control={
-                    <Switch
-                      id="bodySwitch"
-                      defaultChecked={inputs.bodySwitch}
-                      onChange={handleInputChange}
-                      color="primary"
-                    />
-                  }
-                  label={staticContent.body.label.switch}
-                  className={classes.pullRight}
-                />
-              </div>
-
-              <FormControl component="fieldset" className={classes.margin}>
-                <FormLabel component="legend" className={classes.legend}>
-                  Alignment
-                </FormLabel>
-                <RadioGroup
-                  aria-label="Alignment"
-                  value={inputs.bodyAlign}
-                  onChange={handleInputChange}
-                  row={true}
-                  name="bodyAlign"
-                >
-                  <FormControlLabel
-                    value="left"
-                    control={<Radio />}
-                    label="Left"
-                  />
-                  <FormControlLabel
-                    value="center"
-                    control={<Radio />}
-                    label="Center"
-                  />
-                  <FormControlLabel
-                    value="right"
-                    control={<Radio />}
-                    label="Right"
-                  />
-                </RadioGroup>
-              </FormControl>
-
-              <TextField
-                id="bodyText"
-                label={staticContent.body.label.text}
-                className={classes.input}
-                variant="filled"
-                multiline
-                defaultValue={inputs.bodyText}
-                onChange={handleInputChange}
-              />
-
-              <CCColorPicker
-                id="bodyColor"
-                value={inputs.bodyColor}
-                handleInputChange={handleInputChange}
-                handleNoColor={handleNoColor}
-                label={staticContent.body.label.color}
-              />
-            </div>
-            <Divider />
-
-            {/* --Read More-- */}
-            <div className={classes.paper}>
-              <div className={classes.title}>
-                <Typography variant="h6">
-                  {staticContent.readMore.title}
-                </Typography>
-                <FormControlLabel
-                  control={
-                    <Switch
-                      id="readMoreSwitch"
-                      defaultChecked={inputs.readMoreSwitch}
-                      onChange={handleInputChange}
-                      color="primary"
-                    />
-                  }
-                  label={staticContent.readMore.label.switch}
-                  className={classes.pullRight}
-                />
-              </div>
-
-              <FormControl component="fieldset" className={classes.margin}>
-                <FormLabel component="legend" className={classes.legend}>
-                  Alignment
-                </FormLabel>
-                <RadioGroup
-                  aria-label="Alignment"
-                  value={inputs.readMoreAlign}
-                  onChange={handleInputChange}
-                  row={true}
-                  name="readMoreAlign"
-                >
-                  <FormControlLabel
-                    value="left"
-                    control={<Radio />}
-                    label="Left"
-                  />
-                  <FormControlLabel
-                    value="center"
-                    control={<Radio />}
-                    label="Center"
-                  />
-                  <FormControlLabel
-                    value="right"
-                    control={<Radio />}
-                    label="Right"
-                  />
-                </RadioGroup>
-              </FormControl>
-
-              <TextField
-                id="readMoreText"
-                label={staticContent.readMore.label.text}
-                className={classes.input}
-                variant="filled"
-                defaultValue={inputs.readMoreText}
-                onChange={handleInputChange}
-              />
-
-              <TextField
-                id="readMoreUrl"
-                label={staticContent.readMore.label.url}
-                className={classes.input}
-                variant="filled"
-                defaultValue={inputs.readMoreUrl}
-                onChange={handleInputChange}
-              />
-
-              <CCColorPicker
-                id="readMoreColor"
-                value={inputs.readMoreColor}
-                handleInputChange={handleInputChange}
-                handleNoColor={handleNoColor}
-                label={staticContent.readMore.label.color}
-              />
-            </div>
+            ))}
           </div>
           <Divider />
 
@@ -689,23 +304,36 @@ class CTitleText extends React.Component {
           <div className={classes.footer}>
             <Button
               variant="contained"
-              color="default"
+              color="primary"
               className={classes.button}
-              onClick={handleCancel}
+              onClick={handleAddTileClick}
             >
-              {staticContent.footer.button.cancel}
-              <CancelIcon className={classes.rightIcon} />
+              <AddBoxIcon
+                className={classNames(classes.leftIcon, classes.leftIcon)}
+              />
+              Add Tile
             </Button>
+            <div className={classes.pullRight}>
+              <Button
+                variant="contained"
+                color="default"
+                className={classes.button}
+                onClick={handleCancel}
+              >
+                {staticContent.footer.button.cancel}
+                <CancelIcon className={classes.rightIcon} />
+              </Button>
 
-            <Button
-              variant="contained"
-              color="secondary"
-              className={classes.button}
-              onClick={handleApply}
-            >
-              {staticContent.footer.button.apply}
-              <SaveIcon className={classes.rightIcon} />
-            </Button>
+              <Button
+                variant="contained"
+                color="secondary"
+                className={classes.button}
+                onClick={handleApply}
+              >
+                {staticContent.footer.button.apply}
+                <SaveIcon className={classes.rightIcon} />
+              </Button>
+            </div>
           </div>
         </Paper>
       </div>

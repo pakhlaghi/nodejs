@@ -51,9 +51,11 @@ const styles = theme => ({
   rightIcon: {
     marginLeft: theme.spacing.unit
   },
+  leftIcon: {
+    marginRight: theme.spacing.unit
+  },
   footer: {
     display: "flex",
-    justifyContent: "flex-end",
     padding: "10px"
   },
   input: {
@@ -70,6 +72,9 @@ const styles = theme => ({
   },
   margin: {
     margin: "10px 10px 0px 40px"
+  },
+  topMargin: {
+    marginTop: "20px"
   }
 });
 

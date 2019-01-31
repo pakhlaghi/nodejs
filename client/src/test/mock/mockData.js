@@ -131,18 +131,18 @@ const home = id => {
               "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/bg5.png",
             title: "mobile"
           },
-          
+
           title: {
             text: "GET OUR APP AND TURN EVERY PHOTO",
-            isVisible: true,
+            isVisible: true
           },
           subTitle: {
             text: "You Take Into a Masterpiece!",
-            isVisible: true,
+            isVisible: true
           },
           line: {
             isVisible: true,
-            width: null,
+            width: null
           },
           body: {
             text: `Despite all the intuitiveness of interface and easy-to-understand UX
@@ -151,12 +151,12 @@ const home = id => {
                       assure you, that while our Customer Support dept. will be ready to
                       help you 24/7, we have also placed all the most frequently asked
                       questions and issues on this page…`,
-            isVisible: true,
+            isVisible: true
           },
           readMore: {
             text: "Read More",
             url: "#",
-            isVisible: true,
+            isVisible: true
           }
         }
       },
@@ -166,49 +166,50 @@ const home = id => {
         contents: {
           columnNumber: 5,
           tiles: [
-          {
-            img:
-              "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img1.jpg",
-            title: "Image",
-            subTitle: "subTitle",
-            details: "details"
-          },
-          {
-            img:
-              "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img2.jpg",
-            title: "Image",
-            subTitle: "subTitle",
-            details: "details"
-          },
-          {
-            img:
-              "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img3.jpg",
-            title: "Image",
-            subTitle: "subTitle",
-            details: "details"
-          },
-          {
-            img:
-              "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img4.jpg",
-            title: "Image",
-            subTitle: "subTitle",
-            details: "details"
-          },
-          {
-            img:
-              "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img5.jpg",
-            title: "Image",
-            subTitle: "subTitle",
-            details: "details"
-          },
-          {
-            img:
-              "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img6.jpg",
-            title: "Image",
-            subTitle: "subTitle",
-            details: "details"
-          }
-        ]}
+            {
+              imageUrl:
+                "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img1.jpg",
+              title: "Image",
+              subTitle: "subTitle",
+              details: "details"
+            },
+            {
+              imageUrl:
+                "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img2.jpg",
+              title: "Image",
+              subTitle: "subTitle",
+              details: "details"
+            },
+            {
+              imageUrl:
+                "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img3.jpg",
+              title: "Image",
+              subTitle: "subTitle",
+              details: "details"
+            },
+            {
+              imageUrl:
+                "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img4.jpg",
+              title: "Image",
+              subTitle: "subTitle",
+              details: "details"
+            },
+            {
+              imageUrl:
+                "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img5.jpg",
+              title: "Image",
+              subTitle: "subTitle",
+              details: "details"
+            },
+            {
+              imageUrl:
+                "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img6.jpg",
+              title: "Image",
+              subTitle: "subTitle",
+              details: "details"
+            }
+          ]
+        }
       },
       {
         id: 4,
@@ -324,50 +325,53 @@ const home = id => {
       {
         id: 3,
         type: "CImageTile",
-        contents: [
-          {
-            img:
-              "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img1.jpg",
-            title: "Image",
-            subTitle: "subTitle",
-            details: "details"
-          },
-          {
-            img:
-              "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img2.jpg",
-            title: "Image",
-            subTitle: "subTitle",
-            details: "details"
-          },
-          {
-            img:
-              "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img3.jpg",
-            title: "Image",
-            subTitle: "subTitle",
-            details: "details"
-          },
-          {
-            img:
-              "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img4.jpg",
-            title: "Image",
-            subTitle: "subTitle",
-            details: "details"
-          },
-          {
-            img:
-              "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img5.jpg",
-            title: "Image",
-            subTitle: "subTitle",
-            details: "details"
-          },
-          {
-            img:
-              "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img6.jpg",
-            title: "Image",
-            subTitle: "subTitle",
-            details: "details"
-          }
-        ]
+        contents: {
+          columnNumber: 5,
+          tiles: [
+            {
+              imageUrl:
+                "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img1.jpg",
+              title: "Image",
+              subTitle: "subTitle",
+              details: "details"
+            },
+            {
+              imageUrl:
+                "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img2.jpg",
+              title: "Image",
+              subTitle: "subTitle",
+              details: "details"
+            },
+            {
+              imageUrl:
+                "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img3.jpg",
+              title: "Image",
+              subTitle: "subTitle",
+              details: "details"
+            },
+            {
+              imageUrl:
+                "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img4.jpg",
+              title: "Image",
+              subTitle: "subTitle",
+              details: "details"
+            },
+            {
+              imageUrl:
+                "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img5.jpg",
+              title: "Image",
+              subTitle: "subTitle",
+              details: "details"
+            },
+            {
+              imageUrl:
+                "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img6.jpg",
+              title: "Image",
+              subTitle: "subTitle",
+              details: "details"
+            }
+          ]
+        }
       },
       {
         id: 4,
@@ -514,7 +518,7 @@ const dashboard = {
             "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/bg5.png",
           title: "mobile"
         },
-        
+
         title: {
           text: "GET OUR APP AND TURN EVERY PHOTO",
           isVisible: true,
@@ -559,50 +563,55 @@ const dashboard = {
       icon: "AppsIcon",
       name: "Image Tiles",
       type: "CImageTile",
-      contents: [
-        {
-          img:
-            "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img1.jpg",
-          title: "Image",
-          subTitle: "subTitle",
-          details: "details"
-        },
-        {
-          img:
-            "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img2.jpg",
-          title: "Image",
-          subTitle: "subTitle",
-          details: "details"
-        },
-        {
-          img:
-            "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img3.jpg",
-          title: "Image",
-          subTitle: "subTitle",
-          details: "details"
-        },
-        {
-          img:
-            "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img4.jpg",
-          title: "Image",
-          subTitle: "subTitle",
-          details: "details"
-        },
-        {
-          img:
-            "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img5.jpg",
-          title: "Image",
-          subTitle: "subTitle",
-          details: "details"
-        },
-        {
-          img:
-            "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img6.jpg",
-          title: "Image",
-          subTitle: "subTitle",
-          details: "details"
-        }
-      ]
+      contents: {
+        columnNumber: 5,
+        tiles: [
+          {
+            imageUrl:
+              "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img1.jpg",
+            linkUrl: "Link Url",
+            title: "Image",
+            subTitle: "subTitle",
+            details: "details",
+            textColor: "#f4f4f4"
+          },
+          {
+            imageUrl:
+              "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img2.jpg",
+            title: "Image",
+            subTitle: "subTitle",
+            details: "details"
+          },
+          {
+            imageUrl:
+              "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img3.jpg",
+            title: "Image",
+            subTitle: "subTitle",
+            details: "details"
+          },
+          {
+            imageUrl:
+              "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img4.jpg",
+            title: "Image",
+            subTitle: "subTitle",
+            details: "details"
+          },
+          {
+            imageUrl:
+              "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img5.jpg",
+            title: "Image",
+            subTitle: "subTitle",
+            details: "details"
+          },
+          {
+            imageUrl:
+              "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/img6.jpg",
+            title: "Image",
+            subTitle: "subTitle",
+            details: "details"
+          }
+        ]
+      }
     },
     {
       id: 5,

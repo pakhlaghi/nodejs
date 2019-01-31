@@ -294,6 +294,8 @@ const mapInputToState = (moduleType, module, inputs) => {
       return mapInputsTitleText(module, inputs);
     case "cImageText":
       return mapInputsTitleText(module, inputs, moduleType);
+    case "cImageTile":
+      return mapInputsImageTile(module, inputs, moduleType);
     default:
       return;
   }
@@ -337,6 +339,21 @@ const mapInputsTitleText = (module, inputs, moduleType) => {
   module.contents.readMore.color = inputs.readMoreColor;
   module.contents.readMore.isVisible = inputs.readMoreSwitch;
   module.contents.readMore.align = inputs.readMoreAlign;
+
+  return module;
+};
+
+const mapInputsImageTile = (module, inputs) => {
+  module.contents.tiles = inputs.tiles.map(tile => {
+    return {
+      title: tile.imageTitle,
+      subTitle: tile.imageSubTitle,
+      details: tile.imageDetails,
+      imageUrl: tile.imageUrl,
+      linkUrl: tile.imageLinkUrl,
+      textColor: tile.imageTextColor
+    };
+  });
 
   return module;
 };
