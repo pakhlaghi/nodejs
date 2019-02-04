@@ -296,6 +296,8 @@ const mapInputToState = (moduleType, module, inputs) => {
       return mapInputsTitleText(module, inputs, moduleType);
     case "cImageTile":
       return mapInputsImageTile(module, inputs, moduleType);
+    case "cIconTitleText":
+      return mapInputsIconTitleText(module, inputs, moduleType);
     default:
       return;
   }
@@ -357,6 +359,25 @@ const mapInputsImageTile = (module, inputs) => {
 
   module.contents.columnNumber = inputs.columnNumber;
   module.contents.containerColor = inputs.containerColor;
+
+  return module;
+};
+
+const mapInputsIconTitleText = (module, inputs) => {
+  module.contents.tiles = inputs.tiles.map(tile => {
+    return {
+      title: tile.title,
+      text: tile.text,
+      url: tile.url,
+      icon: tile.icon,
+      color: tile.color,
+      align: tile.align
+    };
+  });
+
+  module.contents.columnNumber = inputs.columnNumber;
+  module.contents.containerColor = inputs.containerColor;
+  module.contents.backgroundColor = inputs.backgroundColor;
 
   return module;
 };

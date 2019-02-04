@@ -237,26 +237,30 @@ const getContentById = id => {
       {
         id: 4,
         type: "CIconTitleText",
-        contents: [
-          {
-            id: 1,
-            icon: "Gamepad",
-            title: "GET OUR APP AND TURN EVERY PHOTO",
-            text: "You Take Into a Masterpiece!"
-          },
-          {
-            id: 2,
-            icon: "Folder",
-            title: "GET OUR APP AND TURN EVERY PHOTO",
-            text: "You Take Into a Masterpiece!"
-          },
-          {
-            id: 3,
-            icon: "TabletMac",
-            title: "GET OUR APP AND TURN EVERY PHOTO",
-            text: "You Take Into a Masterpiece!"
-          }
-        ]
+        contents: {
+          backgroundColor: "#fff",
+          containerColor: "#fff",
+          tiles: [
+            {
+              id: 1,
+              icon: "Gamepad",
+              title: "GET OUR APP AND TURN EVERY PHOTO",
+              text: "You Take Into a Masterpiece!"
+            },
+            {
+              id: 2,
+              icon: "Folder",
+              title: "GET OUR APP AND TURN EVERY PHOTO",
+              text: "You Take Into a Masterpiece!"
+            },
+            {
+              id: 3,
+              icon: "TabletMac",
+              title: "GET OUR APP AND TURN EVERY PHOTO",
+              text: "You Take Into a Masterpiece!"
+            }
+          ]
+        }
       },
       {
         id: 5,
@@ -399,26 +403,30 @@ const getContentById = id => {
       {
         id: 4,
         type: "CIconTitleText",
-        contents: [
-          {
-            id: 1,
-            icon: "Gamepad",
-            title: "GET OUR APP AND TURN EVERY PHOTO",
-            text: "You Take Into a Masterpiece!"
-          },
-          {
-            id: 2,
-            icon: "Folder",
-            title: "GET OUR APP AND TURN EVERY PHOTO",
-            text: "You Take Into a Masterpiece!"
-          },
-          {
-            id: 3,
-            icon: "TabletMac",
-            title: "GET OUR APP AND TURN EVERY PHOTO",
-            text: "You Take Into a Masterpiece!"
-          }
-        ]
+        contents: {
+          backgroundColor: "#fff",
+          containerColor: "#fff",
+          tiles: [
+            {
+              id: 1,
+              icon: "Gamepad",
+              title: "GET OUR APP AND TURN EVERY PHOTO",
+              text: "You Take Into a Masterpiece!"
+            },
+            {
+              id: 2,
+              icon: "Folder",
+              title: "GET OUR APP AND TURN EVERY PHOTO",
+              text: "You Take Into a Masterpiece!"
+            },
+            {
+              id: 3,
+              icon: "TabletMac",
+              title: "GET OUR APP AND TURN EVERY PHOTO",
+              text: "You Take Into a Masterpiece!"
+            }
+          ]
+        }
       }
     ];
   }

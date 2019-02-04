@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import CImageTileEdit from "./cImageTileEdit";
 // UI
 import styles from "./cImageTile.style";
@@ -10,6 +11,7 @@ import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 import IconButton from "@material-ui/core/IconButton";
 import InfoIcon from "@material-ui/icons/Info";
+import { Button } from "@material-ui/core";
 
 function CImageTile(props) {
   const {
@@ -37,13 +39,20 @@ function CImageTile(props) {
                 <img src={tile.imageUrl} alt={tile.title} />
                 <GridListTileBar
                   title={
-                    <div
+                    <Link
+                      to={tile.linkUrl ? tile.linkUrl : "#"}
                       style={{
-                        color: tile.textColor || contentData.containerColor
+                        textDecoration: "none"
                       }}
                     >
-                      {tile.title}
-                    </div>
+                      <Button
+                        style={{
+                          color: tile.textColor || contentData.containerColor
+                        }}
+                      >
+                        {tile.title}
+                      </Button>
+                    </Link>
                   }
                   subtitle={
                     <span

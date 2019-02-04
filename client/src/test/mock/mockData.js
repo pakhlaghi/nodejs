@@ -214,26 +214,30 @@ const home = id => {
       {
         id: 4,
         type: "CIconTitleText",
-        contents: [
-          {
-            id: 1,
-            icon: "Gamepad",
-            title: "GET OUR APP AND TURN EVERY PHOTO",
-            text: "You Take Into a Masterpiece!"
-          },
-          {
-            id: 2,
-            icon: "Folder",
-            title: "GET OUR APP AND TURN EVERY PHOTO",
-            text: "You Take Into a Masterpiece!"
-          },
-          {
-            id: 3,
-            icon: "TabletMac",
-            title: "GET OUR APP AND TURN EVERY PHOTO",
-            text: "You Take Into a Masterpiece!"
-          }
-        ]
+        contents: {
+          backgroundColor: "#fff",
+          containerColor: "#fff",
+          tiles: [
+            {
+              id: 1,
+              icon: "Gamepad",
+              title: "GET OUR APP AND TURN EVERY PHOTO",
+              text: "You Take Into a Masterpiece!"
+            },
+            {
+              id: 2,
+              icon: "Folder",
+              title: "GET OUR APP AND TURN EVERY PHOTO",
+              text: "You Take Into a Masterpiece!"
+            },
+            {
+              id: 3,
+              icon: "TabletMac",
+              title: "GET OUR APP AND TURN EVERY PHOTO",
+              text: "You Take Into a Masterpiece!"
+            }
+          ]
+        }
       },
       {
         id: 5,
@@ -376,26 +380,30 @@ const home = id => {
       {
         id: 4,
         type: "CIconTitleText",
-        contents: [
-          {
-            id: 1,
-            icon: "Gamepad",
-            title: "GET OUR APP AND TURN EVERY PHOTO",
-            text: "You Take Into a Masterpiece!"
-          },
-          {
-            id: 2,
-            icon: "Folder",
-            title: "GET OUR APP AND TURN EVERY PHOTO",
-            text: "You Take Into a Masterpiece!"
-          },
-          {
-            id: 3,
-            icon: "TabletMac",
-            title: "GET OUR APP AND TURN EVERY PHOTO",
-            text: "You Take Into a Masterpiece!"
-          }
-        ]
+        contents: {
+          backgroundColor: "#fff",
+          containerColor: "#fff",
+          tiles: [
+            {
+              id: 1,
+              icon: "Gamepad",
+              title: "GET OUR APP AND TURN EVERY PHOTO",
+              text: "You Take Into a Masterpiece!"
+            },
+            {
+              id: 2,
+              icon: "Folder",
+              title: "GET OUR APP AND TURN EVERY PHOTO",
+              text: "You Take Into a Masterpiece!"
+            },
+            {
+              id: 3,
+              icon: "TabletMac",
+              title: "GET OUR APP AND TURN EVERY PHOTO",
+              text: "You Take Into a Masterpiece!"
+            }
+          ]
+        }
       }
     ];
   }
@@ -619,26 +627,33 @@ const dashboard = {
       icon: "MoreHorizIcon",
       name: "Icon & Text",
       type: "CIconTitleText",
-      contents: [
-        {
-          id: 1,
-          icon: "Gamepad",
-          title: "GET OUR APP AND TURN EVERY PHOTO",
-          text: "You Take Into a Masterpiece!"
-        },
-        {
-          id: 2,
-          icon: "Folder",
-          title: "GET OUR APP AND TURN EVERY PHOTO",
-          text: "You Take Into a Masterpiece!"
-        },
-        {
-          id: 3,
-          icon: "TabletMac",
-          title: "GET OUR APP AND TURN EVERY PHOTO",
-          text: "You Take Into a Masterpiece!"
-        }
-      ]
+      contents: {
+        backgroundColor: "#fff",
+        containerColor: "#000",
+        tiles: [
+          {
+            id: 1,
+            icon: "Gamepad",
+            title: "GET OUR APP AND TURN EVERY PHOTO",
+            url: "#",
+            text: "You Take Into a Masterpiece!",
+            align: "right",
+            color: "#fff"
+          },
+          {
+            id: 2,
+            icon: "Folder",
+            title: "GET OUR APP AND TURN EVERY PHOTO",
+            text: "You Take Into a Masterpiece!"
+          },
+          {
+            id: 3,
+            icon: "TabletMac",
+            title: "GET OUR APP AND TURN EVERY PHOTO",
+            text: "You Take Into a Masterpiece!"
+          }
+        ]
+      }
     },
     {
       id: 6,
