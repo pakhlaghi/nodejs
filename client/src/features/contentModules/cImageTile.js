@@ -36,8 +36,24 @@ function CImageTile(props) {
               <GridListTile cols={tile.cols || 1} key={index}>
                 <img src={tile.imageUrl} alt={tile.title} />
                 <GridListTileBar
-                  title={tile.title}
-                  subtitle={<span>by: {tile.subTitle}</span>}
+                  title={
+                    <div
+                      style={{
+                        color: tile.textColor || contentData.containerColor
+                      }}
+                    >
+                      {tile.title}
+                    </div>
+                  }
+                  subtitle={
+                    <span
+                      style={{
+                        color: tile.textColor || contentData.containerColor
+                      }}
+                    >
+                      by: {tile.subTitle}
+                    </span>
+                  }
                   actionIcon={
                     <IconButton className={classes.icon}>
                       <InfoIcon />

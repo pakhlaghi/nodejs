@@ -29,7 +29,8 @@ class CTitleText extends React.Component {
 
     this.state = {
       inputs: {
-        containerColor: contentData.color,
+        containerColor: contentData.containerColor,
+        columnNumber: contentData.columnNumber,
         tiles: this.mapContentToState(contentData)
       }
     };
@@ -93,7 +94,7 @@ class CTitleText extends React.Component {
     const handleInputChange = e => {
       switch (e.target.type) {
         case "checkbox":
-          if (e.target.id.indexOf("-")) {
+          if (e.target.id.indexOf("-") >= 0) {
             const inputIndex = e.target.id.split("-")[1] - 1;
             const inputId = e.target.id.split("-")[0];
 
@@ -119,7 +120,7 @@ class CTitleText extends React.Component {
           break;
 
         default:
-          if (e.target.id.indexOf("-")) {
+          if (e.target.id.indexOf("-") >= 0) {
             const inputIndex = e.target.id.split("-")[1] - 1;
             const inputId = e.target.id.split("-")[0];
 
@@ -153,9 +154,23 @@ class CTitleText extends React.Component {
     };
 
     const handleNoColor = id => _ => {
-      this.setState({
-        inputs: { ...inputs, [id]: "" }
-      });
+      if (id.indexOf("-") >= 0) {
+        const inputIndex = id.split("-")[1] - 1;
+        const inputId = id.split("-")[0];
+
+        const tiles = this.state.inputs.tiles.map((tile, index) => {
+          if (index == inputIndex) {
+            tile[inputId] = "";
+          }
+          return tile;
+        });
+
+        this.setState({ ...inputs, tiles: tiles });
+      } else {
+        this.setState({
+          inputs: { ...inputs, [id]: "" }
+        });
+      }
     };
 
     const handleRemoveClick = index => _ => {
@@ -216,6 +231,15 @@ class CTitleText extends React.Component {
                   {staticContent.container.title}
                 </Typography>
               </div>
+
+              <TextField
+                id={`columnNumber`}
+                label={staticContent.container.label.columnNumber}
+                className={classes.input}
+                variant="filled"
+                defaultValue={inputs.columnNumber || 3}
+                onChange={handleInputChange}
+              />
 
               <CCColorPicker
                 id="containerColor"

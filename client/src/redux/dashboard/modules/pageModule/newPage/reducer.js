@@ -355,6 +355,9 @@ const mapInputsImageTile = (module, inputs) => {
     };
   });
 
+  module.contents.columnNumber = inputs.columnNumber;
+  module.contents.containerColor = inputs.containerColor;
+
   return module;
 };
 
