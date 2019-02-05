@@ -244,6 +244,10 @@ const home = id => {
         type: "CFooter",
         contents: {
           text: "Code Core Co. © 2018. Privacy Policy | Terms Of Use",
+          term: {
+            text: "Terms Of Use",
+            url: "#Term"
+          },
           style: {
             color: "#fff",
             backgroundColor: "#263238"
@@ -663,6 +667,10 @@ const dashboard = {
       type: "CFooter",
       contents: {
         text: "Code Core Co. © 2018. Privacy Policy | Terms Of Use",
+        term: {
+          text: "Terms Of Use",
+          url: "#Term"
+        },
         style: {
           color: "#fff",
           backgroundColor: "#263238"

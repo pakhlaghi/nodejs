@@ -5,31 +5,58 @@ import CCMaterialIcon from "../../utility/ccMaterialIcon";
 import styles from "./cFooter.style";
 import { withStyles } from "@material-ui/core/styles";
 import { Typography, IconButton } from "@material-ui/core";
+import CFooterEdit from "./cFooterEdit";
 
 const CFooter = props => {
   // props
-  const { classes, contentData } = props;
+  const {
+    classes,
+    contentData,
+    handleApplyChanges,
+    handleCancelEditing
+  } = props;
 
   return (
-    <section className={classes.footerContainer} style={contentData.style}>
-      <div className={classes.footerContent}>
-        <Typography variant="subheading" color="inherit">
-          {contentData.text}
-        </Typography>
-        <div>
-          {contentData.socialData.map(social => (
-            <IconButton
-              key={social.id}
-              href={social.url}
-              color="inherit"
-              className={classes.button}
-            >
-              <CCMaterialIcon icon={social.icon} />
-            </IconButton>
-          ))}
+    <React.Fragment>
+      <section className={classes.footerContainer} style={contentData.style}>
+        <div className={classes.footerContent}>
+          <Typography variant="subheading" color="inherit">
+            {contentData.text}
+            {contentData.term.text && (
+              <React.Fragment>
+                |
+                <a
+                  href={contentData.term.url}
+                  className={classes.link}
+                  style={{ color: contentData.style.color }}
+                >
+                  {contentData.term.text}
+                </a>
+              </React.Fragment>
+            )}
+          </Typography>
+          <div>
+            {contentData.socialData.map(social => (
+              <IconButton
+                key={social.id}
+                href={social.url}
+                color="inherit"
+                className={classes.button}
+              >
+                <CCMaterialIcon icon={social.icon} />
+              </IconButton>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+      {contentData.isEditing && (
+        <CFooterEdit
+          contentData={contentData}
+          handleApplyChanges={handleApplyChanges}
+          handleCancelEditing={handleCancelEditing}
+        />
+      )}
+    </React.Fragment>
   );
 };
 

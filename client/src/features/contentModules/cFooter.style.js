@@ -18,6 +18,11 @@ const styles = theme => ({
     "&:hover": {
       backgroundColor: theme.palette.primary.main
     }
+  },
+  link: {
+    textDecoration: "none",
+    color: theme.palette.primary.main,
+    margin: "0 5px"
   }
 });
 
