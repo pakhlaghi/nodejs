@@ -44,7 +44,7 @@ const HeaderContent = ({ classes, isVisible, contentData }) => {
                 size="large"
                 className={classes.button}
               >
-                {contentData.buttons.primary.title}
+                {contentData.buttons.primary.text}
               </Button>
             )}
             {contentData.buttons && contentData.buttons.secondary && (
@@ -56,7 +56,7 @@ const HeaderContent = ({ classes, isVisible, contentData }) => {
                 size="large"
                 className={classNames(classes.button, classes.secondary)}
               >
-                {contentData.buttons ? contentData.buttons.secondary.title : ""}
+                {contentData.buttons ? contentData.buttons.secondary.text : ""}
               </Button>
             )}
           </div>

@@ -300,6 +300,8 @@ const mapInputToState = (moduleType, module, inputs) => {
       return mapInputsIconTitleText(module, inputs, moduleType);
     case "cFooter":
       return mapInputsFooter(module, inputs, moduleType);
+    case "cHeader":
+      return mapInputsHeader(module, inputs, moduleType);
     default:
       return;
   }
@@ -400,6 +402,25 @@ const mapInputsFooter = (module, inputs) => {
   module.contents.text = inputs.text;
   module.contents.term.text = inputs.termText;
   module.contents.term.url = inputs.termUrl;
+
+  return module;
+};
+
+const mapInputsHeader = (module, inputs) => {
+  module.contents.isFullHeader = inputs.isFullHeader;
+  module.contents.color = inputs.color;
+  module.contents.background.image = inputs.backgroundImage;
+  module.contents.background.height = inputs.backgroundHeight;
+
+  module.contents.title = inputs.contentTitle;
+  module.contents.subTitle = inputs.contentSubTitle;
+  module.contents.topBar.title = inputs.topBarTitle;
+  module.contents.topBar.menuId = inputs.topBarMenuId;
+
+  module.contents.buttons.primary.text = inputs.buttonPrimaryText;
+  module.contents.buttons.primary.url = inputs.buttonPrimaryUrl;
+  module.contents.buttons.secondary.text = inputs.buttonSecText;
+  module.contents.buttons.secondary.url = inputs.buttonSecUrl;
 
   return module;
 };

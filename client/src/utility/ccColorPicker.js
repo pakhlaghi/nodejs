@@ -1,4 +1,6 @@
 import React from "react";
+
+// UI
 import {
   withStyles,
   Input,
@@ -6,6 +8,8 @@ import {
   FormControlLabel
 } from "@material-ui/core";
 import FormatColorResetIcon from "@material-ui/icons/FormatColorReset";
+
+// style
 const styles = theme => ({
   color: {
     width: "80px",
@@ -21,7 +25,15 @@ const styles = theme => ({
 });
 
 const CCColorPicker = props => {
-  const { classes, id, value, label, defaultColor, handleInputChange, handleNoColor } = props;
+  const {
+    classes,
+    id,
+    value,
+    label,
+    defaultColor,
+    handleInputChange,
+    handleNoColor
+  } = props;
 
   return (
     <FormControlLabel
@@ -32,11 +44,15 @@ const CCColorPicker = props => {
             type="color"
             value={value}
             className={`${classes.color} ${value == "" && classes.noColor}`}
-            style={defaultColor ? {
-              '--background-color': defaultColor,
-            } : {
-            '--background-color': "black",
-          }}
+            style={
+              defaultColor
+                ? {
+                    "--background-color": defaultColor
+                  }
+                : {
+                    "--background-color": "black"
+                  }
+            }
             onInput={handleInputChange}
           />
           <IconButton aria-label="No Color" onClick={handleNoColor(id)}>
