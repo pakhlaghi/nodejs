@@ -24,20 +24,21 @@ const EnhancedTableHead = props => {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
+        <TableCell padding="checkbox" style={{width: "20px"}}>
           <Checkbox
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={numSelected === rowCount}
             onChange={onSelectAllClick}
+            
           />
         </TableCell>
         {fields.map(field => {
           return (
             <TableCell
               key={field.id}
-              align={field.numeric ? "right" : "left"}
               padding={field.disablePadding ? "none" : "default"}
               sortDirection={orderBy === field.id ? order : false}
+              style={field.width && {width: field.width, padding: "0"}}
             >
               <Tooltip
                 title="Sort"

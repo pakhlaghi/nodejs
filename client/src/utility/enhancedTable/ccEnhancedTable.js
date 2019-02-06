@@ -1,4 +1,7 @@
 import React from "react";
+import {Link} from "react-router-dom"
+
+// UI
 import { withStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -130,7 +133,7 @@ class CCEnhancedTable extends React.Component {
                   return (
                     <TableRow
                       hover
-                      onClick={event => this.handleClick(event, row.id)}
+                      
                       role="checkbox"
                       aria-checked={isSelected}
                       tabIndex={-1}
@@ -138,12 +141,14 @@ class CCEnhancedTable extends React.Component {
                       selected={isSelected}
                     >
                       <TableCell padding="checkbox">
-                        <Checkbox checked={isSelected} />
+                        <Checkbox checked={isSelected} onClick={event => this.handleClick(event, row.id)}/>
                       </TableCell>
-                      <TableCell component="th" scope="row" padding="none">
-                        {row.id}
-                      </TableCell>
-                      <TableCell>{row.name}</TableCell>
+                      
+                      {fields.map(field => <TableCell key={field.id} >
+
+                        {field.linkToWithId && row.id ? <Link to={`${field.linkToWithId}/${row.id}`}>{row[field.id]}</Link> : row[field.id]}
+                      </TableCell>)}
+                      
                     </TableRow>
                   );
                 })}

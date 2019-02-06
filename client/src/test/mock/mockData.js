@@ -2,19 +2,32 @@ import { config, loginMockType } from "./mockConfig";
 
 const layout = {
   headerContent: {
-    topBar: {
-      title: "Code Core",
-      menuItems: [
-        { id: 1, to: "/page/home", title: "Home" },
-        { id: 2, to: "/page/aboutus", title: "About Us" },
-        { id: 3, to: "/login", title: "Login" },
-        { id: 4, to: "/dashboard/main", title: "Dashboard" }
-      ],
-      drawerPosition: "right"
-    }
-  },
+    isFullHeader: false,
+          color: "#ffffff",
+          background: {
+            image:
+              "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/bg-1.jpg",
+            height: "65px"
+          },
+          topBar: {
+            title: "Code Core",
+            menuId: 1,
+            menuItems: [
+              { id: 1, to: "/page/home", title: "Home" },
+              { id: 2, to: "/page/aboutus", title: "About Us" },
+              { id: 3, to: "/login", title: "Login" },
+              { id: 4, to: "/dashboard/main", title: "Dashboard" }
+            ],
+            drawerPosition: "right"
+          }
+        },
   footerContent: {
-    text: "Code Core Co. © 2018. Privacy Policy | Terms Of Use",
+    text: "Code Core Co. © 2018. Privacy Policy | Terms Of Use", 
+    term: {
+      text: "Terms Of Use",
+      url: "#Term"
+    },
+
     style: {
       color: "#fff",
       backgroundColor: "#263238"

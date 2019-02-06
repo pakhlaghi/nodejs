@@ -52,7 +52,7 @@ function App(props) {
       component: lazyLoginContainer
     },
     {
-      path: "/dashboard/:module",
+      path: "/dashboard/:module/:id?",
       exact: true,
       component: lazyDashboardContainer,
       auth: {

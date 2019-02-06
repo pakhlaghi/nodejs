@@ -9,8 +9,8 @@ export default (
     ],
 
     fields: [
-      { id: "id", numeric: true, disablePadding: false, label: "Page ID" },
-      { id: "name", numeric: false, disablePadding: false, label: "Page Name" }
+      { id: "id", numeric: true, disablePadding: false, label: "Page ID", width: "70px" },
+      { id: "name", numeric: false, disablePadding: false, label: "Page Name", linkToWithId: "newPage" }
     ],
     title: "Pages"
   },
