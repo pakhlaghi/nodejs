@@ -3,26 +3,26 @@ import { config, loginMockType } from "./mockConfig";
 const layout = {
   headerContent: {
     isFullHeader: false,
-          color: "#ffffff",
-          background: {
-            image:
-              "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/bg-1.jpg",
-            height: "65px"
-          },
-          topBar: {
-            title: "Code Core",
-            menuId: 1,
-            menuItems: [
-              { id: 1, to: "/page/home", title: "Home" },
-              { id: 2, to: "/page/aboutus", title: "About Us" },
-              { id: 3, to: "/login", title: "Login" },
-              { id: 4, to: "/dashboard/main", title: "Dashboard" }
-            ],
-            drawerPosition: "right"
-          }
-        },
+    color: "#ffffff",
+    background: {
+      image:
+        "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/bg-1.jpg",
+      height: "65px"
+    },
+    topBar: {
+      title: "Code Core",
+      menuId: 1,
+      menuItems: [
+        { id: 1, to: "/page/home", title: "Home" },
+        { id: 2, to: "/page/aboutus", title: "About Us" },
+        { id: 3, to: "/login", title: "Login" },
+        { id: 4, to: "/dashboard/main", title: "Dashboard" }
+      ],
+      drawerPosition: "right"
+    }
+  },
   footerContent: {
-    text: "Code Core Co. © 2018. Privacy Policy | Terms Of Use", 
+    text: "Code Core Co. © 2018. Privacy Policy | Terms Of Use",
     term: {
       text: "Terms Of Use",
       url: "#Term"
@@ -444,6 +444,114 @@ const home = id => {
   return data;
 };
 
+const page = id => {
+  let data = [];
+
+  if (id == 1) {
+    data = { id: 1,
+      title: "New Page1",
+      action: "newPag1e",
+      modules: [
+      {
+        id: 1,
+        visible: true,
+        icon: "CreditCardIcon",
+        name: "Header",
+        type: "CHeader",
+        contents: {
+          isFullHeader: true,
+          color: "#ffffff",
+          background: {
+            image:
+              "https://ld-wp.template-help.com/wordpress_63433/wp-content/uploads/2016/11/bg-1.jpg",
+            height: "65px"
+          },
+          topBar: {
+            title: "Code Core",
+            menuId: 1,
+            menuItems: [
+              { id: 1, to: "/page/home", title: "Home" },
+              { id: 2, to: "/page/aboutus", title: "About Us" },
+              { id: 3, to: "/login", title: "Login" },
+              { id: 4, to: "/dashboard/main", title: "Dashboard" }
+            ],
+            drawerPosition: "right"
+          },
+          title: "Header Content",
+          subTitle: `Regardless of whether you are a photography industry professional or
+            just a newcomer hobbyist, editing and post-processing your pics on
+            the go is now so much easier!`,
+          buttons: {
+            primary: {
+              text: "Primary",
+              url: "#Primary"
+            },
+            secondary: {
+              text: "Secondary",
+              url: "#Secondary"
+            }
+          }
+        }
+      }
+    ]};
+  } else {
+    data = { id: 2,
+      title: "New Page2",
+      action: "newPage2",
+      modules: [
+      {
+        id: 2,
+        visible: true,
+        icon: "FormatAlignCenterIcon",
+        name: "Text & Title",
+        type: "CTitleText",
+        contents: {
+          color: "#444",
+          background: null,
+          title: {
+            text: "GET OUR APP AND TURN EVERY PHOTO",
+            isVisible: true,
+            align: "center",
+            color: "red"
+          },
+          subTitle: {
+            text: "You Take Into a Masterpiece!",
+            isVisible: true,
+            align: "center",
+            color: "blue"
+          },
+          line: {
+            isVisible: true,
+            align: "center",
+            width: null,
+            color: "purple"
+          },
+          body: {
+            text: `Despite all the intuitiveness of interface and easy-to-understand UX
+                      and UI, an application as complex as ours can get you bumping into
+                      some roadblocks or asking some technical questions over time. We can
+                      assure you, that while our Customer Support dept. will be ready to
+                      help you 24/7, we have also placed all the most frequently asked
+                      questions and issues on this page…`,
+            isVisible: true,
+            align: "right",
+            color: "orange"
+          },
+          readMore: {
+            text: "Read More",
+            url: "#",
+            isVisible: true,
+            align: "right",
+            color: "green"
+          }
+        }
+      }
+    ]};
+  }
+
+  return data;
+};
+
 const getMockLogin = () => {
   switch (config.login) {
     case loginMockType.success:
@@ -769,6 +877,7 @@ const dashboard = {
 export const mockData = {
   layout: layout,
   home: home,
+  page: page,
   login: login,
   dashboard: dashboard
 };

@@ -35,11 +35,9 @@ export const getItemsSuccess = data => ({
 // no type is required
 export const getItemsAsync = () => {
   return dispatch => {
-    dispatch(showSpinner(true));
     dataService
       .getDashboardContent()
       .then(data => {
-        dispatch(showSpinner(false));
         dispatch(getItemsSuccess(data));
       })
       .catch(err => console.log(err));

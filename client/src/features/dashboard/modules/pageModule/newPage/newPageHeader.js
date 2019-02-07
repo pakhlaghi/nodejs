@@ -67,7 +67,7 @@ const NewPageHeader = props => {
             color="default"
             className={classes.button}
           >
-            Cancel
+            Close
             <CancelIcon className={classes.rightIcon} />
           </Button>
 

@@ -14,7 +14,8 @@ import {
   MOVE_MODULE,
   MOVE_TO_MODULE,
   CANCEL_EDITING,
-  APPLY_CHANGES
+  APPLY_CHANGES,
+  INIT_DATA
 } from "./types";
 import { dataService } from "../../../../../service/dataService";
 
@@ -122,17 +123,36 @@ export const applyChanges = (inputs, moduleType) => ({
   payload: { inputs, moduleType }
 });
 
+export const initData = data => ({
+  type: INIT_DATA,
+  payload: { data }
+});
+
 // async: ------------------------------------------------------------------------
-// call this first => resolve will call action with type
-// no type is required
+// 1- call this first => resolve will call action with type
+// 2- no type is required
+
+// just one dispatch in init to avoid infinit loop: each dispatch cuase trigger mapDispatchToProps
+export const initDataAsync = id => {
+  return dispatch => {
+    dataService
+      .getPageModules(id)
+      .then(data => {
+        dispatch(initData(data));
+      })
+      .catch(err => console.log(err));
+  };
+};
 
 export const openAddModuleModalAsync = (moduleId, where) => {
   return (dispatch, getState) => {
+    // just call server once to init data
     if (
       getState().dashboardNewPage &&
       getState().dashboardNewPage.defaultModules == null
     ) {
       dispatch(showSpinner(true));
+
       dataService
         .getDefaultModules()
         .then(data => {
@@ -151,13 +171,13 @@ export const openAddModuleModalAsync = (moduleId, where) => {
 export const savePageAsync = enqueueSnackbar => {
   return (dispatch, getState) => {
     dispatch(showSpinner(true));
-    enqueueSnackbar("Page saved Successfuly", { variant: "success" });
-    // dataService
-    //   .getHomeContent(id)
-    //   .then(data => {
-    //     dispatch(showSpinner(true));
-    //     dispatch(getContentBodySuccess(data));
-    //   })
-    //   .catch(err => console.log(err));
+    // enqueueSnackbar("Page saved Successfuly", { variant: "success" });
+    dataService
+      .savePage(getState().dashboardNewPage.page)
+      .then(data => {
+        enqueueSnackbar("Page saved Successfuly", { variant: "success" });
+        dispatch(showSpinner(false));
+      })
+      .catch(err => console.log(err));
   };
 };

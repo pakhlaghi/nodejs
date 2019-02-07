@@ -15,3 +15,4 @@ export const EDIT_MODULE = "EDIT_MODULE";
 export const MOVE_TO_MODULE = "MOVE_TO_MODULE";
 export const CANCEL_EDITING = "CANCEL_EDITING";
 export const APPLY_CHANGES = "APPLY_CHANGES";
+export const INIT_DATA = "INIT_DATA";

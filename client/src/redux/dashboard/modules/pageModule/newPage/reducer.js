@@ -14,17 +14,19 @@ import {
   MOVE_TO_MODULE,
   EDIT_MODULE,
   CANCEL_EDITING,
-  APPLY_CHANGES
+  APPLY_CHANGES,
+  INIT_DATA
 } from "./types";
 
 export default (
   state = {
-    showSpinner: false,
+    showSpinner: true,
     editModuleId: null,
     isAnyModuleMoving: false,
     page: {
-      title: "New Page",
-      action: "newPage",
+      id: 0,
+      title: "",
+      action: "",
       modules: []
     },
     isCancelModalOpen: false,
@@ -37,6 +39,8 @@ export default (
   action
 ) => {
   switch (action.type) {
+    case INIT_DATA:
+      return initData(state, action);
     case SHOW_SPINNER:
       return showSpinner(state, action);
     case ADD_MODULE_TOP:
@@ -71,6 +75,12 @@ export default (
       return applyChanges(state, action);
   }
   return state;
+};
+
+export const initData = (state, action) => {
+  state.page = action.payload.data;
+
+  return { ...state, showSpinner: false };
 };
 
 export const showSpinner = (state, action) => {
@@ -118,6 +128,12 @@ const moveToTrash = (state, action) => {
 const toggleCancelModal = (state, action) => {
   if (action.payload.history) {
     action.payload.history.push("/dashboard/pages");
+    state.page = {
+      id: 0,
+      title: "",
+      action: "",
+      modules: []
+    };
   }
 
   return {

@@ -18,7 +18,8 @@ import {
   moveModule,
   moveToModule,
   cancelEditing,
-  applyChanges
+  applyChanges,
+  initDataAsync
 } from "../../../../../redux/dashboard/modules/pageModule/newPage/action";
 
 import { connect } from "react-redux";
@@ -29,7 +30,12 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps) => {
+  // init based on the url id param
+  if (ownProps.match.params.id) {
+    dispatch(initDataAsync(ownProps.match.params.id));
+  }
+
   return {
     newPageHandler: {
       toggleModuleVisibility: (moduleId, status) =>
@@ -57,7 +63,10 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withSnackbar(withRouter(newPageModule)));
+// with router ro add router props into the component props. should be the before connect
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(withSnackbar(newPageModule))
+);

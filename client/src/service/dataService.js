@@ -92,7 +92,39 @@ const getDefaultModules = () => {
   }
 };
 
+const getPageModules = id => {
+  if (isDevelopment) {
+    // development code
+    return mockPromise(mockData.page(id));
+  } else {
+    // production code
+    return axios
+      .post(config.api.gqUrl, {
+        query: query.dashboardContent
+      })
+      .then(res => res.data.data.content)
+      .catch(logError);
+  }
+};
+
+const savePage = data => {
+  if (isDevelopment) {
+    // development code
+    return mockPromise({ message: "success" });
+  } else {
+    // production code
+    return axios
+      .post(config.api.gqUrl, {
+        query: query.dashboardContent
+      })
+      .then(res => res.data.data.content)
+      .catch(logError);
+  }
+};
+
 export const dataService = {
+  getPageModules,
+  savePage,
   getLayoutContent,
   getHomeContent,
   getDashboardContent,
