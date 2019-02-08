@@ -15,7 +15,9 @@ import {
   MOVE_TO_MODULE,
   CANCEL_EDITING,
   APPLY_CHANGES,
-  INIT_DATA
+  INIT_DATA,
+  SAVE_PAGE,
+  UPDATE_HEADER_INPUTS
 } from "./types";
 import { dataService } from "../../../../../service/dataService";
 
@@ -128,19 +130,34 @@ export const initData = data => ({
   payload: { data }
 });
 
+export const savePage = id => ({
+  type: SAVE_PAGE,
+  payload: { id }
+});
+
+export const updateHeaderInputs = (id, value) => ({
+  type: UPDATE_HEADER_INPUTS,
+  payload: { id, value }
+});
+
 // async: ------------------------------------------------------------------------
 // 1- call this first => resolve will call action with type
 // 2- no type is required
 
 // just one dispatch in init to avoid infinit loop: each dispatch cuase trigger mapDispatchToProps
 export const initDataAsync = id => {
-  return dispatch => {
-    dataService
-      .getPageModules(id)
-      .then(data => {
-        dispatch(initData(data));
-      })
-      .catch(err => console.log(err));
+  return (dispatch, getState) => {
+    if (
+      getState().dashboardNewPage &&
+      getState().dashboardNewPage.page.id == 0
+    ) {
+      dataService
+        .getPageModules(id)
+        .then(data => {
+          dispatch(initData(data));
+        })
+        .catch(err => console.log(err));
+    }
   };
 };
 
@@ -168,15 +185,19 @@ export const openAddModuleModalAsync = (moduleId, where) => {
   };
 };
 
-export const savePageAsync = enqueueSnackbar => {
+export const savePageAsync = (title, action, enqueueSnackbar) => {
   return (dispatch, getState) => {
     dispatch(showSpinner(true));
-    // enqueueSnackbar("Page saved Successfuly", { variant: "success" });
     dataService
-      .savePage(getState().dashboardNewPage.page)
+      .savePage(
+        getState().dashboardNewPage.page.id,
+        title,
+        action,
+        getState().dashboardNewPage.page.modules
+      )
       .then(data => {
         enqueueSnackbar("Page saved Successfuly", { variant: "success" });
-        dispatch(showSpinner(false));
+        dispatch(savePage(data.id));
       })
       .catch(err => console.log(err));
   };

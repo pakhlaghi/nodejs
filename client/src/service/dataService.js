@@ -107,15 +107,17 @@ const getPageModules = id => {
   }
 };
 
-const savePage = data => {
+const savePage = (id, title, action, modules) => {
   if (isDevelopment) {
     // development code
-    return mockPromise({ message: "success" });
+    return mockPromise({ id: id });
   } else {
     // production code
+    // ToDO: modified the call
     return axios
       .post(config.api.gqUrl, {
-        query: query.dashboardContent
+        query: query.dashboardContent,
+        data: dataObj
       })
       .then(res => res.data.data.content)
       .catch(logError);

@@ -86,9 +86,11 @@ const NewPageModule = props => {
         history={history}
         title={newPageSt.page.title}
         action={newPageSt.page.action}
+        form={newPageSt.form}
         isCancelModalOpen={newPageSt.isCancelModalOpen}
         toggleCancelModal={newPageHandler.toggleCancelModal}
         savePageAsync={newPageHandler.savePageAsync}
+        updateHeaderInputs={newPageHandler.updateHeaderInputs}
       />
 
       {newPageSt.page.modules && newPageSt.page.modules.length > 0 ? (

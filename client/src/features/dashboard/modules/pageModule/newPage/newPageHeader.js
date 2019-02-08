@@ -2,11 +2,7 @@ import React from "react";
 // UI
 import styles from "./newPageHeader.style";
 import { withStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
 
-import Input from "@material-ui/core/Input";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
 import Button from "@material-ui/core/Button";
 
 import SaveIcon from "@material-ui/icons/Save";
@@ -17,17 +13,21 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import { TextField } from "@material-ui/core";
 
 const NewPageHeader = props => {
+  // from props
   const {
     classes,
-    enqueueSnackbar,
-    history,
     title,
     action,
+    form,
+    enqueueSnackbar,
+    history,
     isCancelModalOpen,
     toggleCancelModal,
-    savePageAsync
+    savePageAsync,
+    updateHeaderInputs
   } = props;
 
   // header handler
@@ -36,7 +36,7 @@ const NewPageHeader = props => {
   };
 
   const handleSaveClick = () => {
-    savePageAsync(enqueueSnackbar);
+    savePageAsync(title, action, enqueueSnackbar);
   };
 
   // cancel modal handler
@@ -48,17 +48,32 @@ const NewPageHeader = props => {
     toggleCancelModal(false, history);
   };
 
+  const handleInputChange = e => {
+    updateHeaderInputs(e.target.id, e.target.value);
+  };
+
   return (
     <React.Fragment>
       <div className={classes.topBar}>
-        <FormControl required className={classes.inputMargin}>
-          <InputLabel htmlFor="title">Page Title</InputLabel>
-          <Input id="title" name="title" autoFocus value={title} />
-        </FormControl>
-        <FormControl required className={classes.inputMargin}>
-          <InputLabel htmlFor="navigation">Unique Navigation Name</InputLabel>
-          <Input id="navigation" name="navigation" value={action} />
-        </FormControl>
+        <TextField
+          error={form.title.isError}
+          required
+          id="title"
+          label={form.title.label}
+          value={title.value}
+          className={classes.inputMargin}
+          onChange={handleInputChange}
+        />
+
+        <TextField
+          error={form.action.isError}
+          required
+          id="action"
+          label={form.action.label}
+          value={action}
+          className={classes.inputMargin}
+          onChange={handleInputChange}
+        />
 
         <div className={classes.rightEnd}>
           <Button
