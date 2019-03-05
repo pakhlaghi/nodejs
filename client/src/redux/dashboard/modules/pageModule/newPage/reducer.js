@@ -15,7 +15,9 @@ import {
   EDIT_MODULE,
   CANCEL_EDITING,
   APPLY_CHANGES,
-  INIT_DATA
+  INIT_DATA,
+  SAVE_PAGE,
+  UPDATE_HEADER_INPUTS
 } from "./types";
 
 export default (
@@ -28,6 +30,23 @@ export default (
       title: "",
       action: "",
       modules: []
+    },
+    form: {
+      summary: [],
+      title: {
+        label: "Page Title",
+        isError: false,
+        validation: {
+          isRequired: { message: "Please fill $label" }
+        }
+      },
+      action: {
+        label: "Unique Navigation Name",
+        isError: false,
+        validation: {
+          isRequired: { message: "Please fill $label" }
+        }
+      }
     },
     isCancelModalOpen: false,
     isAddModulesOpen: false,
@@ -73,6 +92,10 @@ export default (
       return cancelEditing(state, action);
     case APPLY_CHANGES:
       return applyChanges(state, action);
+    case SAVE_PAGE:
+      return savePage(state, action);
+    case UPDATE_HEADER_INPUTS:
+      return updateHeaderInputs(state, action);
   }
   return state;
 };
@@ -283,7 +306,66 @@ export const applyChanges = (state, action) => {
   return { ...state, editModuleId: null };
 };
 
+export const savePage = (state, action) => {
+  state.page.id = action.payload.id;
+  return { ...state, showSpinner: false };
+};
+
+export const updateHeaderInputs = (state, action) => {
+  // validation
+  // ToDo: add validation service
+  state.form[action.payload.id].isError = !isValid(
+    state.form,
+    action.payload.id,
+    action.payload.value
+  );
+  state.page[action.payload.id] = action.payload.value;
+  return { ...state };
+};
+
 // ------------------------------------------------------------------------------
+
+const isValid = (form, id, value) => {
+  const input = form[id];
+
+  const validationProps = input.validation;
+
+  for (const key in validationProps) {
+    switch (key) {
+      case "isRequired":
+        if (validationProps[key] && value.trim() != "") {
+          form.summary = form.summary.filter(
+            item =>
+              item.id != id &&
+              item.message !== validationProps.isRequired.message
+          );
+          return true;
+        } else {
+          form.summary = form.summary.filter(
+            item =>
+              item.id != id &&
+              item.message !== validationProps.isRequired.message
+          );
+          form.summary.push({
+            id: id,
+            message: validationProps.isRequired.message
+          });
+          return false;
+        }
+
+      case "isEmail":
+        break;
+      case "isPassword":
+        break;
+      case "isNumber":
+        break;
+      case "regex":
+        break;
+      default:
+        break;
+    }
+  }
+};
 
 const maxCallback = (max, cur) => Math.max(max, cur);
 

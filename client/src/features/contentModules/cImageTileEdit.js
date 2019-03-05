@@ -233,7 +233,7 @@ class CTitleText extends React.Component {
               </div>
 
               <TextField
-                id={`columnNumber`}
+                id="columnNumber"
                 label={staticContent.container.label.columnNumber}
                 className={classes.input}
                 variant="filled"

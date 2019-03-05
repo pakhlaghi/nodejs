@@ -19,7 +19,8 @@ import {
   moveToModule,
   cancelEditing,
   applyChanges,
-  initDataAsync
+  initDataAsync,
+  updateHeaderInputs
 } from "../../../../../redux/dashboard/modules/pageModule/newPage/action";
 
 import { connect } from "react-redux";
@@ -47,8 +48,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       toggleAddModulesModal: status => dispatch(toggleAddModulesModal(status)),
       saveAddModulesModal: enqueueSnackbar =>
         dispatch(saveAddModulesModal(enqueueSnackbar)),
-      savePageAsync: enqueueSnackbar =>
-        dispatch(savePageAsync(enqueueSnackbar)),
+      savePageAsync: (title, action, enqueueSnackbar) =>
+        dispatch(savePageAsync(title, action, enqueueSnackbar)),
       addModuleFromList: moduleId => dispatch(addModuleFromList(moduleId)),
       openAddModuleModalAsync: (moduleId, where) =>
         dispatch(openAddModuleModalAsync(moduleId, where)),
@@ -58,7 +59,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         dispatch(moveToModule(moduleId, enqueueSnackbar)),
       handleCancelEditing: _ => dispatch(cancelEditing()),
       handleApplyChanges: (inputs, moduleType) =>
-        dispatch(applyChanges(inputs, moduleType))
+        dispatch(applyChanges(inputs, moduleType)),
+      updateHeaderInputs: (id, value) => dispatch(updateHeaderInputs(id, value))
     }
   };
 };
