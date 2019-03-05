@@ -1,0 +1,19 @@
+type tItem {
+  id: Int!,
+  data: String
+},
+  type Query {
+    items: [tItem],
+    content: String,
+    dashboardContent: String,
+    contentById(id: Int): tItem
+  },
+  type Mutation {
+    savePage(id: Int!, title: String, action: String, main_page: Boolean, modules: String ): String,
+    trashPage(ids: [Int]): String,
+
+    updateUser(id: Int, email: String): String,
+    saveUser(email: String, password: String): String,
+    deleteUser(id: Int): String,
+    trashUser(ids: [Int]): String
+  }

@@ -6,7 +6,7 @@ const JsonWebToken = require("jsonwebtoken");
 const db = require("./../data/dbProvider");
 
 const secret = {
-  jwtSecret: process.env.Secret
+  jwtSecret: process.env.SECRET
 };
 
 const getTokenFromHeaders = req => {
