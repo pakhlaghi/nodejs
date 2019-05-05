@@ -4,9 +4,10 @@ type tItem {
 },
   type Query {
     items: [tItem],
-    content: String,
-    dashboardContent: String,
-    contentById(id: Int): tItem
+    
+    dashboardMenu: String,
+
+    getPage(id: Int!): String
   },
   type Mutation {
     savePage(id: Int!, title: String, action: String, main_page: Boolean, modules: String ): String,
@@ -14,6 +15,6 @@ type tItem {
 
     updateUser(id: Int, email: String): String,
     saveUser(email: String, password: String): String,
-    deleteUser(id: Int): String,
+    deleteUser(id: [Int]): String,
     trashUser(ids: [Int]): String
   }

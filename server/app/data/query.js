@@ -1,12 +1,14 @@
 const db = require("./dbProvider");
 
 const selectAll = (table) => {
-    return db.manyOrNone(`SELECT * FROM ${table};`);
+    return db.manyOrNone(`SELECT * FROM ${table};`)
+    .then((data) => JSON.stringify(data));
 };
 
 const selectById = (table, id) => {
     return db
-    .oneOrNone(`SELECT * from ${table} where id = ${id}`);
+    .oneOrNone(`SELECT * from ${table} where id = ${id}`)
+    .then((data) => JSON.stringify(data));
 };
 
 const insert = (table, dataObj) => {
@@ -90,7 +92,7 @@ const trashByIds = (table, ids) => {
 };
 
 const idInCondition = (ids) => {
-    let condition = ids.reduce((acc, current) => acc.toString() + ',' + current.toString());
+    let condition = Array.isArray(ids) ? ids.reduce((acc, current) => acc.toString() + ',' + current.toString()) : ids;
     condition = `id in (${condition})`;
     return condition;
 }
