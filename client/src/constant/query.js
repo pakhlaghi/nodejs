@@ -1,5 +1,5 @@
-const contentById = id => `{
-    contentById(id: "${id}")
+const getPage = id => `{
+    getPage(id: ${id})
   }`;
 
 const layoutContent = `{
@@ -46,7 +46,7 @@ const layoutContent = `{
   }`;
 
 export const query = {
-  contentById,
+  getPage,
   layoutContent,
   dashboardContent
 };

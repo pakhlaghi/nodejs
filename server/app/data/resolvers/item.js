@@ -1,4 +1,4 @@
-const { protected } = require('./utils');
+const { protected } = require('../../utils');
 const query = require('./../query');
 
 const items = (_, args) => {

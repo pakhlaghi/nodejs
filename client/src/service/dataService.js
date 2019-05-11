@@ -1,10 +1,8 @@
 import { config } from "./../constant/config";
 import { query } from "./../constant/query";
 import { mockData } from "./../test/mock/mockData";
+import { isDevelopment } from "./../utility/utility";
 import axios from "axios";
-
-const isDevelopment =
-  process.env.NODE_ENV && process.env.NODE_ENV === "development";
 
 // create promise from mock data
 const mockPromise = data => {
@@ -34,18 +32,13 @@ const getLayoutContent = () => {
   }
 };
 
-const getHomeContent = id => {
-  if (isDevelopment) {
-    // development code
-    return mockPromise(mockData.home(id));
-  } else {
-    axios
+const getHomeContent = (id) => {
+    return axios
       .post(config.api.gqUrl, {
-        query: query.contentById(id)
+        query: query.getPage(id !== "" ? id : 0)
       })
-      .then(res => JSON.parse(res.data.data.contentById))
+      .then(res => JSON.parse(res.data.data.getPage))
       .catch(logError);
-  }
 };
 
 const login = data => {

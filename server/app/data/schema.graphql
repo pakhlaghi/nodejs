@@ -1,9 +1,5 @@
-type tItem {
-  id: Int!,
-  data: String
-},
   type Query {
-    items: [tItem],
+    items: String,
     
     dashboardMenu: String,
 

@@ -1,4 +1,5 @@
 const routes = require("express").Router();
+const { devCors } = require("./../utils");
 
 // Secirity
 const csrf = require("csurf");
@@ -16,13 +17,13 @@ const auth = require("./../middlewares/auth");
 // 1- CSRF
 const csrfProtection = csrf({ cookie: true });
 
-routes.use("/gq", auth.optional, qraphqlObj);
+routes.use("/gq", devCors, auth.optional, qraphqlObj);
 
-routes.get("/you", csrfProtection, auth.required, function(req, res) {
+routes.get("/you", csrfProtection, auth.required, function (req, res) {
   return res.status(200).send({ user: req.payload.user });
 });
 
-routes.get("/me", csrfProtection, auth.optional, function(req, res) {
+routes.get("/me", csrfProtection, auth.optional, function (req, res) {
   return res.status(200).send({ user: req.payload.user });
 });
 

@@ -2,13 +2,13 @@ const db = require("./dbProvider");
 
 const selectAll = (table) => {
     return db.manyOrNone(`SELECT * FROM ${table};`)
-    .then((data) => JSON.stringify(data));
+        .then((data) => JSON.stringify(data));
 };
 
 const selectById = (table, id) => {
     return db
-    .oneOrNone(`SELECT * from ${table} where id = ${id}`)
-    .then((data) => JSON.stringify(data));
+        .oneOrNone(`SELECT * from ${table} where id = ${id}`)
+        .then((data) => JSON.stringify(data));
 };
 
 const insert = (table, dataObj) => {
@@ -17,12 +17,12 @@ const insert = (table, dataObj) => {
     for (key in dataObj) {
         if (typeof dataObj[key] === "undefined") {
             continue;
-        } 
+        }
 
-        fields += `, ${key}`;        
-        if (Number.isInteger(dataObj[key]) 
-        || typeof dataObj[key] === "boolean"
-        || dataObj[key].toString().indexOf('to_timestamp') >= 0) {
+        fields += `, ${key}`;
+        if (Number.isInteger(dataObj[key])
+            || typeof dataObj[key] === "boolean"
+            || dataObj[key].toString().indexOf('to_timestamp') >= 0) {
             values += `, ${dataObj[key]}`;
         } else {
             values += `, '${dataObj[key]}'`;
@@ -30,14 +30,14 @@ const insert = (table, dataObj) => {
     }
 
     const query = `insert into ${table} (${fields.substr(1)}) values (${values.substr(1)}) RETURNING id`;
-   console.log(query);
+    console.log(query);
     return db.oneOrNone(query)
-    .then(data => {
-      return data.id;
-    })
-    .catch(er => {
-      return er;
-    });
+        .then(data => {
+            return data.id;
+        })
+        .catch(er => {
+            return er;
+        });
 };
 
 const updateByCondition = (table, dataObj, condition) => {
@@ -46,12 +46,12 @@ const updateByCondition = (table, dataObj, condition) => {
         // Undefined
         if (typeof dataObj[key] === "undefined") {
             continue;
-        // Number, Boolean, Date
-        } else if (Number.isInteger(dataObj[key]) 
-        || typeof dataObj[key] === "boolean" 
-        || dataObj[key].toString().indexOf('to_timestamp') >= 0) {
+            // Number, Boolean, Date
+        } else if (Number.isInteger(dataObj[key])
+            || typeof dataObj[key] === "boolean"
+            || dataObj[key].toString().indexOf('to_timestamp') >= 0) {
             update += `, ${key}=${dataObj[key]}`;
-        // STRING
+            // STRING
         } else {
             update += `, ${key}='${dataObj[key]}'`;
         }
@@ -60,35 +60,35 @@ const updateByCondition = (table, dataObj, condition) => {
     const query = `update ${table} set ${update.substr(1)} ${whereCondition};`;
     console.log(query);
     return db.oneOrNone(query).then(_ => {
-        return "Updated";
-      })
-      .catch(er => {
-        return er;
-      });
+        return "updated";
+    })
+        .catch(er => {
+            return er;
+        });
 };
 
 const updateById = (table, dataObj, id) => {
     return updateByCondition(table, dataObj, `id = ${id}`).then(_ => {
         return id;
-      })
-      .catch(er => {
-        return er;
-      });;
+    })
+        .catch(er => {
+            return er;
+        });;
 };
 
 const deleteByIds = (table, ids) => {
     const query = `delete from ${table} where ${idInCondition(ids)};`;
     return db.oneOrNone(query)
-    .then(_ => {
-      return "deleted";
-    })
-    .catch(er => {
-      return er;
-    });
+        .then(_ => {
+            return "deleted";
+        })
+        .catch(er => {
+            return er;
+        });
 };
 
-const trashByIds = (table, ids) => {    
-    return updateByCondition(table, {trash: true, trash_date: `to_timestamp(${Date.now()} / 1000.0)`}, idInCondition(ids));
+const trashByIds = (table, ids) => {
+    return updateByCondition(table, { trash: true, trash_date: `to_timestamp(${Date.now()} / 1000.0)` }, idInCondition(ids));
 };
 
 const idInCondition = (ids) => {

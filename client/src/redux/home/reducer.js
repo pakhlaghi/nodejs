@@ -11,7 +11,7 @@ export default (
 ) => {
   switch (action.type) {
     case GET_CONTENT_BODY_SUCCESS:
-      return { ...state, contentData: action.payload.data };
+      return { ...state, contentData: JSON.parse(action.payload.data.modules) };
     case SHOW_SPINNER:
       return { ...state, showSpinner: action.payload.status };
   }

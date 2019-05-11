@@ -1,7 +1,11 @@
-const user = require('./resolvers/user');
-const page = require('./resolvers/page');
-const item = require('./resolvers/item');
-const admin = require('./resolvers/admin');
+const getFilePath = (path) => {
+  return process.env.ENV === 'dev' ? `./resolvers/mock/${path}` : `./resolvers/${path}`;
+};
+
+const user = require(getFilePath('user'));
+const page = require(getFilePath('page'));
+const item = require(getFilePath('item'));
+const admin = require(getFilePath('admin'));
 
 // Root provides a resolver function for each API endpoint
 let resolvers = {

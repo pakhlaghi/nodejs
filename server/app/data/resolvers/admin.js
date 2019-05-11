@@ -1,4 +1,4 @@
-const { protected } = require('./utils');
+const { protected } = require('../../utils');
 
 const dashboardMenu = (_, args) => {
 const data = {
