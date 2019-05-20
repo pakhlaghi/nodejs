@@ -14,7 +14,7 @@ const lazyDashboardContainer = Loadable({
   loading: Loading
 });
 
-// lazy loading Dashboard componentF
+// lazy loading Login componentF
 const lazyLoginContainer = Loadable({
   loader: () => import("../login/loginContainer"),
   loading: Loading

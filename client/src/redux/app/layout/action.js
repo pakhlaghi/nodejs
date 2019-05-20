@@ -23,9 +23,12 @@ export const getContentSuccess = contentData => {
 // async:
 // call this first => resolve will call action with type
 // no type is required
-export const getContentAsync = () => {
-  return dispatch => {
-    dataService
+export const getContentAsync = (path) => {
+  const id = path.replace("/", "");
+  // TODO: REMOVE PATH PARAMS and use getState for initialization
+  return (dispatch, getState) => {
+    if(getState().app.layout.pathParams[id]){
+      dataService
       .getLayoutContent()
       .then(data => {
         dispatch(getContentSuccess(data));
@@ -34,5 +37,7 @@ export const getContentAsync = () => {
         // toDo: show error message - snackbar
         // dispatch(getUsersError(err.message))
       });
+    }
+    
   };
 };

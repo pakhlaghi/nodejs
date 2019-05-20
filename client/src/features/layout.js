@@ -29,7 +29,7 @@ const Layout = props => {
 
   return (
     <div className={classes.layout}>
-      {showHeader && (
+      {layoutSt.contentData && showHeader && (
         <CHeader
           isFullHeader={isFullHeader}
           isDrawerOpen={layoutSt.isDrawerOpen}
@@ -38,8 +38,8 @@ const Layout = props => {
         />
       )}
       <section className={classes.content}>{children}</section>
-      {showFooter && (
-        <CFooter contentData={layoutSt.contentData.footerContent} />
+      {layoutSt.contentData && showFooter && (
+        <CFooter contentData={layoutSt.contentData && layoutSt.contentData.footerContent} />
       )}
     </div>
   );

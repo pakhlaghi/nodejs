@@ -17,9 +17,9 @@ const mapStateToProps = (state, props) => {
 };
 
 // redux map actions
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, props) => {
   // onInit: load data onInit
-  dispatch(getContentAsync());
+  dispatch(getContentAsync(props.location.pathname));
 
   return {
     onToggleDrawer: status => dispatch(toggleDrawer(status))

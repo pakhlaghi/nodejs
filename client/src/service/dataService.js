@@ -101,12 +101,6 @@ const getPageModules = id => {
 };
 
 const savePage = (id, title, action, modules) => {
-  if (isDevelopment) {
-    // development code
-    return mockPromise({ id: id });
-  } else {
-    // production code
-    // ToDO: modified the call
     return axios
       .post(config.api.gqUrl, {
         query: query.dashboardContent,
@@ -114,7 +108,6 @@ const savePage = (id, title, action, modules) => {
       })
       .then(res => res.data.data.content)
       .catch(logError);
-  }
 };
 
 export const dataService = {
