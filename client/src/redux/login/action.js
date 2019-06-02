@@ -45,7 +45,7 @@ export const signIn = (username, password) => {
       .login(data)
       .then(data => {
         if (data.token) {
-          // toDo: add logic for keep me signin > if checkbox checked set local storage
+          // TODO: add logic for keep me signin > if checkbox checked set local storage
           // sessionStorage.setItem("token", data.token);
           dispatch(signInSuccess(data));
         }

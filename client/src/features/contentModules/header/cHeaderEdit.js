@@ -264,7 +264,7 @@ class CHeaderEdit extends React.Component {
                 onChange={handleInputChange}
               />
 
-              {/* toDo: replace with dropdown */}
+              {/* TODO: replace with dropdown */}
               <TextField
                 id="topBarMenuId"
                 label={staticContent.topBar.label.menuId}

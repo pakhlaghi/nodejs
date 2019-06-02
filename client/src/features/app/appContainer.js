@@ -8,11 +8,10 @@ import { withRouter } from "react-router-dom";
 import { toggleDrawer, getContentAsync } from "../../redux/app/layout/action";
 
 // redux map state
-const mapStateToProps = (state, props) => {
+const mapStateToProps = state => {
   return {
     loginSt: state.login,
-    layoutSt: state.app.layout,
-    pathname: props.location.pathname
+    layoutSt: state.app.layout
   };
 };
 

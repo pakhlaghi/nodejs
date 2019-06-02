@@ -313,7 +313,7 @@ export const savePage = (state, action) => {
 
 export const updateHeaderInputs = (state, action) => {
   // validation
-  // ToDo: add validation service
+  // TODO: add validation service
   state.form[action.payload.id].isError = !isValid(
     state.form,
     action.payload.id,

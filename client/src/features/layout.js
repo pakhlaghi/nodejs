@@ -7,47 +7,24 @@ import { withStyles } from "@material-ui/core/styles";
 
 const Layout = props => {
   // props
-  const { children, classes, pathname, layoutSt, onToggleDrawer } = props;
-
-  // check route prop
-  const routes = children.props.routes;
-  const route = routes && routes.filter(isCurrentRoute(pathname));
-  const routeExtra = route && route.length && route[0].extra;
-
-  const isFullHeader =
-    routeExtra && !(typeof routeExtra.isFullHeader === "undefined")
-      ? routeExtra.isFullHeader
-      : false;
-  const showHeader =
-    routeExtra && !(typeof routeExtra.showHeader === "undefined")
-      ? routeExtra.showHeader
-      : true;
-  const showFooter =
-    routeExtra && !(typeof routeExtra.showFooter === "undefined")
-      ? routeExtra.showFooterS
-      : true;
+  const { children, classes, layoutSt, onToggleDrawer } = props;
 
   return (
     <div className={classes.layout}>
-      {layoutSt.contentData && showHeader && (
+      {layoutSt.contentData && layoutSt.contentData.headerContent && (
         <CHeader
-          isFullHeader={isFullHeader}
+          isFullHeader={layoutSt.contentData.headerContent.isFullHeader}
           isDrawerOpen={layoutSt.isDrawerOpen}
           contentData={layoutSt.contentData.headerContent}
           onToggleDrawer={onToggleDrawer}
         />
       )}
       <section className={classes.content}>{children}</section>
-      {layoutSt.contentData && showFooter && (
+      {layoutSt.contentData && layoutSt.contentData.footerContent && (
         <CFooter contentData={layoutSt.contentData && layoutSt.contentData.footerContent} />
       )}
     </div>
   );
 };
-
-const isCurrentRoute = pathname => route =>
-  route.path == pathname ||
-  (route.path.indexOf(":") >= 0 &&
-    pathname.indexOf(route.path.split(":")[0]) >= 0);
 
 export default withStyles(styles)(Layout);

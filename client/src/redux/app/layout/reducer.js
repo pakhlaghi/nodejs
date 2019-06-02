@@ -26,5 +26,16 @@ const toggleDrawer = (state, action) => {
 };
 
 const getContentSuccess = (state, action) => {
-  return { ...state, contentData: action.payload.contentData };
+   
+  const pathParams = state.pathParams[action.payload.pathId];
+  let contentData = {};
+
+  if (pathParams && pathParams.showHeader) {
+    contentData.headerContent = action.payload.contentData.headerContent;
+  }
+  if (pathParams && pathParams.showFooter) {
+    contentData.footerContent = action.payload.contentData.footerContent;
+  }
+
+  return { ...state, contentData: contentData };
 };

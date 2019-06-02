@@ -18,18 +18,12 @@ const logError = err => {
 };
 
 const getLayoutContent = () => {
-  if (isDevelopment) {
-    // development code
-    return mockPromise(mockData.layout);
-  } else {
-    // production code
     return axios
       .post(config.api.gqUrl, {
         query: query.layoutContent
       })
-      .then(res => res.data.data.content)
+      .then(res => JSON.parse(res.data.data.getLayout))
       .catch(logError);
-  }
 };
 
 const getHomeContent = (id) => {

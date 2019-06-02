@@ -22,7 +22,7 @@ const lazyLoginContainer = Loadable({
 
 function App(props) {
   // props
-  const { layoutSt, loginSt, pathname, onToggleDrawer } = props;
+  const { layoutSt, loginSt, onToggleDrawer } = props;
 
   const isAuthenticated = !!loginSt.token;
 
@@ -31,20 +31,12 @@ function App(props) {
     {
       path: "/",
       exact: true,
-      component: HomeContainer,
-      extra: {
-        showHeader: false,
-        showFooter: false
-      }
+      component: HomeContainer
     },
     {
       path: "/page/:contentId",
       exact: true,
-      component: HomeContainer,
-      extra: {
-        showHeader: false,
-        showFooter: false
-      }
+      component: HomeContainer
     },
     {
       path: "/login",
@@ -59,17 +51,12 @@ function App(props) {
         isAllowed: isAuthenticated,
         redirectTo: "/login", // if private redirect to ...
         isPrivate: true // is private route?
-      },
-      extra: {
-        showHeader: false,
-        showFooter: false
       }
     }
   ];
 
   return (
     <Layout
-      pathname={pathname}
       layoutSt={layoutSt}
       onToggleDrawer={onToggleDrawer}
     >

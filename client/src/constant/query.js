@@ -3,31 +3,7 @@ const getPage = id => `{
   }`;
 
 const layoutContent = `{
-    content {
-      headerContent {
-        topBar {
-          title
-          menuItems {
-            id
-            to
-            title
-          }
-          drawerPosition
-        }
-      }
-      footerContent {
-        text
-        style {
-          color
-          backgroundColor
-        }
-        socialData {
-          id
-          icon
-          url
-        }
-      }
-    }
+    getLayout
   }`;
 
   const dashboardContent = `{

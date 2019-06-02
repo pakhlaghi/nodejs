@@ -11,11 +11,12 @@ export const toggleDrawer = status => {
   };
 };
 
-export const getContentSuccess = contentData => {
+export const getContentSuccess = (contentData, pathId) => {
   return {
     type: GET_CONTENT_SUCCESS,
     payload: {
-      contentData
+      contentData,
+      pathId
     }
   };
 };
@@ -24,17 +25,16 @@ export const getContentSuccess = contentData => {
 // call this first => resolve will call action with type
 // no type is required
 export const getContentAsync = (path) => {
-  const id = path.replace("/", "");
-  // TODO: REMOVE PATH PARAMS and use getState for initialization
+  const pathId = path.replace("/", "");
   return (dispatch, getState) => {
-    if(getState().app.layout.pathParams[id]){
+    if(getState().app.layout.pathParams[pathId]){
       dataService
       .getLayoutContent()
       .then(data => {
-        dispatch(getContentSuccess(data));
+        dispatch(getContentSuccess(data, pathId));
       })
       .catch(err => {
-        // toDo: show error message - snackbar
+        // TODO: show error message - snackbar
         // dispatch(getUsersError(err.message))
       });
     }

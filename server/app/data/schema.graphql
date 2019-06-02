@@ -3,7 +3,9 @@
     
     dashboardMenu: String,
 
-    getPage(id: Int!): String
+    getPage(id: Int!): String,
+
+    getLayout: String
   },
   type Mutation {
     savePage(id: Int!, title: String, action: String, main_page: Boolean, modules: String ): String,
@@ -12,5 +14,7 @@
     updateUser(id: Int, email: String): String,
     saveUser(email: String, password: String): String,
     deleteUser(id: [Int]): String,
-    trashUser(ids: [Int]): String
+    trashUser(ids: [Int]): String,
+
+    saveLayout(content: String ): String,
   }
