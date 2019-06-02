@@ -49,34 +49,22 @@ const login = data => {
   }
 };
 
-const getDashboardContent = () => {
-  if (isDevelopment) {
-    // development code
-    return mockPromise(mockData.dashboard);
-  } else {
-    // production code
+const getDashboardItems = () => {
     return axios
       .post(config.api.gqUrl, {
-        query: query.dashboardContent
+        query: query.dashboardItems
       })
-      .then(res => res.data.data.content)
+      .then(res => JSON.parse(res.data.data.getDashboard.drawerItems))
       .catch(logError);
-  }
 };
 
 const getDefaultModules = () => {
-  if (isDevelopment) {
-    // development code
-    return mockPromise(mockData.dashboard.defaultModules);
-  } else {
-    // production code
     return axios
       .post(config.api.gqUrl, {
-        query: query.dashboardContent
+        query: query.dashboardDefaultModules
       })
-      .then(res => res.data.data.content)
+      .then(res => JSON.parse(res.data.data.getDashboard.defaultModules))
       .catch(logError);
-  }
 };
 
 const getPageModules = id => {
@@ -109,7 +97,7 @@ export const dataService = {
   savePage,
   getLayoutContent,
   getHomeContent,
-  getDashboardContent,
+  getDashboardItems,
   getDefaultModules,
   login
 };

@@ -36,7 +36,7 @@ export const getItemsSuccess = data => ({
 export const getItemsAsync = () => {
   return dispatch => {
     dataService
-      .getDashboardContent()
+      .getDashboardItems()
       .then(data => {
         dispatch(getItemsSuccess(data));
       })

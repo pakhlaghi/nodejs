@@ -6,23 +6,21 @@ const layoutContent = `{
     getLayout
   }`;
 
-  const dashboardContent = `{
-    dashboardContent {
-      drawerItems {
-        text
-        action
-        icon
-      children: {
-        text
-        action
-        icon
-      }
+  const dashboardItems = `{
+    getDashboard {
+      drawerItems
     }
+  }`;
+
+  const dashboardDefaultModules = `{
+    getDashboard {
+      defaultModules
     }
   }`;
 
 export const query = {
   getPage,
   layoutContent,
-  dashboardContent
+  dashboardItems,
+  dashboardDefaultModules
 };

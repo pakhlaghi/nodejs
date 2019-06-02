@@ -1,4 +1,8 @@
-  type Query {
+type tDashboard {
+  defaultModules: String, 
+  drawerItems: String
+},
+type Query {
     items: String,
     
     dashboardMenu: String,
@@ -6,6 +10,8 @@
     getPage(id: Int!): String,
 
     getLayout: String
+
+    getDashboard: tDashboard
   },
   type Mutation {
     savePage(id: Int!, title: String, action: String, main_page: Boolean, modules: String ): String,
