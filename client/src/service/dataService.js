@@ -68,20 +68,15 @@ const getDefaultModules = () => {
 };
 
 const getPageModules = id => {
-  if (isDevelopment) {
-    // development code
-    return mockPromise(mockData.page(id));
-  } else {
-    // production code
     return axios
       .post(config.api.gqUrl, {
-        query: query.dashboardContent
+        query: query.getPage(id !== "" ? id : 0)
       })
-      .then(res => res.data.data.content)
+      .then(res => JSON.parse(res.data.data.getPage))
       .catch(logError);
-  }
 };
 
+// TODO: add save page logic
 const savePage = (id, title, action, modules) => {
     return axios
       .post(config.api.gqUrl, {

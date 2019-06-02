@@ -102,7 +102,7 @@ export default (
 
 export const initData = (state, action) => {
   state.page = action.payload.data;
-
+  state.page.modules = JSON.parse(state.page.modules);
   return { ...state, showSpinner: false };
 };
 
