@@ -1,7 +1,5 @@
 import { config } from "./../constant/config";
 import { query } from "./../constant/query";
-import { mockData } from "./../test/mock/mockData";
-import { isDevelopment } from "./../utility/utility";
 import axios from "axios";
 
 // create promise from mock data
@@ -36,17 +34,12 @@ const getHomeContent = (id) => {
 };
 
 const login = data => {
-  if (isDevelopment) {
-    // development code
-    return mockPromise(mockData.login);
-  } else {
-    return axios
-      .post(config.api.loginUrl, data)
-      .then(res => {
-        return res.data;
-      })
-      .catch(logError);
-  }
+  return axios
+    .post(config.api.loginUrl, data)
+    .then(res => {
+      return res.data;
+    })
+    .catch(logError);
 };
 
 const getDashboardItems = () => {
