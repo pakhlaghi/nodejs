@@ -11,6 +11,20 @@ const selectById = (table, id) => {
         .then((data) => JSON.stringify(data));
 };
 
+const selectOneByCondition = (table, condition) => {
+    const whereCondition = condition ? `where ${condition}` : '';
+    return db
+        .oneOrNone(`SELECT * from ${table} ${whereCondition}`)
+        .then((data) => JSON.stringify(data));
+};
+
+const selectMultiByCondition = (table, condition) => {
+    const whereCondition = condition ? `where ${condition}` : '';
+    return db
+        .manyOrNone(`SELECT * from ${table} ${whereCondition}`)
+        .then((data) => JSON.stringify(data));
+};
+
 const insert = (table, dataObj) => {
     let fields = '';
     let values = '';
@@ -101,6 +115,8 @@ const idInCondition = (ids) => {
 module.exports = {
     selectAll,
     selectById,
+    selectOneByCondition,
+    selectMultiByCondition,
     insert,
     updateById,
     updateByCondition,

@@ -17,7 +17,7 @@ const protected = ({ user, res, roles }) => {
 
 const devCors = (req, res, next) => {
   // add this to support cors in dev environment
-  if (process.env.ENV === "dev") {
+  if (process.env.ENV === "dev" || process.env.ENV === "test") {
     res.header('Access-Control-Allow-Credentials', true);
     res.header('Access-Control-Allow-Headers', 'content-type, authorization, content-length, x-requested-with, accept, origin');
     res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')

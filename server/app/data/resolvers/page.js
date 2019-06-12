@@ -12,7 +12,11 @@ const trashPage = ({ ids }) => {
 }
 
 const getPage = ({ id }) => {
-    return query.selectById("pages", id);
+    if (id) {
+        return query.selectById("pages", id);
+    } else {
+        return query.selectOneByCondition("pages", "main_page = true");
+    }    
 }
 
 // private -------------------------
