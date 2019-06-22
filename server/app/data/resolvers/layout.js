@@ -1,7 +1,7 @@
 const query = require('./../query');
 
 const getLayout = () => {
-    return query.selectAll("layout");
+    return query.selectOne("layout");
 }
 
 // TODO: sql view can be added

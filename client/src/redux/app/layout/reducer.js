@@ -29,12 +29,12 @@ const getContentSuccess = (state, action) => {
    
   const pathParams = state.pathParams[action.payload.pathId];
   let contentData = {};
-
+  const contentDataObj = JSON.parse(action.payload.contentData);
   if (pathParams && pathParams.showHeader) {
-    contentData.headerContent = action.payload.contentData.headerContent;
+    contentData.headerContent = contentDataObj.headerContent;
   }
   if (pathParams && pathParams.showFooter) {
-    contentData.footerContent = action.payload.contentData.footerContent;
+    contentData.footerContent = contentDataObj.footerContent;
   }
 
   return { ...state, contentData: contentData };

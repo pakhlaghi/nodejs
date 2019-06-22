@@ -30,7 +30,7 @@ const getTokenFromHeaders = req => {
 
 // Authentication and generate token
 const login = (username, password, response) => {
-  if (process.env.ENV === "dev") {
+  if (process.env.ENV === "dev" || process.env.ENV === "test") {
     response.send({ token: "token" });
   }
   return db

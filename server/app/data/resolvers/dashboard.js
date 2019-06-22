@@ -1,7 +1,7 @@
 const query = require('./../query');
 
 const getDashboard = () => {
-    return query.selectAll("dashboard");
+    return query.selectOne("dashboard", false);
 }
 
 module.exports = {

@@ -5,6 +5,11 @@ const selectAll = (table) => {
         .then((data) => JSON.stringify(data));
 };
 
+const selectOne = (table, isJsonStrigify = true) => {
+    return db.oneOrNone(`SELECT * FROM ${table};`)
+        .then((data) => isJsonStrigify ? JSON.stringify(data) : data);
+};
+
 const selectById = (table, id) => {
     return db
         .oneOrNone(`SELECT * from ${table} where id = ${id}`)
@@ -114,6 +119,7 @@ const idInCondition = (ids) => {
 
 module.exports = {
     selectAll,
+    selectOne,
     selectById,
     selectOneByCondition,
     selectMultiByCondition,
